@@ -1,0 +1,57 @@
+schema_version: 1
+id: grok-4.20-0309-reasoning
+vendor: xai
+api_model_id: grok-4.20-0309-reasoning
+display_name_zh: Grok 4.20 Reasoning
+display_name_en: Grok 4.20 Reasoning
+family: grok-4.20
+region: global
+status: active
+deployment_zh: xAI API 全球端点。模型名 grok-4.20-0309-reasoning
+modalities:
+  input: [text, image]
+  output: [text]
+context:
+  window_tokens: 1000000
+  window_tokens_exact: true
+  window_label: "1000000"
+  source_url: https://docs.x.ai/developers/models/grok-4.20
+  note_zh: 模型页写上下文 1,000,000。同页短价是低于 20 万 token 的价格。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 全球端点、提示词低于 20 万 token。非推理与 multi-agent 变体在定价表上同价，本条只记录 reasoning 这个模型 ID。
+  headline:
+    id: short
+    label_zh: 提示词低于 20 万 token
+    input_per_1m: "1.25"
+    output_per_1m: "2.50"
+    cache_hit_input_per_1m: "0.20"
+  tiers:
+    - id: short
+      label_zh: 提示词低于 20 万 token
+      applies_when_zh: 定价表短上下文列。
+      input_per_1m: "1.25"
+      output_per_1m: "2.50"
+      cache_hit_input_per_1m: "0.20"
+      is_headline: true
+    - id: long
+      label_zh: 提示词达到或超过 20 万 token
+      applies_when_zh: 达到 20 万 token 后整次请求按长上下文价计。
+      input_per_1m: "2.50"
+      output_per_1m: "5"
+      cache_hit_input_per_1m: "0.40"
+      is_headline: false
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "8.396000"
+  cny_output_per_1m: "16.792000"
+  usd_input_per_1m: "1.25"
+  usd_output_per_1m: "2.50"
+source:
+  url: https://docs.x.ai/developers/pricing
+  title_zh: xAI API Pricing
+  section_zh: "Text API 表 grok-4.20-0309-reasoning 行的短上下文列与长上下文列。同表另有同价的 non-reasoning 与 multi-agent，未并入本条。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 定价表同时列出 grok-4.3、grok-4.20-multi-agent-0309 与 non-reasoning，单价相同。没有把它们合成一条，避免模型 ID 对不上。发布日未核到独立公告，模型 ID 里的 0309 不当作发布日期。

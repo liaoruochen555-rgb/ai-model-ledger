@@ -1,0 +1,36 @@
+schema_version: 1
+model_id: kimi-k3.1-pro
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://platform.kimi.com/docs/pricing/chat
+  billing:
+    unit: per_1m_tokens
+    currency: CNY
+    price_covers_zh: 中国站标准价。缓存未命中的输入与输出。缓存写入另计，不并入输入单价。Batch 为标准价的 60%，不作为入口价。
+    headline:
+      id: standard
+      label_zh: 标准价 · 缓存未命中
+      input_per_1m: '13'
+      output_per_1m: '68'
+      cache_hit_input_per_1m: '1.30'
+      cache_write_5m_per_1m: '13'
+      cache_write_1h_per_1m: '26'
+    tiers:
+    - id: standard
+      label_zh: 标准价 · 缓存未命中
+      applies_when_zh: 不按上下文长度分档。未指定 TTL 时缓存写入按 5 分钟档。
+      input_per_1m: '13'
+      output_per_1m: '68'
+      cache_hit_input_per_1m: '1.30'
+      cache_write_5m_per_1m: '13'
+      cache_write_1h_per_1m: '26'
+      is_headline: true
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '13'
+    cny_output_per_1m: '68'
+    usd_input_per_1m: '1.935445'
+    usd_output_per_1m: '10.123869'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。

@@ -1,0 +1,53 @@
+schema_version: 1
+id: kimi-k2.6
+vendor: moonshot
+api_model_id: kimi-k2.6
+display_name_zh: Kimi K2.6
+display_name_en: Kimi K2.6
+family: kimi-k2
+region: cn
+status: retiring
+deployment_zh: Kimi 开放平台中国站。2026-10-31 起不对新注册用户开放，计划 2026 年 12 月底全部下线
+modalities:
+  input: [text, image, video]
+  output: [text]
+context:
+  window_tokens: 262144
+  window_tokens_exact: true
+  max_output_tokens: 32768
+  max_output_tokens_exact: true
+  window_label: "262144"
+  max_output_label: "32768"
+  source_url: https://platform.kimi.com/docs/pricing/chat
+  note_zh: 定价页写 K2 系列上下文窗口为 262,144 tokens。模型指南把默认 max_tokens 写成 32k，即 32768。指南正文另说「256K」，与 262,144 同页并存，整数以定价页为准。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 中国站 K2 表的标准价。该表只有输入、输出、缓存命中，没有缓存写入列。Batch 文档写 K2 不支持缓存写入。
+  headline:
+    id: standard
+    label_zh: 标准价 · 缓存未命中
+    input_per_1m: "6.50"
+    output_per_1m: "27"
+    cache_hit_input_per_1m: "1.10"
+  tiers:
+    - id: standard
+      label_zh: 标准价 · 缓存未命中
+      applies_when_zh: K2 表不按上下文长度分档。
+      input_per_1m: "6.50"
+      output_per_1m: "27"
+      cache_hit_input_per_1m: "1.10"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "6.50"
+  cny_output_per_1m: "27"
+  usd_input_per_1m: "0.967723"
+  usd_output_per_1m: "4.019771"
+source:
+  url: https://platform.kimi.com/docs/pricing/chat
+  title_zh: Kimi 开放平台模型推理价格说明
+  section_zh: 「模型定价 / K2 系列模型」表 kimi-k2.6 行。列序为输入、输出、缓存命中。表前注写明 2026-10-31 起停止向新用户开放，并计划 12 月底全部下线。
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 收这一条是因为中国站价目表仍印着它，而且它是 Kimi 里还能对上官方数字的低价档。状态标为即将下线，不是在售默认。K2.7 Code 与高速版同页有价，v0.1 没有再展开。新用户按平台说明已经不能开通。

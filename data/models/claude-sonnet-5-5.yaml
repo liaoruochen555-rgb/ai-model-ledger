@@ -1,0 +1,53 @@
+schema_version: 1
+id: claude-sonnet-5-5
+vendor: anthropic
+api_model_id: claude-sonnet-5-5
+display_name_zh: Claude Sonnet 5.5
+display_name_en: Claude Sonnet 5.5
+family: claude-sonnet
+region: global
+status: active
+deployment_zh: Claude API 全球标准价
+modalities:
+  input: [text, image]
+  output: [text]
+context:
+  window_label: 1M
+  max_output_label: 128K
+  source_url: https://platform.claude.com/docs/en/models/overview
+  note_zh: 模型总览写 1M 上下文、同步最大输出 128K。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 基础输入与输出。缓存命中为基价输入的 0.05 倍。
+  headline:
+    id: standard
+    label_zh: 标准价
+    input_per_1m: "2"
+    output_per_1m: "10"
+    cache_hit_input_per_1m: "0.10"
+    cache_write_5m_per_1m: "2.50"
+    cache_write_1h_per_1m: "4"
+  tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表未按提示长度分档。
+      input_per_1m: "2"
+      output_per_1m: "10"
+      cache_hit_input_per_1m: "0.10"
+      cache_write_5m_per_1m: "2.50"
+      cache_write_1h_per_1m: "4"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "13.433600"
+  cny_output_per_1m: "67.168000"
+  usd_input_per_1m: "2"
+  usd_output_per_1m: "10"
+source:
+  url: https://platform.claude.com/docs/en/about-claude/pricing
+  title_zh: Claude API 模型定价
+  section_zh: "Model pricing 表 Claude Sonnet 5.5 行。脚注说明 Sonnet 5 的 2/10 美元介绍价已转为标准价，且原定上调取消。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 定价页脚注写明：Sonnet 5 发布时的 2 / 10 美元介绍价现已是标准价，原定 2026-09-01 调到 3 / 15 美元的计划取消。Sonnet 5.5 在同一页的标准价也是 2 / 10。退役承诺不早于 2027-09-28。

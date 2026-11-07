@@ -1,0 +1,53 @@
+schema_version: 1
+id: claude-fable-5-1
+vendor: anthropic
+api_model_id: claude-fable-5-1
+display_name_zh: Claude Fable 5.1
+display_name_en: Claude Fable 5.1
+family: claude-fable
+region: global
+status: active
+deployment_zh: Claude API 全球标准价。模型总览建议重活优先看它，而不是默认 Opus
+modalities:
+  input: [text, image]
+  output: [text]
+context:
+  window_label: 1M
+  max_output_label: 128K
+  source_url: https://platform.claude.com/docs/en/models/overview
+  note_zh: 模型总览写 1M 上下文、同步接口最大输出 128K，没有给出整数。Batch 接口在特定 beta 下输出更高，不改变这里的同步上限。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 基础输入与输出。缓存命中是基础输入的 0.025 倍。5 分钟与 1 小时缓存写入另计。Batch 五折不作为入口价。
+  headline:
+    id: standard
+    label_zh: 标准价
+    input_per_1m: "10"
+    output_per_1m: "50"
+    cache_hit_input_per_1m: "0.25"
+    cache_write_5m_per_1m: "12.5"
+    cache_write_1h_per_1m: "20"
+  tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表未按提示长度分档。
+      input_per_1m: "10"
+      output_per_1m: "50"
+      cache_hit_input_per_1m: "0.25"
+      cache_write_5m_per_1m: "12.5"
+      cache_write_1h_per_1m: "20"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "67.168000"
+  cny_output_per_1m: "335.840000"
+  usd_input_per_1m: "10"
+  usd_output_per_1m: "50"
+source:
+  url: https://platform.claude.com/docs/en/about-claude/pricing
+  title_zh: Claude API 模型定价
+  section_zh: "Model pricing 表 Claude Fable 5.1 行：Base input、5m cache writes、1h cache writes、Cache hits and refreshes、Output。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 定价页：输入 10 美元、5 分钟缓存写入 12.50 美元、1 小时 20 美元、缓存命中 0.25 美元、输出 50 美元，每百万 tokens。模型总览的基础价与此一致，并写退役承诺不早于 2027-09-01。发布日未在这两页写明。

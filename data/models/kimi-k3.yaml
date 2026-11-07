@@ -1,0 +1,60 @@
+schema_version: 1
+id: kimi-k3
+vendor: moonshot
+api_model_id: kimi-k3
+display_name_zh: Kimi K3
+display_name_en: Kimi K3
+family: kimi-k3
+region: cn
+status: active
+deployment_zh: Kimi 开放平台中国站（api.moonshot.cn）
+modalities:
+  input: [text, image]
+  output: [text]
+release:
+  date: "2026-07"
+  precision: month
+  kind: announcement
+  source_url: https://platform.kimi.ai/docs/platform-changelog
+  note_zh: 开放平台更新日志将 Kimi K3 的 API 上线写在 July 2026，没有写到日。
+context:
+  window_tokens: 1048576
+  window_tokens_exact: true
+  window_label: "1048576"
+  source_url: https://platform.kimi.com/docs/pricing/chat
+  note_zh: K3 系列上下文窗口为 1,048,576 tokens。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 中国站标准价，不按上下文分档。Batch 为 60%，不作为入口价。
+  headline:
+    id: standard
+    label_zh: 标准价 · 缓存未命中
+    input_per_1m: "20"
+    output_per_1m: "100"
+    cache_hit_input_per_1m: "2"
+    cache_write_5m_per_1m: "20"
+    cache_write_1h_per_1m: "40"
+  tiers:
+    - id: standard
+      label_zh: 标准价 · 缓存未命中
+      applies_when_zh: 不按上下文长度分档。
+      input_per_1m: "20"
+      output_per_1m: "100"
+      cache_hit_input_per_1m: "2"
+      cache_write_5m_per_1m: "20"
+      cache_write_1h_per_1m: "40"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "20"
+  cny_output_per_1m: "100"
+  usd_input_per_1m: "2.977608"
+  usd_output_per_1m: "14.888042"
+source:
+  url: https://platform.kimi.com/docs/pricing/chat
+  title_zh: Kimi 开放平台模型推理价格说明
+  section_zh: "「模型定价 / K3 系列模型」表，kimi-k3 行。列序为输入、输出、缓存命中、缓存写入（5min）、缓存写入（1h）。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 中国站表格：输入 ¥20.00、输出 ¥100.00、缓存命中 ¥2.00、5 分钟缓存写入 ¥20.00、1 小时 ¥40.00。国际站首页的 3 美元 / 15 美元是另一张价目。K2 系列已停止向新用户开放并计划在 2026 年 12 月底下线，v0.1 不收录。

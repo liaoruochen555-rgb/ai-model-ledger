@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>大模型 API 价格账本</title>
+  <meta name="description" content="国产模型优先的 LLM API 官方标价账本。每条价格带来源与核验日，变动只追加不覆盖。">
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#app">跳到价格表</a>
+  <header class="mast">
+    <div class="mast-inner">
+      <a class="brand" href="#/">
+        <span class="seal" aria-hidden="true">账</span>
+        <span class="brand-text">
+          <strong>大模型 API 价格账本</strong>
+          <em>ai-model-ledger · v0.1</em>
+        </span>
+      </a>
+      <nav class="mast-nav">
+        <a href="#/">价格表</a>
+        <a href="methodology.html">口径</a>
+        <a href="omitted.html">未收录</a>
+      </nav>
+    </div>
+  </header>
+  <main id="app">
+    <p class="loading">正在读取账本…</p>
+  </main>
+  <footer class="colophon">
+    <p>代码以 MIT 许可，数据与变动说明以 CC BY 4.0 许可。价格抄自厂商官方页面；人民币与美元的切换若与账单币种不同，只是按中间价折算。</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

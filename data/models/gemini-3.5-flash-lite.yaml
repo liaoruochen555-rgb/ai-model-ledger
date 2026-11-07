@@ -1,0 +1,51 @@
+schema_version: 1
+id: gemini-3.5-flash-lite
+vendor: google
+api_model_id: gemini-3.5-flash-lite
+display_name_zh: Gemini 3.5 Flash-Lite
+display_name_en: Gemini 3.5 Flash-Lite
+family: gemini-3
+region: global
+status: active
+deployment_zh: Gemini Developer API 付费层 Standard。文本、图像、视频、音频输入同价
+modalities:
+  input: [text, image, video, audio]
+  output: [text]
+context:
+  window_label: 1M
+  max_output_tokens: 64000
+  max_output_tokens_exact: true
+  max_output_label: "64000"
+  source_url: https://ai.google.dev/gemini-api/docs/long-context
+  note_zh: 长上下文文档把 Gemini 3 与 2.5 写成分开的约 100 万输入预算和 64,000 输出预算。3.5 Flash-Lite 属于 Gemini 3，定价页没有再给这个模型自己的整数字段，输入侧因此只保留 1M 标签。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: Standard 付费价。输出含思考 token。缓存命中 0.03 美元。按小时的缓存存储不并入输入单价。
+  headline:
+    id: standard
+    label_zh: 标准价
+    input_per_1m: "0.30"
+    output_per_1m: "2.50"
+    cache_hit_input_per_1m: "0.03"
+  tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价页该模型名下第一张 Standard 表，输入不区分文本、图像、视频、音频。
+      input_per_1m: "0.30"
+      output_per_1m: "2.50"
+      cache_hit_input_per_1m: "0.03"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "2.015040"
+  cny_output_per_1m: "16.792000"
+  usd_input_per_1m: "0.30"
+  usd_output_per_1m: "2.50"
+source:
+  url: https://ai.google.dev/gemini-api/docs/pricing
+  title_zh: Gemini Developer API pricing
+  section_zh: gemini-3.5-flash-lite 标题下第一张 Standard 表的 Paid Tier：Input price、Output price、Context caching price。随后的 Batch 表约为半价，不作为入口价。
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 标准档缓存存储在同一单元格写着每百万 tokens 每小时 1.00 美元，那是存储价，不是输入价。页面没有给出限期涨价，所以没有 scheduled。这是 Gemini 目录里的低价档，用来和 Gemini 4 Argon 对照。

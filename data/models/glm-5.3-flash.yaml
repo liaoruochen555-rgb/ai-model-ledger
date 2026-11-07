@@ -1,0 +1,55 @@
+schema_version: 1
+id: glm-5.3-flash
+vendor: zhipu
+api_model_id: glm-5.3-flash
+display_name_zh: GLM-5.3-Flash
+display_name_en: GLM-5.3-Flash
+family: glm-5
+region: cn
+status: active
+deployment_zh: 智谱开放平台。模型编码 glm-5.3-flash
+modalities:
+  input: [text, image, video, file]
+  output: [text]
+release:
+  date: "2026-08-26"
+  precision: day
+  kind: announcement
+  source_url: https://docs.bigmodel.cn/cn/update/new-releases
+  note_zh: 发布记录写「2026-08-26 GLM-5.3-Flash 原生多模态模型上线」。
+context:
+  window_label: 1M
+  max_output_label: 128K
+  source_url: https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash
+  note_zh: 模型页卡片写上下文窗口 1M、最大输出 128K，没有给出整数。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 定价指南表格中的标准价，不是模型介绍里的限时折扣换算。
+  headline:
+    id: standard
+    label_zh: 定价表标准价
+    input_per_1m: "0.8"
+    output_per_1m: "2.8"
+    cache_hit_input_per_1m: "0.23"
+  tiers:
+    - id: standard
+      label_zh: 定价表标准价
+      applies_when_zh: 定价表未按输入长度分档。
+      input_per_1m: "0.8"
+      output_per_1m: "2.8"
+      cache_hit_input_per_1m: "0.23"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "0.8"
+  cny_output_per_1m: "2.8"
+  usd_input_per_1m: "0.119104"
+  usd_output_per_1m: "0.416865"
+source:
+  url: https://docs.bigmodel.cn/cn/guide/start/pricing
+  title_zh: 智谱开放平台 API 定价
+  section_zh: "「最新模型」表 GLM-5.3-Flash 行：上下文、输入单价、输出单价、缓存命中。不采用模型介绍里未印出的折扣换算。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 定价表写输入 0.8 元、输出 2.8 元、缓存命中 0.23 元。模型介绍另称限时折扣内为 GLM-5.3 的 1/20，但该页没有把折后单价印在价格表里，本账本不自行换算，入口价只采用定价表。缓存存储限时免费，期满单价未公布。

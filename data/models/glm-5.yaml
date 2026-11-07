@@ -1,0 +1,56 @@
+schema_version: 1
+id: glm-5
+vendor: zhipu
+api_model_id: glm-5
+display_name_zh: GLM-5
+display_name_en: GLM-5
+family: glm-5
+region: cn
+status: active
+deployment_zh: 智谱开放平台。调用示例中的模型编码为 glm-5
+modalities:
+  input: [text]
+  output: [text]
+context:
+  window_label: 200K
+  max_output_label: 128K
+  source_url: https://docs.bigmodel.cn/cn/guide/models/text/glm-5
+  note_zh: 模型页卡片写上下文 200K、最大输出 128K，没有给出整数。定价表按 32K 分档，没有再写总上限。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 定价表输入长度低于 32K 的一档。32K 及以上另记。缓存存储限时免费，没有期满单价。
+  headline:
+    id: lt_32k
+    label_zh: 输入低于 32K
+    input_per_1m: "4"
+    output_per_1m: "18"
+    cache_hit_input_per_1m: "1"
+  tiers:
+    - id: lt_32k
+      label_zh: 输入低于 32K
+      applies_when_zh: 定价表写输入长度 [0, 32K)。
+      input_per_1m: "4"
+      output_per_1m: "18"
+      cache_hit_input_per_1m: "1"
+      is_headline: true
+    - id: ge_32k
+      label_zh: 输入达到或超过 32K
+      applies_when_zh: 定价表写输入长度 ≥32K。
+      input_per_1m: "6"
+      output_per_1m: "22"
+      cache_hit_input_per_1m: "1.5"
+      is_headline: false
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "4"
+  cny_output_per_1m: "18"
+  usd_input_per_1m: "0.595522"
+  usd_output_per_1m: "2.679848"
+source:
+  url: https://docs.bigmodel.cn/cn/guide/start/pricing
+  title_zh: 智谱开放平台 API 定价
+  section_zh: 「模型推理 / 文本模型」表 GLM-5 的两行：输入长度 [0, 32K) 为输入 4 元、输出 18 元、缓存命中 1 元；≥32K 为 6 元、22 元、1.5 元。
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 这是 5.3 和 5.3-Flash 之间仍在现行文本表上的一档。GLM-5.1 与 GLM-5-Turbo 同表还有价，本条只补最常被当作基座的 glm-5。发布日未在这两页写明。

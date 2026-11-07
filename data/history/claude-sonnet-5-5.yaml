@@ -1,0 +1,36 @@
+schema_version: 1
+model_id: claude-sonnet-5-5
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://platform.claude.com/docs/en/about-claude/pricing
+  billing:
+    unit: per_1m_tokens
+    currency: USD
+    price_covers_zh: 基础输入与输出。缓存命中为基价输入的 0.05 倍。
+    headline:
+      id: standard
+      label_zh: 标准价
+      input_per_1m: '2'
+      output_per_1m: '10'
+      cache_hit_input_per_1m: '0.10'
+      cache_write_5m_per_1m: '2.50'
+      cache_write_1h_per_1m: '4'
+    tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表未按提示长度分档。
+      input_per_1m: '2'
+      output_per_1m: '10'
+      cache_hit_input_per_1m: '0.10'
+      cache_write_5m_per_1m: '2.50'
+      cache_write_1h_per_1m: '4'
+      is_headline: true
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '13.433600'
+    cny_output_per_1m: '67.168000'
+    usd_input_per_1m: '2'
+    usd_output_per_1m: '10'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。

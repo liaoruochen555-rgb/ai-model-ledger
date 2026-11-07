@@ -1,0 +1,60 @@
+schema_version: 1
+id: qwen-max
+vendor: qwen
+api_model_id: qwen-max
+display_name_zh: 通义千问 Max
+display_name_en: Qwen-Max
+family: qwen-max
+region: cn
+status: active
+deployment_zh: 阿里云百炼，华北 2（北京）。模型页写明功能等同于快照 qwen-max-2025-01-25
+modalities:
+  input: [text]
+  output: [text]
+release:
+  date: "2025-01-25"
+  precision: day
+  kind: default_snapshot
+  source_url: https://help.aliyun.com/zh/model-studio/qwen-max
+  note_zh: 日期来自模型页给出的快照名 qwen-max-2025-01-25。qwen-max 本身是滚动别名。
+context:
+  window_tokens: 32768
+  window_tokens_exact: true
+  max_output_tokens: 8192
+  max_output_tokens_exact: true
+  max_input_tokens: 30720
+  window_label: "32768"
+  max_output_label: "8192"
+  source_url: https://help.aliyun.com/zh/model-studio/qwen-max
+  note_zh: 模型页上下文限制表给出的整数。仅非思考模式。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 华北 2（北京）实时推理，仅非思考模式，无阶梯。缓存命中只打折输入。
+  headline:
+    id: standard
+    label_zh: 实时推理 · 仅非思考
+    input_per_1m: "2.4"
+    output_per_1m: "9.6"
+    cache_hit_input_per_1m: "0.48"
+  tiers:
+    - id: standard
+      label_zh: 实时推理 · 仅非思考
+      applies_when_zh: 无阶梯计价。
+      input_per_1m: "2.4"
+      output_per_1m: "9.6"
+      cache_hit_input_per_1m: "0.48"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "2.4"
+  cny_output_per_1m: "9.6"
+  usd_input_per_1m: "0.357313"
+  usd_output_per_1m: "1.429252"
+source:
+  url: https://help.aliyun.com/zh/model-studio/model-pricing
+  title_zh: 阿里云百炼模型价格（华北 2 北京，qwen-max）
+  section_zh: "定价页「千问 Max」「华北 2（北京）」表 qwen-max 行的输入 2.4 元与输出 9.6 元。缓存命中 0.48 元在模型页「模型价格」「华北 2（北京）」表。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 输入 2.4 元、输出 9.6 元来自定价页。缓存命中 0.48 元以及 Batch 文件输入 1.2 元、输出 4.8 元来自 qwen-max 模型页的北京价格表。Batch 不作为入口价。新加坡部署的单价不同，未收录。

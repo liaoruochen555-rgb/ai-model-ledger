@@ -1,0 +1,65 @@
+schema_version: 1
+model_id: qwen-max
+observations:
+- id: 2025-02-07-before-cut
+  observed_at: '2026-11-07'
+  effective_on: '2025-02-07'
+  retrieved_at: '2026-11-07'
+  kind: historical
+  source_url: https://help.aliyun.com/zh/model-studio/model-release-notes
+  billing:
+    unit: per_1m_tokens
+    currency: CNY
+    price_covers_zh: 降价前的实时调用价。公告按每千 Token 计价，这里换成每百万 Token，乘 1000，没有四舍五入。
+    headline:
+      id: before_cut
+      label_zh: 2025-02-07 降价前 · 实时调用
+      input_per_1m: '20'
+      output_per_1m: '60'
+    tiers:
+    - id: before_cut
+      label_zh: 2025-02-07 降价前 · 实时调用
+      applies_when_zh: 发布说明记载的降价前实时单价。Batch 另计，不写入这一条。
+      input_per_1m: '20'
+      output_per_1m: '60'
+      is_headline: true
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '20'
+    cny_output_per_1m: '60'
+    usd_input_per_1m: '2.977608'
+    usd_output_per_1m: '8.932825'
+  note_zh: 阿里云百炼《模型平台功能更新》2025-02-07「qwen-max模型降价」：实时调用输入从 0.02 元/千 Token 降至 0.0024
+    元/千 Token，输出从 0.06 元/千 Token 降至 0.0096 元/千 Token。本条是降价前的单价。页面于 2026-11-07 检索，不是
+    2025-02-07 当天的抓取。美元折算用的是本账本 2026-11-06 中间价，不是 2025 年的汇率。
+- id: 2026-11-07-current
+  observed_at: '2026-11-07'
+  retrieved_at: '2026-11-07'
+  kind: price_change
+  source_url: https://help.aliyun.com/zh/model-studio/model-pricing
+  billing:
+    unit: per_1m_tokens
+    currency: CNY
+    price_covers_zh: 华北 2（北京）实时推理，仅非思考模式，无阶梯。缓存命中只打折输入。
+    headline:
+      id: standard
+      label_zh: 实时推理 · 仅非思考
+      input_per_1m: '2.4'
+      output_per_1m: '9.6'
+      cache_hit_input_per_1m: '0.48'
+    tiers:
+    - id: standard
+      label_zh: 实时推理 · 仅非思考
+      applies_when_zh: 无阶梯计价。
+      input_per_1m: '2.4'
+      output_per_1m: '9.6'
+      cache_hit_input_per_1m: '0.48'
+      is_headline: true
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '2.4'
+    cny_output_per_1m: '9.6'
+    usd_input_per_1m: '0.357313'
+    usd_output_per_1m: '1.429252'
+  note_zh: 降价后的实时单价与 2026-11-07 定价页一致：输入 2.4 元、输出 9.6 元/百万 Token，即公告里的 0.0024 元与 0.0096
+    元/千 Token。缓存命中 0.48 元来自同日核验的模型页，2025-02-07 的公告没有写缓存价，所以没有回填到上一条。

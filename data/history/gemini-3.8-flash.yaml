@@ -1,0 +1,38 @@
+schema_version: 1
+model_id: gemini-3.8-flash
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://ai.google.dev/gemini-api/docs/pricing
+  billing:
+    unit: per_1m_tokens
+    currency: USD
+    price_covers_zh: Standard 限时价，输出含思考 token。2027-01-01 起的价格在 scheduled。
+    headline:
+      id: intro
+      label_zh: 2026-12-31 前的标准价
+      input_per_1m: '0.75'
+      output_per_1m: '3.75'
+      cache_hit_input_per_1m: '0.075'
+    tiers:
+    - id: intro
+      label_zh: 2026-12-31 前的标准价
+      applies_when_zh: 定价页写 through December 31, 2026。
+      input_per_1m: '0.75'
+      output_per_1m: '3.75'
+      cache_hit_input_per_1m: '0.075'
+      is_headline: true
+    scheduled:
+      effective_on: '2027-01-01'
+      input_per_1m: '1.50'
+      output_per_1m: '7.50'
+      cache_hit_input_per_1m: '0.15'
+      note_zh: 定价页写 starting January 1, 2027。缓存存储按每百万 tokens 每小时另计，见备注，不并入 token 单价。
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '5.037600'
+    cny_output_per_1m: '25.188000'
+    usd_input_per_1m: '0.75'
+    usd_output_per_1m: '3.75'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。

@@ -1,0 +1,2742 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-11-07",
+  "fx": {
+    "id": "usd-cny-2026-11-06",
+    "pair": "USD/CNY",
+    "base": "USD",
+    "quote": "CNY",
+    "rate": "6.7168",
+    "rate_date": "2026-11-06",
+    "published_figure": "671.68",
+    "published_unit_zh": "人民币元 / 100 美元",
+    "rate_type": "central_parity",
+    "publisher_zh": "中国人民银行授权中国外汇交易中心",
+    "method_zh": "使用 2026-11-06 银行间外汇市场人民币汇率中间价。国家外汇管理局人民币汇率中间价表将该日美元标为 671.68，口径是每 100 美元兑人民币，折合 1 美元 = 6.7168 元。2026-11-07 是周六，不发布新的中间价，故沿用前一交易日。中国新闻网同日转述中国外汇交易中心的公告为 1 美元对人民币 6.7168 元，与上述折合结果一致。",
+    "sources": [
+      {
+        "title_zh": "国家外汇管理局人民币汇率中间价",
+        "url": "http://www.safe.gov.cn/AppStructured/hlw/RMBQuery.do"
+      },
+      {
+        "title_zh": "中国新闻网转述中国外汇交易中心 2026-11-06 中间价",
+        "url": "https://www.chinanews.com.cn/cj/2026/11-06/10727038.shtml"
+      }
+    ],
+    "rounding": {
+      "mode": "half_up",
+      "decimal_places": 6
+    }
+  },
+  "vendors": [
+    {
+      "id": "deepseek",
+      "name_zh": "深度求索",
+      "name_en": "DeepSeek",
+      "home_region": "cn",
+      "order": 10
+    },
+    {
+      "id": "qwen",
+      "name_zh": "通义千问",
+      "name_en": "Alibaba Cloud Model Studio",
+      "home_region": "cn",
+      "order": 20
+    },
+    {
+      "id": "moonshot",
+      "name_zh": "月之暗面 Kimi",
+      "name_en": "Moonshot AI",
+      "home_region": "cn",
+      "order": 30
+    },
+    {
+      "id": "zhipu",
+      "name_zh": "智谱",
+      "name_en": "Zhipu AI",
+      "home_region": "cn",
+      "order": 40
+    },
+    {
+      "id": "openai",
+      "name_zh": "OpenAI",
+      "name_en": "OpenAI",
+      "home_region": "global",
+      "order": 50
+    },
+    {
+      "id": "anthropic",
+      "name_zh": "Anthropic",
+      "name_en": "Anthropic",
+      "home_region": "global",
+      "order": 60
+    },
+    {
+      "id": "google",
+      "name_zh": "Google Gemini",
+      "name_en": "Google",
+      "home_region": "global",
+      "order": 70
+    },
+    {
+      "id": "xai",
+      "name_zh": "xAI",
+      "name_en": "xAI",
+      "home_region": "global",
+      "order": 80
+    }
+  ],
+  "models": [
+    {
+      "schema_version": 1,
+      "id": "claude-fable-5-1",
+      "vendor": "anthropic",
+      "api_model_id": "claude-fable-5-1",
+      "display_name_zh": "Claude Fable 5.1",
+      "display_name_en": "Claude Fable 5.1",
+      "family": "claude-fable",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "Claude API 全球标准价。模型总览建议重活优先看它，而不是默认 Opus",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_label": "128K",
+        "source_url": "https://platform.claude.com/docs/en/models/overview",
+        "note_zh": "模型总览写 1M 上下文、同步接口最大输出 128K，没有给出整数。Batch 接口在特定 beta 下输出更高，不改变这里的同步上限。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "基础输入与输出。缓存命中是基础输入的 0.025 倍。5 分钟与 1 小时缓存写入另计。Batch 五折不作为入口价。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价",
+          "input_per_1m": "10",
+          "output_per_1m": "50",
+          "cache_hit_input_per_1m": "0.25",
+          "cache_write_5m_per_1m": "12.5",
+          "cache_write_1h_per_1m": "20"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价",
+            "applies_when_zh": "定价表未按提示长度分档。",
+            "input_per_1m": "10",
+            "output_per_1m": "50",
+            "cache_hit_input_per_1m": "0.25",
+            "cache_write_5m_per_1m": "12.5",
+            "cache_write_1h_per_1m": "20",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "67.168000",
+        "cny_output_per_1m": "335.840000",
+        "usd_input_per_1m": "10",
+        "usd_output_per_1m": "50"
+      },
+      "source": {
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "title_zh": "Claude API 模型定价",
+        "section_zh": "Model pricing 表 Claude Fable 5.1 行：Base input、5m cache writes、1h cache writes、Cache hits and refreshes、Output。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价页：输入 10 美元、5 分钟缓存写入 12.50 美元、1 小时 20 美元、缓存命中 0.25 美元、输出 50 美元，每百万 tokens。模型总览的基础价与此一致，并写退役承诺不早于 2027-09-01。发布日未在这两页写明。"
+    },
+    {
+      "schema_version": 1,
+      "id": "claude-haiku-5-5",
+      "vendor": "anthropic",
+      "api_model_id": "claude-haiku-5-5",
+      "display_name_zh": "Claude Haiku 5.5",
+      "display_name_en": "Claude Haiku 5.5",
+      "family": "claude-haiku",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "Claude API 全球标准价。提示长度超过 10 万 token 后整档变贵",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_label": "128K",
+        "source_url": "https://platform.claude.com/docs/en/models/overview",
+        "note_zh": "模型总览写 1M 上下文、同步最大输出 128K。10 万 token 是计价分界，不是上下文上限。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "提示不超过 10 万 token 的标准价。超过 10 万 token 的档位见分档，不取两档平均。",
+        "headline": {
+          "id": "up_to_100k",
+          "label_zh": "提示不超过 10 万 token",
+          "input_per_1m": "0.10",
+          "output_per_1m": "0.50",
+          "cache_hit_input_per_1m": "0.01",
+          "cache_write_5m_per_1m": "0.125",
+          "cache_write_1h_per_1m": "0.20"
+        },
+        "tiers": [
+          {
+            "id": "up_to_100k",
+            "label_zh": "提示不超过 10 万 token",
+            "applies_when_zh": "定价页写 for prompts up to 100,000 tokens。",
+            "input_per_1m": "0.10",
+            "output_per_1m": "0.50",
+            "cache_hit_input_per_1m": "0.01",
+            "cache_write_5m_per_1m": "0.125",
+            "cache_write_1h_per_1m": "0.20",
+            "is_headline": true
+          },
+          {
+            "id": "over_100k",
+            "label_zh": "提示超过 10 万 token",
+            "applies_when_zh": "定价页写 for prompts over 100,000 tokens。",
+            "input_per_1m": "0.50",
+            "output_per_1m": "2.50",
+            "cache_hit_input_per_1m": "0.05",
+            "cache_write_5m_per_1m": "0.625",
+            "cache_write_1h_per_1m": "1",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "0.671680",
+        "cny_output_per_1m": "3.358400",
+        "usd_input_per_1m": "0.10",
+        "usd_output_per_1m": "0.50"
+      },
+      "source": {
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "title_zh": "Claude API 模型定价",
+        "section_zh": "Model pricing 表 Claude Haiku 5.5 的两行：prompts up to 100,000 tokens，以及 prompts over 100,000 tokens。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "两档都来自定价页，不是推算。模型总览写退役承诺不早于 2027-10-07。发布日未在这两页写明。"
+    },
+    {
+      "schema_version": 1,
+      "id": "claude-opus-5-5",
+      "vendor": "anthropic",
+      "api_model_id": "claude-opus-5-5",
+      "display_name_zh": "Claude Opus 5.5",
+      "display_name_en": "Claude Opus 5.5",
+      "family": "claude-opus",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "Claude API 全球标准价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_label": "128K",
+        "source_url": "https://platform.claude.com/docs/en/models/overview",
+        "note_zh": "模型总览写 1M 上下文、同步最大输出 128K。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "基础输入与输出。缓存命中是基础输入的 0.05 倍。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价",
+          "input_per_1m": "4",
+          "output_per_1m": "20",
+          "cache_hit_input_per_1m": "0.20",
+          "cache_write_5m_per_1m": "5",
+          "cache_write_1h_per_1m": "8"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价",
+            "applies_when_zh": "定价表未按提示长度分档。",
+            "input_per_1m": "4",
+            "output_per_1m": "20",
+            "cache_hit_input_per_1m": "0.20",
+            "cache_write_5m_per_1m": "5",
+            "cache_write_1h_per_1m": "8",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "26.867200",
+        "cny_output_per_1m": "134.336000",
+        "usd_input_per_1m": "4",
+        "usd_output_per_1m": "20"
+      },
+      "source": {
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "title_zh": "Claude API 模型定价",
+        "section_zh": "Model pricing 表 Claude Opus 5.5 行：Base input、5m cache writes、1h cache writes、Cache hits、Output。脚注写明缓存命中为输入价的 0.05 倍。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价页脚注写明 Opus 5.5 与 Sonnet 5.5 的缓存命中为基价输入的 0.05 倍，即 0.20 美元。模型总览写退役承诺不早于 2027-09-22。US-only inference 有加价，未作为入口价。"
+    },
+    {
+      "schema_version": 1,
+      "id": "claude-sonnet-5-5",
+      "vendor": "anthropic",
+      "api_model_id": "claude-sonnet-5-5",
+      "display_name_zh": "Claude Sonnet 5.5",
+      "display_name_en": "Claude Sonnet 5.5",
+      "family": "claude-sonnet",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "Claude API 全球标准价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_label": "128K",
+        "source_url": "https://platform.claude.com/docs/en/models/overview",
+        "note_zh": "模型总览写 1M 上下文、同步最大输出 128K。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "基础输入与输出。缓存命中为基价输入的 0.05 倍。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价",
+          "input_per_1m": "2",
+          "output_per_1m": "10",
+          "cache_hit_input_per_1m": "0.10",
+          "cache_write_5m_per_1m": "2.50",
+          "cache_write_1h_per_1m": "4"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价",
+            "applies_when_zh": "定价表未按提示长度分档。",
+            "input_per_1m": "2",
+            "output_per_1m": "10",
+            "cache_hit_input_per_1m": "0.10",
+            "cache_write_5m_per_1m": "2.50",
+            "cache_write_1h_per_1m": "4",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "67.168000",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "10"
+      },
+      "source": {
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing",
+        "title_zh": "Claude API 模型定价",
+        "section_zh": "Model pricing 表 Claude Sonnet 5.5 行。脚注说明 Sonnet 5 的 2/10 美元介绍价已转为标准价，且原定上调取消。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价页脚注写明：Sonnet 5 发布时的 2 / 10 美元介绍价现已是标准价，原定 2026-09-01 调到 3 / 15 美元的计划取消。Sonnet 5.5 在同一页的标准价也是 2 / 10。退役承诺不早于 2027-09-28。"
+    },
+    {
+      "schema_version": 1,
+      "id": "deepseek-flash",
+      "vendor": "deepseek",
+      "api_model_id": "deepseek-flash",
+      "display_name_zh": "DeepSeek V4.1 Flash",
+      "display_name_en": "DeepSeek V4.1 Flash",
+      "family": "deepseek-v4",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "DeepSeek API（api.deepseek.com），模型版本 DeepSeek-V4.1-Flash-1017",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2026-09-10",
+        "precision": "day",
+        "kind": "announcement",
+        "source_url": "https://api-docs.deepseek.com/zh-cn/news/news260910",
+        "note_zh": "该文宣布发布 V4.1 Flash，并写明新价格于 2026-09-10 12:00 起生效。"
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_label": "384K",
+        "source_url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing",
+        "note_zh": "定价页写的是 1M 与最大 384K，没有给出整数 token 数。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "空闲时段、缓存未命中的输入，以及同一时段的输出。高峰见分档。不含 Search / Fetch 按次费用。",
+        "headline": {
+          "id": "off_peak",
+          "label_zh": "空闲时段 · 缓存未命中",
+          "input_per_1m": "1",
+          "output_per_1m": "4",
+          "cache_hit_input_per_1m": "0.02"
+        },
+        "tiers": [
+          {
+            "id": "off_peak",
+            "label_zh": "空闲时段 · 缓存未命中",
+            "applies_when_zh": "周末、中国法定节假日全天，以及工作日高峰以外的时间。",
+            "input_per_1m": "1",
+            "output_per_1m": "4",
+            "cache_hit_input_per_1m": "0.02",
+            "is_headline": true
+          },
+          {
+            "id": "peak",
+            "label_zh": "高峰时段 · 缓存未命中",
+            "applies_when_zh": "北京时间周一至周五（不含中国法定节假日）9:00–12:00、14:00–18:00。",
+            "input_per_1m": "2",
+            "output_per_1m": "8",
+            "cache_hit_input_per_1m": "0.04",
+            "is_headline": false
+          }
+        ],
+        "alternate_lists": [
+          {
+            "currency": "USD",
+            "label_zh": "英文定价页的空闲档",
+            "input_per_1m": "0.15",
+            "output_per_1m": "0.6",
+            "cache_hit_input_per_1m": "0.003",
+            "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+            "note_zh": "英文定价页另行标价，高峰为其两倍。这不是本账本按中间价折算的结果。"
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "1",
+        "cny_output_per_1m": "4",
+        "usd_input_per_1m": "0.148880",
+        "usd_output_per_1m": "0.595522"
+      },
+      "source": {
+        "url": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing",
+        "title_zh": "DeepSeek API 模型与价格",
+        "section_zh": "「模型细节」表 deepseek-flash 列：「上下文长度」「输出长度」，以及「价格」中缓存命中、缓存未命中、输出在空闲时段与高峰时段的单元格。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "思考与非思考共用这一组单价，调用名用 deepseek-flash。官网首页另有一套更低的美元展示价，与 API 定价页不一致，本账本不采用首页。deepseek-v4-pro 仍出现在定价页，但 2026-09-10 公告称 9 月 14 日后该名称会路由到 Flash 并按 Flash 计费，两份官方材料冲突，故不单列。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gemini-3.5-flash-lite",
+      "vendor": "google",
+      "api_model_id": "gemini-3.5-flash-lite",
+      "display_name_zh": "Gemini 3.5 Flash-Lite",
+      "display_name_en": "Gemini 3.5 Flash-Lite",
+      "family": "gemini-3",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "Gemini Developer API 付费层 Standard。文本、图像、视频、音频输入同价",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "audio"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_tokens": 64000,
+        "max_output_tokens_exact": true,
+        "max_output_label": "64000",
+        "source_url": "https://ai.google.dev/gemini-api/docs/long-context",
+        "note_zh": "长上下文文档把 Gemini 3 与 2.5 写成分开的约 100 万输入预算和 64,000 输出预算。3.5 Flash-Lite 属于 Gemini 3，定价页没有再给这个模型自己的整数字段，输入侧因此只保留 1M 标签。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "Standard 付费价。输出含思考 token。缓存命中 0.03 美元。按小时的缓存存储不并入输入单价。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价",
+          "input_per_1m": "0.30",
+          "output_per_1m": "2.50",
+          "cache_hit_input_per_1m": "0.03"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价",
+            "applies_when_zh": "定价页该模型名下第一张 Standard 表，输入不区分文本、图像、视频、音频。",
+            "input_per_1m": "0.30",
+            "output_per_1m": "2.50",
+            "cache_hit_input_per_1m": "0.03",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "2.015040",
+        "cny_output_per_1m": "16.792000",
+        "usd_input_per_1m": "0.30",
+        "usd_output_per_1m": "2.50"
+      },
+      "source": {
+        "url": "https://ai.google.dev/gemini-api/docs/pricing",
+        "title_zh": "Gemini Developer API pricing",
+        "section_zh": "gemini-3.5-flash-lite 标题下第一张 Standard 表的 Paid Tier：Input price、Output price、Context caching price。随后的 Batch 表约为半价，不作为入口价。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "标准档缓存存储在同一单元格写着每百万 tokens 每小时 1.00 美元，那是存储价，不是输入价。页面没有给出限期涨价，所以没有 scheduled。这是 Gemini 目录里的低价档，用来和 Gemini 4 Argon 对照。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gemini-3.8-flash",
+      "vendor": "google",
+      "api_model_id": "gemini-3.8-flash",
+      "display_name_zh": "Gemini 3.8 Flash",
+      "display_name_en": "Gemini 3.8 Flash",
+      "family": "gemini-3",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "Gemini Developer API 付费层 Standard",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_tokens": 64000,
+        "max_output_tokens_exact": true,
+        "max_output_label": "64000",
+        "source_url": "https://ai.google.dev/gemini-api/docs/long-context",
+        "note_zh": "长上下文文档写 Gemini 3 与 2.5 使用分开的约 100 万输入预算和 64,000 输出预算。3.8 Flash 属于 Gemini 3，输入侧页面没有单独再给整数，故输入只保留 1M 标签。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "Standard 限时价，输出含思考 token。2027-01-01 起的价格在 scheduled。",
+        "headline": {
+          "id": "intro",
+          "label_zh": "2026-12-31 前的标准价",
+          "input_per_1m": "0.75",
+          "output_per_1m": "3.75",
+          "cache_hit_input_per_1m": "0.075"
+        },
+        "tiers": [
+          {
+            "id": "intro",
+            "label_zh": "2026-12-31 前的标准价",
+            "applies_when_zh": "定价页写 through December 31, 2026。",
+            "input_per_1m": "0.75",
+            "output_per_1m": "3.75",
+            "cache_hit_input_per_1m": "0.075",
+            "is_headline": true
+          }
+        ],
+        "scheduled": {
+          "effective_on": "2027-01-01",
+          "input_per_1m": "1.50",
+          "output_per_1m": "7.50",
+          "cache_hit_input_per_1m": "0.15",
+          "note_zh": "定价页写 starting January 1, 2027。缓存存储按每百万 tokens 每小时另计，见备注，不并入 token 单价。"
+        }
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "5.037600",
+        "cny_output_per_1m": "25.188000",
+        "usd_input_per_1m": "0.75",
+        "usd_output_per_1m": "3.75"
+      },
+      "source": {
+        "url": "https://ai.google.dev/gemini-api/docs/pricing",
+        "title_zh": "Gemini Developer API pricing（gemini-3.8-flash Standard）",
+        "section_zh": "gemini-3.8-flash 标题下第一张 Standard 表的 Paid Tier。Batch 表是随后那张约为一半的价格，不作为入口价。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "标准档缓存存储在 2026-12-31 前是每百万 tokens 每小时 0.50 美元，其后 1.00 美元。这是存储价，不是输入单价，所以没有写进 input。Batch 表大约是标准价的一半，不作为入口价。输入模态未在这段定价文案里列出。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gemini-4-argon",
+      "vendor": "google",
+      "api_model_id": "gemini-4-argon",
+      "display_name_zh": "Gemini 4 Argon",
+      "display_name_en": "Gemini 4 Argon",
+      "family": "gemini-4",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "Gemini Developer API 付费层 Standard。无免费层。Batch 与 Flex 不作为入口价",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1048576,
+        "window_tokens_exact": true,
+        "window_label": "1048576",
+        "source_url": "https://ai.google.dev/gemini-api/docs/long-context",
+        "note_zh": "长上下文文档写明 Gemini 4 的 100 万 token 窗口由输入、思考和输出共用，整数为 1,048,576。不启用长解码时，单次输出还有更低的跳数上限。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "核验日仍生效的 Standard 限时价。输出含思考 token。2026-12-01 起的价格写在 scheduled，不拿来覆盖现价。",
+        "headline": {
+          "id": "intro",
+          "label_zh": "2026-11-30 前的标准价",
+          "input_per_1m": "2",
+          "output_per_1m": "10",
+          "cache_hit_input_per_1m": "0.10"
+        },
+        "tiers": [
+          {
+            "id": "intro",
+            "label_zh": "2026-11-30 前的标准价",
+            "applies_when_zh": "定价页写 through November 30, 2026。",
+            "input_per_1m": "2",
+            "output_per_1m": "10",
+            "cache_hit_input_per_1m": "0.10",
+            "is_headline": true
+          }
+        ],
+        "scheduled": {
+          "effective_on": "2026-12-01",
+          "input_per_1m": "4",
+          "output_per_1m": "20",
+          "cache_hit_input_per_1m": "0.20",
+          "note_zh": "定价页写 starting December 1, 2026。缓存只支持隐式缓存。"
+        }
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "67.168000",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "10"
+      },
+      "source": {
+        "url": "https://ai.google.dev/gemini-api/docs/pricing",
+        "title_zh": "Gemini Developer API pricing（Standard）",
+        "section_zh": "gemini-4-argon 标题下第一张 Standard 表的 Paid Tier，不是随后的 Batch 或 Flex。限时价与 2026-12-01 起的价格写在同一单元格。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "只取 gemini-4-argon 名下第一张 Standard 表。后面的 Batch、Flex 以及更高优先级表不作为入口价。定价页这段没有列出输入模态，本条模态只标文本，避免从其他页面补猜。页面写 Last updated 2026-10-30 UTC，那是文档更新日。"
+    },
+    {
+      "schema_version": 1,
+      "id": "glm-4-plus",
+      "vendor": "zhipu",
+      "api_model_id": "glm-4-plus",
+      "display_name_zh": "GLM-4-Plus",
+      "display_name_en": "GLM-4-Plus",
+      "family": "glm-4",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "智谱开放平台。调用示例中的模型编码为 glm-4-plus",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "128K",
+        "max_output_label": "4K",
+        "source_url": "https://docs.bigmodel.cn/cn/guide/models/text/glm-4",
+        "note_zh": "模型页卡片写上下文 128K、最大输出 4K。定价表上下文一列也是 128K。都没有整数。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "定价表中的输入与输出单价。模型页卡片把价格简写成 5 元/百万 tokens，输入与输出的拆分以定价表为准。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价",
+          "input_per_1m": "5",
+          "output_per_1m": "5",
+          "cache_hit_input_per_1m": "2.5"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价",
+            "applies_when_zh": "定价表未按长度分档。",
+            "input_per_1m": "5",
+            "output_per_1m": "5",
+            "cache_hit_input_per_1m": "2.5",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "5",
+        "cny_output_per_1m": "5",
+        "usd_input_per_1m": "0.744402",
+        "usd_output_per_1m": "0.744402"
+      },
+      "source": {
+        "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+        "title_zh": "智谱开放平台 API 定价",
+        "section_zh": "「模型推理 / 文本模型 / 更多文本模型」表 GLM-4-Plus 行：上下文 128K，输入 5 元，输出 5 元，缓存命中 2.5 元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "仍列在现行定价表的「更多文本模型」中：输入 5 元、输出 5 元、缓存命中 2.5 元。发布日期没有在已核验页面上写明，故留空。缓存存储限时免费。"
+    },
+    {
+      "schema_version": 1,
+      "id": "glm-5",
+      "vendor": "zhipu",
+      "api_model_id": "glm-5",
+      "display_name_zh": "GLM-5",
+      "display_name_en": "GLM-5",
+      "family": "glm-5",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "智谱开放平台。调用示例中的模型编码为 glm-5",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "200K",
+        "max_output_label": "128K",
+        "source_url": "https://docs.bigmodel.cn/cn/guide/models/text/glm-5",
+        "note_zh": "模型页卡片写上下文 200K、最大输出 128K，没有给出整数。定价表按 32K 分档，没有再写总上限。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "定价表输入长度低于 32K 的一档。32K 及以上另记。缓存存储限时免费，没有期满单价。",
+        "headline": {
+          "id": "lt_32k",
+          "label_zh": "输入低于 32K",
+          "input_per_1m": "4",
+          "output_per_1m": "18",
+          "cache_hit_input_per_1m": "1"
+        },
+        "tiers": [
+          {
+            "id": "lt_32k",
+            "label_zh": "输入低于 32K",
+            "applies_when_zh": "定价表写输入长度 [0, 32K)。",
+            "input_per_1m": "4",
+            "output_per_1m": "18",
+            "cache_hit_input_per_1m": "1",
+            "is_headline": true
+          },
+          {
+            "id": "ge_32k",
+            "label_zh": "输入达到或超过 32K",
+            "applies_when_zh": "定价表写输入长度 ≥32K。",
+            "input_per_1m": "6",
+            "output_per_1m": "22",
+            "cache_hit_input_per_1m": "1.5",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "4",
+        "cny_output_per_1m": "18",
+        "usd_input_per_1m": "0.595522",
+        "usd_output_per_1m": "2.679848"
+      },
+      "source": {
+        "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+        "title_zh": "智谱开放平台 API 定价",
+        "section_zh": "「模型推理 / 文本模型」表 GLM-5 的两行：输入长度 [0, 32K) 为输入 4 元、输出 18 元、缓存命中 1 元；≥32K 为 6 元、22 元、1.5 元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "这是 5.3 和 5.3-Flash 之间仍在现行文本表上的一档。GLM-5.1 与 GLM-5-Turbo 同表还有价，本条只补最常被当作基座的 glm-5。发布日未在这两页写明。"
+    },
+    {
+      "schema_version": 1,
+      "id": "glm-5.3",
+      "vendor": "zhipu",
+      "api_model_id": "glm-5.3",
+      "display_name_zh": "GLM-5.3",
+      "display_name_en": "GLM-5.3",
+      "family": "glm-5",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "智谱开放平台（open.bigmodel.cn），文本模型",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2026-08-19",
+        "precision": "day",
+        "kind": "announcement",
+        "source_url": "https://docs.bigmodel.cn/cn/update/new-releases",
+        "note_zh": "开放平台发布记录写「2026-08-19 GLM-5.3 新一代旗舰模型上线」。公司新闻稿是 2026-08-14，当时写 API 很快上线。本条取 API 发布记录。"
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_label": "128K",
+        "source_url": "https://docs.bigmodel.cn/cn/guide/models/text/glm-5.3",
+        "note_zh": "模型页写支持 1M 上下文、最大输出 128K，没有给出整数。思考始终开启。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "定价指南中的标准输入与输出。缓存命中另计。缓存存储限时免费，免费期后的单价页面没有给。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价",
+          "input_per_1m": "8",
+          "output_per_1m": "28",
+          "cache_hit_input_per_1m": "2"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价",
+            "applies_when_zh": "定价表未按输入长度分档。",
+            "input_per_1m": "8",
+            "output_per_1m": "28",
+            "cache_hit_input_per_1m": "2",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "8",
+        "cny_output_per_1m": "28",
+        "usd_input_per_1m": "1.191043",
+        "usd_output_per_1m": "4.168652"
+      },
+      "source": {
+        "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+        "title_zh": "智谱开放平台 API 定价",
+        "section_zh": "「最新模型」表 GLM-5.3 行：上下文、输入单价、输出单价、缓存命中。缓存存储列写限时免费，没有期满单价。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价表：输入 8 元、输出 28 元、缓存命中 2 元，每百万 tokens，上下文 1M，输入模态为文本。支持 Batch 的模型按标准价 5 折，不作为入口价。Coding Plan 订阅价不是按量 API 价，未收录。"
+    },
+    {
+      "schema_version": 1,
+      "id": "glm-5.3-flash",
+      "vendor": "zhipu",
+      "api_model_id": "glm-5.3-flash",
+      "display_name_zh": "GLM-5.3-Flash",
+      "display_name_en": "GLM-5.3-Flash",
+      "family": "glm-5",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "智谱开放平台。模型编码 glm-5.3-flash",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "file"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2026-08-26",
+        "precision": "day",
+        "kind": "announcement",
+        "source_url": "https://docs.bigmodel.cn/cn/update/new-releases",
+        "note_zh": "发布记录写「2026-08-26 GLM-5.3-Flash 原生多模态模型上线」。"
+      },
+      "context": {
+        "window_label": "1M",
+        "max_output_label": "128K",
+        "source_url": "https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash",
+        "note_zh": "模型页卡片写上下文窗口 1M、最大输出 128K，没有给出整数。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "定价指南表格中的标准价，不是模型介绍里的限时折扣换算。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "定价表标准价",
+          "input_per_1m": "0.8",
+          "output_per_1m": "2.8",
+          "cache_hit_input_per_1m": "0.23"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "定价表标准价",
+            "applies_when_zh": "定价表未按输入长度分档。",
+            "input_per_1m": "0.8",
+            "output_per_1m": "2.8",
+            "cache_hit_input_per_1m": "0.23",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "0.8",
+        "cny_output_per_1m": "2.8",
+        "usd_input_per_1m": "0.119104",
+        "usd_output_per_1m": "0.416865"
+      },
+      "source": {
+        "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+        "title_zh": "智谱开放平台 API 定价",
+        "section_zh": "「最新模型」表 GLM-5.3-Flash 行：上下文、输入单价、输出单价、缓存命中。不采用模型介绍里未印出的折扣换算。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价表写输入 0.8 元、输出 2.8 元、缓存命中 0.23 元。模型介绍另称限时折扣内为 GLM-5.3 的 1/20，但该页没有把折后单价印在价格表里，本账本不自行换算，入口价只采用定价表。缓存存储限时免费，期满单价未公布。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-4.1",
+      "vendor": "openai",
+      "api_model_id": "gpt-4.1",
+      "display_name_zh": "GPT-4.1",
+      "display_name_en": "GPT-4.1",
+      "family": "gpt-4.1",
+      "region": "global",
+      "status": "deprecated",
+      "deployment_zh": "OpenAI API。模型页状态为 Deprecated，默认快照 gpt-4.1-2025-04-14",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2025-04-14",
+        "precision": "day",
+        "kind": "default_snapshot",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-4.1",
+        "note_zh": "日期来自模型页默认快照 ID，不是新闻稿日期。"
+      },
+      "context": {
+        "window_tokens": 1047576,
+        "window_tokens_exact": true,
+        "max_output_tokens": 32768,
+        "max_output_tokens_exact": true,
+        "window_label": "1047576",
+        "max_output_label": "32768",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-4.1",
+        "note_zh": "模型页写 1,047,576 上下文与 32,768 最大输出。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准价，定价表未分短长上下文。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价",
+          "input_per_1m": "2",
+          "output_per_1m": "8",
+          "cache_hit_input_per_1m": "0.5"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价",
+            "applies_when_zh": "定价表只给了一档。",
+            "input_per_1m": "2",
+            "output_per_1m": "8",
+            "cache_hit_input_per_1m": "0.5",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "53.734400",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "8"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Standard 定价里不区分短长上下文的那张表，gpt-4.1 行：Input、Output、Cached input。模型页 Text tokens 表数字相同。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价页与模型页一致：输入 2 美元、缓存输入 0.5 美元、输出 8 美元。已标弃用，仍在价目表上。Batch 五折不作为入口价。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-5",
+      "vendor": "openai",
+      "api_model_id": "gpt-5",
+      "display_name_zh": "GPT-5",
+      "display_name_en": "GPT-5",
+      "family": "gpt-5",
+      "region": "global",
+      "status": "deprecated",
+      "deployment_zh": "OpenAI API。模型页状态为 Deprecated，默认快照 gpt-5-2025-08-07",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2025-08-07",
+        "precision": "day",
+        "kind": "default_snapshot",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5",
+        "note_zh": "记的是模型页默认快照 ID 里的日期，不是另行的新闻稿日期。"
+      },
+      "context": {
+        "window_tokens": 400000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 272000,
+        "window_label": "400000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5",
+        "note_zh": "模型页整数。定价表对 gpt-5 没有短上下文 / 长上下文分列。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准价。定价表这一档没有按 272K 拆开。Batch 为五折，不作为入口价。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价",
+          "input_per_1m": "1.25",
+          "output_per_1m": "10",
+          "cache_hit_input_per_1m": "0.125"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价",
+            "applies_when_zh": "定价表只给了一档。",
+            "input_per_1m": "1.25",
+            "output_per_1m": "10",
+            "cache_hit_input_per_1m": "0.125",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "8.396000",
+        "cny_output_per_1m": "67.168000",
+        "usd_input_per_1m": "1.25",
+        "usd_output_per_1m": "10"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Standard 定价里不区分短长上下文的那张表，gpt-5 行：Input、Output、Cached input。模型页 Text tokens 表数字相同。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "模型页与定价页都写输入 1.25 美元、缓存输入 0.125 美元、输出 10 美元，每百万 tokens。状态以模型页的 Deprecated 为准，价格仍在现行价目表上。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-5.6-luna",
+      "vendor": "openai",
+      "api_model_id": "gpt-5.6-luna",
+      "display_name_zh": "GPT-5.6 Luna",
+      "display_name_en": "GPT-5.6 Luna",
+      "family": "gpt-5.6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。模型页把它对应到早先 GPT-5 家族的 nano 档",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Feb 16, 2026 不是发布日。页面提醒账号未必开通该模型，那不影响标价。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。缓存写入为未缓存输入的 1.25 倍；两档保留期以定价表为准。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "0.20",
+          "output_per_1m": "1.20",
+          "cache_hit_input_per_1m": "0.02",
+          "cache_write_30m_per_1m": "0.25",
+          "cache_write_12h_per_1m": "0.50"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "0.20",
+            "output_per_1m": "1.20",
+            "cache_hit_input_per_1m": "0.02",
+            "cache_write_30m_per_1m": "0.25",
+            "cache_write_12h_per_1m": "0.50",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。",
+            "input_per_1m": "0.40",
+            "output_per_1m": "1.80",
+            "cache_hit_input_per_1m": "0.04",
+            "cache_write_30m_per_1m": "0.50",
+            "cache_write_12h_per_1m": "1",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "1.343360",
+        "cny_output_per_1m": "8.060160",
+        "usd_input_per_1m": "0.20",
+        "usd_output_per_1m": "1.20"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-5.6-luna 行。短上下文入口价与模型页 Text tokens 表一致：输入 0.2 美元、缓存输入 0.02 美元、输出 1.2 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "5.6 家族的低价档。比 gpt-6-luna 贵，但比 5.6 Terra 便宜，所以两档都留着。发布日未印出。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-5.6-sol",
+      "vendor": "openai",
+      "api_model_id": "gpt-5.6-sol",
+      "display_name_zh": "GPT-5.6 Sol",
+      "display_name_en": "GPT-5.6 Sol",
+      "family": "gpt-5.6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。别名 gpt-5.6 路由到这个模型",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Feb 16, 2026 不是发布日。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K 的现行促销价。缓存写入按定价表的 30 分钟与 12 小时两列。Batch 不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文 · 2026-11-30 前的促销价",
+          "input_per_1m": "4",
+          "output_per_1m": "20",
+          "cache_hit_input_per_1m": "0.40",
+          "cache_write_30m_per_1m": "5",
+          "cache_write_12h_per_1m": "10"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文 · 2026-11-30 前的促销价",
+            "applies_when_zh": "定价页 Standard 表的短上下文列。页脚写明促销到 2026-11-30。",
+            "input_per_1m": "4",
+            "output_per_1m": "20",
+            "cache_hit_input_per_1m": "0.40",
+            "cache_write_30m_per_1m": "5",
+            "cache_write_12h_per_1m": "10",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。模型页写输入 2 倍、输出 1.5 倍。",
+            "input_per_1m": "8",
+            "output_per_1m": "30",
+            "cache_hit_input_per_1m": "0.80",
+            "cache_write_30m_per_1m": "10",
+            "cache_write_12h_per_1m": "20",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "26.867200",
+        "cny_output_per_1m": "134.336000",
+        "usd_input_per_1m": "4",
+        "usd_output_per_1m": "20"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-5.6-sol 行，短上下文列。模型页 Text tokens 表同样是输入 4 美元、缓存输入 0.4 美元、输出 20 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价页和模型页都写促销价维持到 2026-11-30，并说输入降了 20%、输出降了 33%，但没有印出 12 月 1 日之后的数字。本条不推算期满价，所以没有 scheduled。核验日仍在促销期内。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-5.6-terra",
+      "vendor": "openai",
+      "api_model_id": "gpt-5.6-terra",
+      "display_name_zh": "GPT-5.6 Terra",
+      "display_name_en": "GPT-5.6 Terra",
+      "family": "gpt-5.6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。模型页把它对应到早先 GPT-5 家族的 mini 档",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Feb 16, 2026 不是发布日。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。模型页写缓存写入为未缓存输入的 1.25 倍；30 分钟与 12 小时两列以定价表为准。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "2",
+          "output_per_1m": "12",
+          "cache_hit_input_per_1m": "0.20",
+          "cache_write_30m_per_1m": "2.50",
+          "cache_write_12h_per_1m": "5"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "2",
+            "output_per_1m": "12",
+            "cache_hit_input_per_1m": "0.20",
+            "cache_write_30m_per_1m": "2.50",
+            "cache_write_12h_per_1m": "5",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。输出 18 美元是 12 美元的 1.5 倍。",
+            "input_per_1m": "4",
+            "output_per_1m": "18",
+            "cache_hit_input_per_1m": "0.40",
+            "cache_write_30m_per_1m": "5",
+            "cache_write_12h_per_1m": "10",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "80.601600",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "12"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-5.6-terra 行。短上下文入口价与模型页 Text tokens 表一致：输入 2 美元、缓存输入 0.2 美元、输出 12 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "5.6 家族里介于 Sol 和 Luna 的一档，对应旧系列的 mini，但仍是现行 Standard 行，不是已弃用的 gpt-5-mini。发布日未印出。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-6-astra",
+      "vendor": "openai",
+      "api_model_id": "gpt-6-astra",
+      "display_name_zh": "GPT-6 Astra",
+      "display_name_en": "GPT-6 Astra",
+      "family": "gpt-6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价，全球端点。区域驻留与 FedRAMP 另加 10%，不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+        "note_zh": "模型页给出的上下文、最大输入与最大输出均为整数。短上下文计价阈值是另一回事，见分档。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。Batch 与 Flex 为标准价五折，Fast 为两倍，均不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "10",
+          "output_per_1m": "50",
+          "cache_hit_input_per_1m": "1",
+          "cache_write_30m_per_1m": "12.5",
+          "cache_write_12h_per_1m": "25"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "输入不超过 272K tokens。定价页写明 Short context 为 ≤272K。",
+            "input_per_1m": "10",
+            "output_per_1m": "50",
+            "cache_hit_input_per_1m": "1",
+            "cache_write_30m_per_1m": "12.5",
+            "cache_write_12h_per_1m": "25",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后，整次请求按长上下文价格计。",
+            "input_per_1m": "20",
+            "output_per_1m": "75",
+            "cache_hit_input_per_1m": "2",
+            "cache_write_30m_per_1m": "25",
+            "cache_write_12h_per_1m": "50",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "67.168000",
+        "cny_output_per_1m": "335.840000",
+        "usd_input_per_1m": "10",
+        "usd_output_per_1m": "50"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-6-astra 行。入口价取短上下文列（≤272K）；长上下文列另记。模型页 Text tokens 表与短上下文入口价一致。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "模型页写超过 272K 后输入与缓存按 2 倍、输出按 1.5 倍，与定价表长上下文 20 / 75 美元一致。模型页把缓存写入单列为 12.5 美元，对应定价表的 30 分钟写入，12 小时写入是 25 美元。发布日没有印在模型页上。知识截止日期不是发布日。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-6-luna",
+      "vendor": "openai",
+      "api_model_id": "gpt-6-luna",
+      "display_name_zh": "GPT-6 Luna",
+      "display_name_en": "GPT-6 Luna",
+      "family": "gpt-6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。区域处理另加 10%，不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+        "note_zh": "模型页给出的上下文、最大输入与最大输出。知识截止 May 18, 2026 不是发布日。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。模型页写缓存输入为未缓存输入的 10%，缓存写入为 1.25 倍。Batch 与 Flex 为五折，Fast 为两倍，均不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "0.10",
+          "output_per_1m": "0.50",
+          "cache_hit_input_per_1m": "0.01",
+          "cache_write_30m_per_1m": "0.125",
+          "cache_write_12h_per_1m": "0.25"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页写明 Short context 为输入不超过 272K。",
+            "input_per_1m": "0.10",
+            "output_per_1m": "0.50",
+            "cache_hit_input_per_1m": "0.01",
+            "cache_write_30m_per_1m": "0.125",
+            "cache_write_12h_per_1m": "0.25",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后，整次请求按长上下文价格计。模型页写输入与缓存 2 倍、输出 1.5 倍，与定价表一致。",
+            "input_per_1m": "0.20",
+            "output_per_1m": "0.75",
+            "cache_hit_input_per_1m": "0.02",
+            "cache_write_30m_per_1m": "0.25",
+            "cache_write_12h_per_1m": "0.50",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "0.671680",
+        "cny_output_per_1m": "3.358400",
+        "usd_input_per_1m": "0.10",
+        "usd_output_per_1m": "0.50"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-6-luna 行。短上下文列是入口价；长上下文列是超过 272K 的整单价。模型页 Text tokens 表与短上下文的输入、缓存输入、30 分钟缓存写入、输出一致。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "这是 GPT-6 系列里的低价档，用来和 gpt-6-astra 对照，不是把 Batch 价当成入口价。12 小时缓存写入只出现在定价表，模型页没有单列这一档。发布日未印在模型页上。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-6-sol",
+      "vendor": "openai",
+      "api_model_id": "gpt-6-sol",
+      "display_name_zh": "GPT-6 Sol",
+      "display_name_en": "GPT-6 Sol",
+      "family": "gpt-6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。模型页指向更新的 GPT-6.1 Sol，但本条仍在 Standard 价目表上",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Apr 20, 2026 不是发布日。页面没有把状态写成 Deprecated。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。缓存输入为未缓存输入的 10%，与 6.1 Sol 的 5% 不同。缓存写入为 1.25 倍。Batch 与 Flex 为五折，Fast 为两倍，不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "2",
+          "output_per_1m": "10",
+          "cache_hit_input_per_1m": "0.20",
+          "cache_write_30m_per_1m": "2.50",
+          "cache_write_12h_per_1m": "5"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "2",
+            "output_per_1m": "10",
+            "cache_hit_input_per_1m": "0.20",
+            "cache_write_30m_per_1m": "2.50",
+            "cache_write_12h_per_1m": "5",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。",
+            "input_per_1m": "4",
+            "output_per_1m": "15",
+            "cache_hit_input_per_1m": "0.40",
+            "cache_write_30m_per_1m": "5",
+            "cache_write_12h_per_1m": "10",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "67.168000",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "10"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-6-sol 行。短上下文入口价与模型页 Text tokens 表一致。缓存命中是 0.20 美元，不是 6.1 Sol 的 0.10 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "输入和输出与 gpt-6.1-sol 相同，缓存命中更贵。模型页让新工作改用 6.1 Sol，但没有标弃用，Standard 表也还单列这一行，所以状态保持在售，并在这里写明代际。发布日未印出。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-6.1-sol",
+      "vendor": "openai",
+      "api_model_id": "gpt-6.1-sol",
+      "display_name_zh": "GPT-6.1 Sol",
+      "display_name_en": "GPT-6.1 Sol",
+      "family": "gpt-6.1",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。区域处理另加 10%，不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Apr 30, 2026 不是发布日。Codex 里默认 500K 且订阅用量不收长上下文加价，那不是 API 标准价。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。缓存输入为未缓存输入的 5%。缓存写入按 1.25 倍，模型页列出的 2.5 美元对应 30 分钟。Batch 与 Flex 为五折，Fast 为两倍，Ultrafast 为六倍，均不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "2",
+          "output_per_1m": "10",
+          "cache_hit_input_per_1m": "0.10",
+          "cache_write_30m_per_1m": "2.50",
+          "cache_write_12h_per_1m": "5"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "2",
+            "output_per_1m": "10",
+            "cache_hit_input_per_1m": "0.10",
+            "cache_write_30m_per_1m": "2.50",
+            "cache_write_12h_per_1m": "5",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。模型页写输入与缓存 2 倍、输出 1.5 倍，与定价表一致。",
+            "input_per_1m": "4",
+            "output_per_1m": "15",
+            "cache_hit_input_per_1m": "0.20",
+            "cache_write_30m_per_1m": "5",
+            "cache_write_12h_per_1m": "10",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "67.168000",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "10"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-6.1-sol 行。入口价是短上下文列；长上下文列另记。模型页 Text tokens 表与短上下文的输入、缓存输入、30 分钟缓存写入、输出一致。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "这是当前 Standard 表里介于 Astra 和 Terra 之间的 Sol。12 小时缓存写入只在定价表分列，模型页没有单独印出这一档。发布日未印在模型页上。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-6.1-terra",
+      "vendor": "openai",
+      "api_model_id": "gpt-6.1-terra",
+      "display_name_zh": "GPT-6.1 Terra",
+      "display_name_en": "GPT-6.1 Terra",
+      "family": "gpt-6.1",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。区域处理另加 10%，不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Jun 01, 2026 不是发布日。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。缓存输入为未缓存输入的 5%。模型页写明 30 分钟缓存写入 1.25 美元、12 小时 2.50 美元，长上下文再乘 2。Batch 与 Flex 为五折，Fast 为两倍，不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "1",
+          "output_per_1m": "5",
+          "cache_hit_input_per_1m": "0.05",
+          "cache_write_30m_per_1m": "1.25",
+          "cache_write_12h_per_1m": "2.50"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "1",
+            "output_per_1m": "5",
+            "cache_hit_input_per_1m": "0.05",
+            "cache_write_30m_per_1m": "1.25",
+            "cache_write_12h_per_1m": "2.50",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。",
+            "input_per_1m": "2",
+            "output_per_1m": "7.50",
+            "cache_hit_input_per_1m": "0.10",
+            "cache_write_30m_per_1m": "2.50",
+            "cache_write_12h_per_1m": "5",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "6.716800",
+        "cny_output_per_1m": "33.584000",
+        "usd_input_per_1m": "1",
+        "usd_output_per_1m": "5"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-6.1-terra 行。入口价是短上下文列。模型页 Text tokens 表与短上下文入口价一致，并写明 12 小时缓存写入为 2.50 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "Terra 是 6.1 系列里比 Sol 更低的一档，仍在 Standard 表上，不是 Batch 价。发布日未印在模型页上。"
+    },
+    {
+      "schema_version": 1,
+      "id": "grok-4.20-0309-reasoning",
+      "vendor": "xai",
+      "api_model_id": "grok-4.20-0309-reasoning",
+      "display_name_zh": "Grok 4.20 Reasoning",
+      "display_name_en": "Grok 4.20 Reasoning",
+      "family": "grok-4.20",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "xAI API 全球端点。模型名 grok-4.20-0309-reasoning",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1000000,
+        "window_tokens_exact": true,
+        "window_label": "1000000",
+        "source_url": "https://docs.x.ai/developers/models/grok-4.20",
+        "note_zh": "模型页写上下文 1,000,000。同页短价是低于 20 万 token 的价格。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "全球端点、提示词低于 20 万 token。非推理与 multi-agent 变体在定价表上同价，本条只记录 reasoning 这个模型 ID。",
+        "headline": {
+          "id": "short",
+          "label_zh": "提示词低于 20 万 token",
+          "input_per_1m": "1.25",
+          "output_per_1m": "2.50",
+          "cache_hit_input_per_1m": "0.20"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "提示词低于 20 万 token",
+            "applies_when_zh": "定价表短上下文列。",
+            "input_per_1m": "1.25",
+            "output_per_1m": "2.50",
+            "cache_hit_input_per_1m": "0.20",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "提示词达到或超过 20 万 token",
+            "applies_when_zh": "达到 20 万 token 后整次请求按长上下文价计。",
+            "input_per_1m": "2.50",
+            "output_per_1m": "5",
+            "cache_hit_input_per_1m": "0.40",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "8.396000",
+        "cny_output_per_1m": "16.792000",
+        "usd_input_per_1m": "1.25",
+        "usd_output_per_1m": "2.50"
+      },
+      "source": {
+        "url": "https://docs.x.ai/developers/pricing",
+        "title_zh": "xAI API Pricing",
+        "section_zh": "Text API 表 grok-4.20-0309-reasoning 行的短上下文列与长上下文列。同表另有同价的 non-reasoning 与 multi-agent，未并入本条。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价表同时列出 grok-4.3、grok-4.20-multi-agent-0309 与 non-reasoning，单价相同。没有把它们合成一条，避免模型 ID 对不上。发布日未核到独立公告，模型 ID 里的 0309 不当作发布日期。"
+    },
+    {
+      "schema_version": 1,
+      "id": "grok-4.3",
+      "vendor": "xai",
+      "api_model_id": "grok-4.3",
+      "display_name_zh": "Grok 4.3",
+      "display_name_en": "Grok 4.3",
+      "family": "grok-4",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "xAI API 全球端点。别名 grok-4.3-latest。美国区域加价不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1000000,
+        "window_tokens_exact": true,
+        "window_label": "1000000",
+        "source_url": "https://docs.x.ai/developers/models/grok-4.3",
+        "note_zh": "模型页写上下文 1,000,000。没有单列最大输出整数。长上下文计价从 20 万 token 起。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "提示词低于 20 万 token 的标准价。达到阈值后整次请求改按长上下文价。Batch 为标准价八折，不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "提示词低于 20 万 token",
+          "input_per_1m": "1.25",
+          "output_per_1m": "2.50",
+          "cache_hit_input_per_1m": "0.20"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "提示词低于 20 万 token",
+            "applies_when_zh": "模型页与定价表都写 < 200k prompt tokens。",
+            "input_per_1m": "1.25",
+            "output_per_1m": "2.50",
+            "cache_hit_input_per_1m": "0.20",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "提示词达到或超过 20 万 token",
+            "applies_when_zh": "请求的提示词达到 200k 后，全部 token 按此价计。",
+            "input_per_1m": "2.50",
+            "output_per_1m": "5",
+            "cache_hit_input_per_1m": "0.40",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "8.396000",
+        "cny_output_per_1m": "16.792000",
+        "usd_input_per_1m": "1.25",
+        "usd_output_per_1m": "2.50"
+      },
+      "source": {
+        "url": "https://docs.x.ai/developers/pricing",
+        "title_zh": "xAI API Pricing",
+        "section_zh": "Text API Pricing 表 grok-4.3 的两行：< 200k 为输入 1.25 美元、缓存 0.20 美元、输出 2.50 美元；≥ 200k 为 2.50、0.40、5.00。上下文列写 1M，整数以模型页为准。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "与 grok-4.20-0309-reasoning 的标价相同，但是现行的无日期模型 ID。4.7 更贵，4.20 是带日期的变体，所以 4.3 单独入账。发布日未印在模型页上。"
+    },
+    {
+      "schema_version": 1,
+      "id": "grok-4.7",
+      "vendor": "xai",
+      "api_model_id": "grok-4.7",
+      "display_name_zh": "Grok 4.7",
+      "display_name_en": "Grok 4.7",
+      "family": "grok-4",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "xAI API 全球端点 https://api.x.ai/v1。美国区域端点按 1.1 倍计，不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 500000,
+        "window_tokens_exact": true,
+        "window_label": "500000",
+        "source_url": "https://docs.x.ai/developers/models/grok-4.7",
+        "note_zh": "模型页写上下文 500,000。长上下文计价从 20 万 token 起，不是上下文上限。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "全球端点、提示词低于 20 万 token 的标准价。达到阈值后整次请求改按长上下文价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "提示词低于 20 万 token",
+          "input_per_1m": "2",
+          "output_per_1m": "6",
+          "cache_hit_input_per_1m": "0.50"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "提示词低于 20 万 token",
+            "applies_when_zh": "定价表的短上下文列。长上下文阈值为 ≥ 200k。",
+            "input_per_1m": "2",
+            "output_per_1m": "6",
+            "cache_hit_input_per_1m": "0.50",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "提示词达到或超过 20 万 token",
+            "applies_when_zh": "请求的提示词达到 20 万 token 后，全部 token 按长上下文价计。",
+            "input_per_1m": "4",
+            "output_per_1m": "12",
+            "cache_hit_input_per_1m": "1",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "40.300800",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "6"
+      },
+      "source": {
+        "url": "https://docs.x.ai/developers/pricing",
+        "title_zh": "xAI API Pricing",
+        "section_zh": "Text API 表 grok-4.7 行。短上下文列为提示词低于 200k，长上下文列为达到 200k 之后的整单价格。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价页文末写 Last updated October 10, 2026，这是文档更新日，不是模型发布日。发布日未在模型页写明。Grok 4.7 Fast 只在 Cursor 与 Grok Build 提供，不是公开 API 价，未收录。知识截止 May 2026 也不是发布日。"
+    },
+    {
+      "schema_version": 1,
+      "id": "kimi-k2.6",
+      "vendor": "moonshot",
+      "api_model_id": "kimi-k2.6",
+      "display_name_zh": "Kimi K2.6",
+      "display_name_en": "Kimi K2.6",
+      "family": "kimi-k2",
+      "region": "cn",
+      "status": "retiring",
+      "deployment_zh": "Kimi 开放平台中国站。2026-10-31 起不对新注册用户开放，计划 2026 年 12 月底全部下线",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 262144,
+        "window_tokens_exact": true,
+        "max_output_tokens": 32768,
+        "max_output_tokens_exact": true,
+        "window_label": "262144",
+        "max_output_label": "32768",
+        "source_url": "https://platform.kimi.com/docs/pricing/chat",
+        "note_zh": "定价页写 K2 系列上下文窗口为 262,144 tokens。模型指南把默认 max_tokens 写成 32k，即 32768。指南正文另说「256K」，与 262,144 同页并存，整数以定价页为准。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "中国站 K2 表的标准价。该表只有输入、输出、缓存命中，没有缓存写入列。Batch 文档写 K2 不支持缓存写入。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价 · 缓存未命中",
+          "input_per_1m": "6.50",
+          "output_per_1m": "27",
+          "cache_hit_input_per_1m": "1.10"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价 · 缓存未命中",
+            "applies_when_zh": "K2 表不按上下文长度分档。",
+            "input_per_1m": "6.50",
+            "output_per_1m": "27",
+            "cache_hit_input_per_1m": "1.10",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "6.50",
+        "cny_output_per_1m": "27",
+        "usd_input_per_1m": "0.967723",
+        "usd_output_per_1m": "4.019771"
+      },
+      "source": {
+        "url": "https://platform.kimi.com/docs/pricing/chat",
+        "title_zh": "Kimi 开放平台模型推理价格说明",
+        "section_zh": "「模型定价 / K2 系列模型」表 kimi-k2.6 行。列序为输入、输出、缓存命中。表前注写明 2026-10-31 起停止向新用户开放，并计划 12 月底全部下线。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "收这一条是因为中国站价目表仍印着它，而且它是 Kimi 里还能对上官方数字的低价档。状态标为即将下线，不是在售默认。K2.7 Code 与高速版同页有价，v0.1 没有再展开。新用户按平台说明已经不能开通。"
+    },
+    {
+      "schema_version": 1,
+      "id": "kimi-k3",
+      "vendor": "moonshot",
+      "api_model_id": "kimi-k3",
+      "display_name_zh": "Kimi K3",
+      "display_name_en": "Kimi K3",
+      "family": "kimi-k3",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "Kimi 开放平台中国站（api.moonshot.cn）",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2026-07",
+        "precision": "month",
+        "kind": "announcement",
+        "source_url": "https://platform.kimi.ai/docs/platform-changelog",
+        "note_zh": "开放平台更新日志将 Kimi K3 的 API 上线写在 July 2026，没有写到日。"
+      },
+      "context": {
+        "window_tokens": 1048576,
+        "window_tokens_exact": true,
+        "window_label": "1048576",
+        "source_url": "https://platform.kimi.com/docs/pricing/chat",
+        "note_zh": "K3 系列上下文窗口为 1,048,576 tokens。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "中国站标准价，不按上下文分档。Batch 为 60%，不作为入口价。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价 · 缓存未命中",
+          "input_per_1m": "20",
+          "output_per_1m": "100",
+          "cache_hit_input_per_1m": "2",
+          "cache_write_5m_per_1m": "20",
+          "cache_write_1h_per_1m": "40"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价 · 缓存未命中",
+            "applies_when_zh": "不按上下文长度分档。",
+            "input_per_1m": "20",
+            "output_per_1m": "100",
+            "cache_hit_input_per_1m": "2",
+            "cache_write_5m_per_1m": "20",
+            "cache_write_1h_per_1m": "40",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "20",
+        "cny_output_per_1m": "100",
+        "usd_input_per_1m": "2.977608",
+        "usd_output_per_1m": "14.888042"
+      },
+      "source": {
+        "url": "https://platform.kimi.com/docs/pricing/chat",
+        "title_zh": "Kimi 开放平台模型推理价格说明",
+        "section_zh": "「模型定价 / K3 系列模型」表，kimi-k3 行。列序为输入、输出、缓存命中、缓存写入（5min）、缓存写入（1h）。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "中国站表格：输入 ¥20.00、输出 ¥100.00、缓存命中 ¥2.00、5 分钟缓存写入 ¥20.00、1 小时 ¥40.00。国际站首页的 3 美元 / 15 美元是另一张价目。K2 系列已停止向新用户开放并计划在 2026 年 12 月底下线，v0.1 不收录。"
+    },
+    {
+      "schema_version": 1,
+      "id": "kimi-k3.1-pro",
+      "vendor": "moonshot",
+      "api_model_id": "kimi-k3.1-pro",
+      "display_name_zh": "Kimi K3.1 Pro",
+      "display_name_en": "Kimi K3.1 Pro",
+      "family": "kimi-k3",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "Kimi 开放平台中国站（api.moonshot.cn），不是 platform.kimi.ai 的美元价目",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1048576,
+        "window_tokens_exact": true,
+        "window_label": "1048576",
+        "source_url": "https://platform.kimi.com/docs/pricing/chat",
+        "note_zh": "定价页写明 K3 系列上下文窗口为 1,048,576 tokens。未在同一页看到最大输出整数，故不录。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "中国站标准价。缓存未命中的输入与输出。缓存写入另计，不并入输入单价。Batch 为标准价的 60%，不作为入口价。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "标准价 · 缓存未命中",
+          "input_per_1m": "13",
+          "output_per_1m": "68",
+          "cache_hit_input_per_1m": "1.30",
+          "cache_write_5m_per_1m": "13",
+          "cache_write_1h_per_1m": "26"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "标准价 · 缓存未命中",
+            "applies_when_zh": "不按上下文长度分档。未指定 TTL 时缓存写入按 5 分钟档。",
+            "input_per_1m": "13",
+            "output_per_1m": "68",
+            "cache_hit_input_per_1m": "1.30",
+            "cache_write_5m_per_1m": "13",
+            "cache_write_1h_per_1m": "26",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13",
+        "cny_output_per_1m": "68",
+        "usd_input_per_1m": "1.935445",
+        "usd_output_per_1m": "10.123869"
+      },
+      "source": {
+        "url": "https://platform.kimi.com/docs/pricing/chat",
+        "title_zh": "Kimi 开放平台模型推理价格说明",
+        "section_zh": "「模型定价 / K3 系列模型」表，kimi-k3.1-pro 行。列序为输入、输出、缓存命中、缓存写入（5min）、缓存写入（1h）。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "价格来自该页文档表格：输入 ¥13.00、输出 ¥68.00、缓存命中 ¥1.30、缓存写入 5 分钟 ¥13.00、1 小时 ¥26.00，单位均为每百万 tokens。页面的 Markdown 导出把表格抽空，数字取自同一官方页面的文档源码。国际站首页把 K3.1 Pro 标成 2 美元 / 10 美元，是另一张价目，未并入。发布日没有在已核验页面上写到日，故留空。"
+    },
+    {
+      "schema_version": 1,
+      "id": "kimi-k3.1-pro-highspeed",
+      "vendor": "moonshot",
+      "api_model_id": "kimi-k3.1-pro-highspeed",
+      "display_name_zh": "Kimi K3.1 Pro 高速版",
+      "display_name_en": "Kimi K3.1 Pro Highspeed",
+      "family": "kimi-k3",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "Kimi 开放平台中国站。模型列表写明速度约为 K3.1 Pro 的 2 到 3 倍",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1048576,
+        "window_tokens_exact": true,
+        "window_label": "1048576",
+        "source_url": "https://platform.kimi.com/docs/pricing/chat",
+        "note_zh": "K3 系列统一为 1,048,576 tokens 上下文。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "中国站高速版标准价。缓存命中与普通版同为 1.30 元，输入和输出以及缓存写入更高。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "高速版标准价 · 缓存未命中",
+          "input_per_1m": "26",
+          "output_per_1m": "136",
+          "cache_hit_input_per_1m": "1.30",
+          "cache_write_5m_per_1m": "26",
+          "cache_write_1h_per_1m": "52"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "高速版标准价 · 缓存未命中",
+            "applies_when_zh": "不按上下文长度分档。",
+            "input_per_1m": "26",
+            "output_per_1m": "136",
+            "cache_hit_input_per_1m": "1.30",
+            "cache_write_5m_per_1m": "26",
+            "cache_write_1h_per_1m": "52",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "26",
+        "cny_output_per_1m": "136",
+        "usd_input_per_1m": "3.870891",
+        "usd_output_per_1m": "20.247737"
+      },
+      "source": {
+        "url": "https://platform.kimi.com/docs/pricing/chat",
+        "title_zh": "Kimi 开放平台模型推理价格说明",
+        "section_zh": "「模型定价 / K3 系列模型」表，kimi-k3.1-pro-highspeed 行。列序同 K3.1 Pro。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "与 kimi-k3.1-pro 同一张中国站价格表。新用户代金券说明写明高速版不适用赠送券，这不影响单价。国际站美元价未收录。"
+    },
+    {
+      "schema_version": 1,
+      "id": "qwen-flash-2025-07-28",
+      "vendor": "qwen",
+      "api_model_id": "qwen-flash-2025-07-28",
+      "display_name_zh": "通义千问 Flash 2025-07-28",
+      "display_name_en": "Qwen-Flash 2025-07-28",
+      "family": "qwen-flash",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "阿里云百炼，华北 2（北京）。滚动别名 qwen-flash 当前能力等同于此快照，同价",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2025-07-28",
+        "precision": "day",
+        "kind": "default_snapshot",
+        "source_url": "https://help.aliyun.com/zh/model-studio/newly-released-models",
+        "note_zh": "模型 ID 即快照日期。上下架页把该条列在 2025-08-06 一组，并写明支持 1M 上下文、按长度阶梯计费。"
+      },
+      "context": {
+        "window_label": "1M",
+        "source_url": "https://help.aliyun.com/zh/model-studio/newly-released-models",
+        "note_zh": "上下架页写支持 1M 上下文，没有给出整数。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "华北 2（北京）实时推理。非思考与思考同价。入口价为输入不超过 128K 的一档。",
+        "headline": {
+          "id": "le_128k",
+          "label_zh": "输入不超过 128K · 非思考与思考同价",
+          "input_per_1m": "0.15",
+          "output_per_1m": "1.5"
+        },
+        "tiers": [
+          {
+            "id": "le_128k",
+            "label_zh": "输入不超过 128K · 非思考与思考同价",
+            "applies_when_zh": "0 < Token ≤ 128K。",
+            "input_per_1m": "0.15",
+            "output_per_1m": "1.5",
+            "is_headline": true
+          },
+          {
+            "id": "le_256k",
+            "label_zh": "输入 128K 至 256K · 非思考与思考同价",
+            "applies_when_zh": "128K < Token ≤ 256K。",
+            "input_per_1m": "0.6",
+            "output_per_1m": "6",
+            "is_headline": false
+          },
+          {
+            "id": "le_1m",
+            "label_zh": "输入 256K 至 1M · 非思考与思考同价",
+            "applies_when_zh": "256K < Token ≤ 1M。",
+            "input_per_1m": "1.2",
+            "output_per_1m": "12",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "0.15",
+        "cny_output_per_1m": "1.5",
+        "usd_input_per_1m": "0.022332",
+        "usd_output_per_1m": "0.223321"
+      },
+      "source": {
+        "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+        "title_zh": "阿里云百炼模型价格（华北 2 北京，qwen-flash-2025-07-28）",
+        "section_zh": "「千问 Flash」下「华北 2（北京）」表，模型 ID qwen-flash-2025-07-28 行，非思考与思考同价，输入分三档。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "滚动别名 qwen-flash 同价，并写明 Batch 半价与上下文缓存折扣。缓存命中单价未在该行给出。未从模型卡核对图像输入，模态只标文本。"
+    },
+    {
+      "schema_version": 1,
+      "id": "qwen-max",
+      "vendor": "qwen",
+      "api_model_id": "qwen-max",
+      "display_name_zh": "通义千问 Max",
+      "display_name_en": "Qwen-Max",
+      "family": "qwen-max",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "阿里云百炼，华北 2（北京）。模型页写明功能等同于快照 qwen-max-2025-01-25",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2025-01-25",
+        "precision": "day",
+        "kind": "default_snapshot",
+        "source_url": "https://help.aliyun.com/zh/model-studio/qwen-max",
+        "note_zh": "日期来自模型页给出的快照名 qwen-max-2025-01-25。qwen-max 本身是滚动别名。"
+      },
+      "context": {
+        "window_tokens": 32768,
+        "window_tokens_exact": true,
+        "max_output_tokens": 8192,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 30720,
+        "window_label": "32768",
+        "max_output_label": "8192",
+        "source_url": "https://help.aliyun.com/zh/model-studio/qwen-max",
+        "note_zh": "模型页上下文限制表给出的整数。仅非思考模式。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "华北 2（北京）实时推理，仅非思考模式，无阶梯。缓存命中只打折输入。",
+        "headline": {
+          "id": "standard",
+          "label_zh": "实时推理 · 仅非思考",
+          "input_per_1m": "2.4",
+          "output_per_1m": "9.6",
+          "cache_hit_input_per_1m": "0.48"
+        },
+        "tiers": [
+          {
+            "id": "standard",
+            "label_zh": "实时推理 · 仅非思考",
+            "applies_when_zh": "无阶梯计价。",
+            "input_per_1m": "2.4",
+            "output_per_1m": "9.6",
+            "cache_hit_input_per_1m": "0.48",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "2.4",
+        "cny_output_per_1m": "9.6",
+        "usd_input_per_1m": "0.357313",
+        "usd_output_per_1m": "1.429252"
+      },
+      "source": {
+        "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+        "title_zh": "阿里云百炼模型价格（华北 2 北京，qwen-max）",
+        "section_zh": "定价页「千问 Max」「华北 2（北京）」表 qwen-max 行的输入 2.4 元与输出 9.6 元。缓存命中 0.48 元在模型页「模型价格」「华北 2（北京）」表。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "输入 2.4 元、输出 9.6 元来自定价页。缓存命中 0.48 元以及 Batch 文件输入 1.2 元、输出 4.8 元来自 qwen-max 模型页的北京价格表。Batch 不作为入口价。新加坡部署的单价不同，未收录。"
+    },
+    {
+      "schema_version": 1,
+      "id": "qwen-plus-2025-12-01",
+      "vendor": "qwen",
+      "api_model_id": "qwen-plus-2025-12-01",
+      "display_name_zh": "通义千问 Plus 2025-12-01",
+      "display_name_en": "Qwen-Plus 2025-12-01",
+      "family": "qwen-plus",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "阿里云百炼，华北 2（北京）。滚动别名 qwen-plus 当前能力等同于此快照，同价",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2025-12-01",
+        "precision": "day",
+        "kind": "default_snapshot",
+        "source_url": "https://help.aliyun.com/zh/model-studio/newly-released-models",
+        "note_zh": "上下架页在 2025-12-01 列出该快照，并写明支持 1M 上下文、按长度阶梯计费。未在本条核对图像或视频输入。"
+      },
+      "context": {
+        "window_label": "1M",
+        "source_url": "https://help.aliyun.com/zh/model-studio/newly-released-models",
+        "note_zh": "上下架页写「支持 1M 上下文长度」，没有给出整数。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "华北 2（北京）实时推理。入口价是输入不超过 128K 的非思考输出。思考模式输出更贵，见分档。",
+        "headline": {
+          "id": "le_128k_chat",
+          "label_zh": "输入不超过 128K · 非思考",
+          "input_per_1m": "0.8",
+          "output_per_1m": "2"
+        },
+        "tiers": [
+          {
+            "id": "le_128k_chat",
+            "label_zh": "输入不超过 128K · 非思考",
+            "applies_when_zh": "0 < Token ≤ 128K，非思考模式输出。",
+            "input_per_1m": "0.8",
+            "output_per_1m": "2",
+            "is_headline": true
+          },
+          {
+            "id": "le_128k_think",
+            "label_zh": "输入不超过 128K · 思考",
+            "applies_when_zh": "0 < Token ≤ 128K，思考模式输出含思维链与回答。",
+            "input_per_1m": "0.8",
+            "output_per_1m": "8",
+            "is_headline": false
+          },
+          {
+            "id": "le_256k_chat",
+            "label_zh": "输入 128K 至 256K · 非思考",
+            "applies_when_zh": "128K < Token ≤ 256K，非思考模式。",
+            "input_per_1m": "2.4",
+            "output_per_1m": "20",
+            "is_headline": false
+          },
+          {
+            "id": "le_256k_think",
+            "label_zh": "输入 128K 至 256K · 思考",
+            "applies_when_zh": "128K < Token ≤ 256K，思考模式。",
+            "input_per_1m": "2.4",
+            "output_per_1m": "24",
+            "is_headline": false
+          },
+          {
+            "id": "le_1m_chat",
+            "label_zh": "输入 256K 至 1M · 非思考",
+            "applies_when_zh": "256K < Token ≤ 1M，非思考模式。",
+            "input_per_1m": "4.8",
+            "output_per_1m": "48",
+            "is_headline": false
+          },
+          {
+            "id": "le_1m_think",
+            "label_zh": "输入 256K 至 1M · 思考",
+            "applies_when_zh": "256K < Token ≤ 1M，思考模式。",
+            "input_per_1m": "4.8",
+            "output_per_1m": "64",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "0.8",
+        "cny_output_per_1m": "2",
+        "usd_input_per_1m": "0.119104",
+        "usd_output_per_1m": "0.297761"
+      },
+      "source": {
+        "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+        "title_zh": "阿里云百炼模型价格（华北 2 北京，qwen-plus-2025-12-01）",
+        "section_zh": "「千问 Plus」下「华北 2（北京）」表，模型 ID qwen-plus-2025-12-01 行。输出分「非思考模式」「思考模式」两列，输入分三档。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价表把非思考与思考分成两列。入口价故意取更便宜的非思考输出，避免把 8 元档当成唯一价格。滚动别名 qwen-plus 同价，且该行写明 Batch 半价。未核对多模态，模态只标文本。"
+    },
+    {
+      "schema_version": 1,
+      "id": "qwen3.7-plus",
+      "vendor": "qwen",
+      "api_model_id": "qwen3.7-plus",
+      "display_name_zh": "通义千问 3.7 Plus",
+      "display_name_en": "Qwen3.7-Plus",
+      "family": "qwen3.7",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "阿里云百炼，华北 2（北京）。当前能力等同于快照 qwen3.7-plus-2026-05-26",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2026-05-26",
+        "precision": "day",
+        "kind": "default_snapshot",
+        "source_url": "https://help.aliyun.com/zh/model-studio/qwen3-7-plus",
+        "note_zh": "模型页称快照 qwen3.7-plus-2026-05-26 为 2026 年 5 月 26 日快照。限时 8 折写在滚动别名上，快照行是原价。"
+      },
+      "context": {
+        "window_tokens": 1000000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 131072,
+        "max_output_tokens_exact": true,
+        "window_label": "1000000",
+        "max_output_label": "131072",
+        "source_url": "https://help.aliyun.com/zh/model-studio/qwen3-7-plus",
+        "note_zh": "模型页给出的上下文长度、最大输出长度均为整数。思考模式下最大输入更短，见该页，不改这里的上下文长度。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "华北 2（北京）实时推理的限时 8 折价。非思考与思考输出同价。原价写在 list 字段。",
+        "promotion": {
+          "label_zh": "限时 8 折",
+          "discount_rate": "0.8",
+          "ends_on": null,
+          "note_zh": "定价页写「原价（限时 8 折）」，没有写截止日期。入口价取折后价。"
+        },
+        "headline": {
+          "id": "le_256k",
+          "label_zh": "输入不超过 256K · 限时 8 折",
+          "input_per_1m": "1.6",
+          "output_per_1m": "6.4"
+        },
+        "tiers": [
+          {
+            "id": "le_256k",
+            "label_zh": "输入不超过 256K · 限时 8 折",
+            "applies_when_zh": "0 < Token ≤ 256K。非思考与思考输出同价。",
+            "input_per_1m": "1.6",
+            "output_per_1m": "6.4",
+            "list_input_per_1m": "2",
+            "list_output_per_1m": "8",
+            "is_headline": true
+          },
+          {
+            "id": "gt_256k",
+            "label_zh": "输入 256K 至 1M · 限时 8 折",
+            "applies_when_zh": "256K < Token ≤ 1M。非思考与思考输出同价。",
+            "input_per_1m": "4.8",
+            "output_per_1m": "19.2",
+            "list_input_per_1m": "6",
+            "list_output_per_1m": "24",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "1.6",
+        "cny_output_per_1m": "6.4",
+        "usd_input_per_1m": "0.238209",
+        "usd_output_per_1m": "0.952835"
+      },
+      "source": {
+        "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+        "title_zh": "阿里云百炼模型价格（华北 2 北京，千问 Plus）",
+        "section_zh": "「千问 Plus」下「华北 2（北京）」表，模型 ID qwen3.7-plus 行。单元格同时写原价与「限时 8 折」，分 0–256K 与 256K–1M 两档。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "快照 qwen3.7-plus-2026-05-26 在同一张表上是原价，没有 8 折。本条记录的是滚动别名 qwen3.7-plus 的折后价。该行写明 Batch 调用半价，半价不作为入口价。缓存写明享有折扣，但没有给出命中单价。"
+    },
+    {
+      "schema_version": 1,
+      "id": "qwen3.8-max",
+      "vendor": "qwen",
+      "api_model_id": "qwen3.8-max",
+      "display_name_zh": "通义千问 3.8 Max",
+      "display_name_en": "Qwen3.8-Max",
+      "family": "qwen3.8",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "阿里云百炼，华北 2（北京）。快照 qwen3.8-max-0902 同价",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "release": {
+        "date": "2026-08-02",
+        "precision": "day",
+        "kind": "catalog",
+        "source_url": "https://help.aliyun.com/zh/model-studio/newly-released-models",
+        "note_zh": "上下架页在 2026-08-02 列出 qwen3.8-max。快照别名 qwen3.8-max-2026-09-02 写在 2026-09-11 一组，并写明延续 100 万上下文。"
+      },
+      "context": {
+        "window_label": "100万",
+        "source_url": "https://help.aliyun.com/zh/model-studio/newly-released-models",
+        "note_zh": "快照说明写「延续 100 万上下文」。定价页最高档为不超过 1M Token。页面没有给出整数上限。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "华北 2（北京）实时推理。非思考与思考同价，输入不超过 1M。Batch 半价不作为入口价。",
+        "headline": {
+          "id": "up_to_1m",
+          "label_zh": "输入不超过 1M · 非思考与思考同价",
+          "input_per_1m": "12",
+          "output_per_1m": "36"
+        },
+        "tiers": [
+          {
+            "id": "up_to_1m",
+            "label_zh": "输入不超过 1M · 非思考与思考同价",
+            "applies_when_zh": "单次请求输入 Token 满足 0 < Token ≤ 1M。",
+            "input_per_1m": "12",
+            "output_per_1m": "36",
+            "is_headline": true
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "12",
+        "cny_output_per_1m": "36",
+        "usd_input_per_1m": "1.786565",
+        "usd_output_per_1m": "5.359695"
+      },
+      "source": {
+        "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
+        "title_zh": "阿里云百炼模型价格（华北 2 北京）",
+        "section_zh": "「千问 Max」下「华北 2（北京）」表，模型 ID qwen3.8-max 行，输入范围 0<Token≤1M 的输入单价与输出单价。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "只录北京地域的人民币标价。同一页的全球、美国、国际部署单价不同，未混入。定价行写明 Batch 调用半价、上下文缓存享有折扣，但没有给出缓存命中的具体单价，故缓存单价留空。开通后 90 天内的免费额度不是单价。视频输入依据上下架页「长视频的深度语义解析」，不是一张单独的模态对照表。"
+    }
+  ]
+}

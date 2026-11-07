@@ -1,0 +1,45 @@
+schema_version: 1
+model_id: claude-haiku-5-5
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://platform.claude.com/docs/en/about-claude/pricing
+  billing:
+    unit: per_1m_tokens
+    currency: USD
+    price_covers_zh: 提示不超过 10 万 token 的标准价。超过 10 万 token 的档位见分档，不取两档平均。
+    headline:
+      id: up_to_100k
+      label_zh: 提示不超过 10 万 token
+      input_per_1m: '0.10'
+      output_per_1m: '0.50'
+      cache_hit_input_per_1m: '0.01'
+      cache_write_5m_per_1m: '0.125'
+      cache_write_1h_per_1m: '0.20'
+    tiers:
+    - id: up_to_100k
+      label_zh: 提示不超过 10 万 token
+      applies_when_zh: 定价页写 for prompts up to 100,000 tokens。
+      input_per_1m: '0.10'
+      output_per_1m: '0.50'
+      cache_hit_input_per_1m: '0.01'
+      cache_write_5m_per_1m: '0.125'
+      cache_write_1h_per_1m: '0.20'
+      is_headline: true
+    - id: over_100k
+      label_zh: 提示超过 10 万 token
+      applies_when_zh: 定价页写 for prompts over 100,000 tokens。
+      input_per_1m: '0.50'
+      output_per_1m: '2.50'
+      cache_hit_input_per_1m: '0.05'
+      cache_write_5m_per_1m: '0.625'
+      cache_write_1h_per_1m: '1'
+      is_headline: false
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '0.671680'
+    cny_output_per_1m: '3.358400'
+    usd_input_per_1m: '0.10'
+    usd_output_per_1m: '0.50'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。

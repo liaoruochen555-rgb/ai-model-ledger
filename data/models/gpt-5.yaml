@@ -1,0 +1,60 @@
+schema_version: 1
+id: gpt-5
+vendor: openai
+api_model_id: gpt-5
+display_name_zh: GPT-5
+display_name_en: GPT-5
+family: gpt-5
+region: global
+status: deprecated
+deployment_zh: OpenAI API。模型页状态为 Deprecated，默认快照 gpt-5-2025-08-07
+modalities:
+  input: [text, image]
+  output: [text]
+release:
+  date: "2025-08-07"
+  precision: day
+  kind: default_snapshot
+  source_url: https://developers.openai.com/api/docs/models/gpt-5
+  note_zh: 记的是模型页默认快照 ID 里的日期，不是另行的新闻稿日期。
+context:
+  window_tokens: 400000
+  window_tokens_exact: true
+  max_output_tokens: 128000
+  max_output_tokens_exact: true
+  max_input_tokens: 272000
+  window_label: "400000"
+  max_output_label: "128000"
+  source_url: https://developers.openai.com/api/docs/models/gpt-5
+  note_zh: 模型页整数。定价表对 gpt-5 没有短上下文 / 长上下文分列。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 标准价。定价表这一档没有按 272K 拆开。Batch 为五折，不作为入口价。
+  headline:
+    id: standard
+    label_zh: 标准价
+    input_per_1m: "1.25"
+    output_per_1m: "10"
+    cache_hit_input_per_1m: "0.125"
+  tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表只给了一档。
+      input_per_1m: "1.25"
+      output_per_1m: "10"
+      cache_hit_input_per_1m: "0.125"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "8.396000"
+  cny_output_per_1m: "67.168000"
+  usd_input_per_1m: "1.25"
+  usd_output_per_1m: "10"
+source:
+  url: https://developers.openai.com/api/docs/pricing
+  title_zh: OpenAI API 定价（Standard）
+  section_zh: "Standard 定价里不区分短长上下文的那张表，gpt-5 行：Input、Output、Cached input。模型页 Text tokens 表数字相同。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 模型页与定价页都写输入 1.25 美元、缓存输入 0.125 美元、输出 10 美元，每百万 tokens。状态以模型页的 Deprecated 为准，价格仍在现行价目表上。

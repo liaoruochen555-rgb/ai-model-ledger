@@ -1,0 +1,64 @@
+schema_version: 1
+id: qwen-flash-2025-07-28
+vendor: qwen
+api_model_id: qwen-flash-2025-07-28
+display_name_zh: 通义千问 Flash 2025-07-28
+display_name_en: Qwen-Flash 2025-07-28
+family: qwen-flash
+region: cn
+status: active
+deployment_zh: 阿里云百炼，华北 2（北京）。滚动别名 qwen-flash 当前能力等同于此快照，同价
+modalities:
+  input: [text]
+  output: [text]
+release:
+  date: "2025-07-28"
+  precision: day
+  kind: default_snapshot
+  source_url: https://help.aliyun.com/zh/model-studio/newly-released-models
+  note_zh: 模型 ID 即快照日期。上下架页把该条列在 2025-08-06 一组，并写明支持 1M 上下文、按长度阶梯计费。
+context:
+  window_label: 1M
+  source_url: https://help.aliyun.com/zh/model-studio/newly-released-models
+  note_zh: 上下架页写支持 1M 上下文，没有给出整数。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 华北 2（北京）实时推理。非思考与思考同价。入口价为输入不超过 128K 的一档。
+  headline:
+    id: le_128k
+    label_zh: 输入不超过 128K · 非思考与思考同价
+    input_per_1m: "0.15"
+    output_per_1m: "1.5"
+  tiers:
+    - id: le_128k
+      label_zh: 输入不超过 128K · 非思考与思考同价
+      applies_when_zh: 0 < Token ≤ 128K。
+      input_per_1m: "0.15"
+      output_per_1m: "1.5"
+      is_headline: true
+    - id: le_256k
+      label_zh: 输入 128K 至 256K · 非思考与思考同价
+      applies_when_zh: 128K < Token ≤ 256K。
+      input_per_1m: "0.6"
+      output_per_1m: "6"
+      is_headline: false
+    - id: le_1m
+      label_zh: 输入 256K 至 1M · 非思考与思考同价
+      applies_when_zh: 256K < Token ≤ 1M。
+      input_per_1m: "1.2"
+      output_per_1m: "12"
+      is_headline: false
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "0.15"
+  cny_output_per_1m: "1.5"
+  usd_input_per_1m: "0.022332"
+  usd_output_per_1m: "0.223321"
+source:
+  url: https://help.aliyun.com/zh/model-studio/model-pricing
+  title_zh: 阿里云百炼模型价格（华北 2 北京，qwen-flash-2025-07-28）
+  section_zh: "「千问 Flash」下「华北 2（北京）」表，模型 ID qwen-flash-2025-07-28 行，非思考与思考同价，输入分三档。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 滚动别名 qwen-flash 同价，并写明 Batch 半价与上下文缓存折扣。缓存命中单价未在该行给出。未从模型卡核对图像输入，模态只标文本。

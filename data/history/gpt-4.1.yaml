@@ -1,0 +1,32 @@
+schema_version: 1
+model_id: gpt-4.1
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://developers.openai.com/api/docs/pricing
+  billing:
+    unit: per_1m_tokens
+    currency: USD
+    price_covers_zh: 标准价，定价表未分短长上下文。
+    headline:
+      id: standard
+      label_zh: 标准价
+      input_per_1m: '2'
+      output_per_1m: '8'
+      cache_hit_input_per_1m: '0.5'
+    tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表只给了一档。
+      input_per_1m: '2'
+      output_per_1m: '8'
+      cache_hit_input_per_1m: '0.5'
+      is_headline: true
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '13.433600'
+    cny_output_per_1m: '53.734400'
+    usd_input_per_1m: '2'
+    usd_output_per_1m: '8'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。
