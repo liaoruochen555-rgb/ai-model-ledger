@@ -746,6 +746,79 @@
     },
     {
       "schema_version": 1,
+      "id": "glm-5",
+      "vendor": "zhipu",
+      "api_model_id": "glm-5",
+      "display_name_zh": "GLM-5",
+      "display_name_en": "GLM-5",
+      "family": "glm-5",
+      "region": "cn",
+      "status": "active",
+      "deployment_zh": "智谱开放平台。调用示例中的模型编码为 glm-5",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_label": "200K",
+        "max_output_label": "128K",
+        "source_url": "https://docs.bigmodel.cn/cn/guide/models/text/glm-5",
+        "note_zh": "模型页卡片写上下文 200K、最大输出 128K，没有给出整数。定价表按 32K 分档，没有再写总上限。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "CNY",
+        "price_covers_zh": "定价表输入长度低于 32K 的一档。32K 及以上另记。缓存存储限时免费，没有期满单价。",
+        "headline": {
+          "id": "lt_32k",
+          "label_zh": "输入低于 32K",
+          "input_per_1m": "4",
+          "output_per_1m": "18",
+          "cache_hit_input_per_1m": "1"
+        },
+        "tiers": [
+          {
+            "id": "lt_32k",
+            "label_zh": "输入低于 32K",
+            "applies_when_zh": "定价表写输入长度 [0, 32K)。",
+            "input_per_1m": "4",
+            "output_per_1m": "18",
+            "cache_hit_input_per_1m": "1",
+            "is_headline": true
+          },
+          {
+            "id": "ge_32k",
+            "label_zh": "输入达到或超过 32K",
+            "applies_when_zh": "定价表写输入长度 ≥32K。",
+            "input_per_1m": "6",
+            "output_per_1m": "22",
+            "cache_hit_input_per_1m": "1.5",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "4",
+        "cny_output_per_1m": "18",
+        "usd_input_per_1m": "0.595522",
+        "usd_output_per_1m": "2.679848"
+      },
+      "source": {
+        "url": "https://docs.bigmodel.cn/cn/guide/start/pricing",
+        "title_zh": "智谱开放平台 API 定价",
+        "section_zh": "「模型推理 / 文本模型」表 GLM-5 的两行：输入长度 [0, 32K) 为输入 4 元、输出 18 元、缓存命中 1 元；≥32K 为 6 元、22 元、1.5 元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "这是 5.3 和 5.3-Flash 之间仍在现行文本表上的一档。GLM-5.1 与 GLM-5-Turbo 同表还有价，本条只补最常被当作基座的 glm-5。发布日未在这两页写明。"
+    },
+    {
+      "schema_version": 1,
       "id": "glm-5.3",
       "vendor": "zhipu",
       "api_model_id": "glm-5.3",
@@ -1044,6 +1117,261 @@
     },
     {
       "schema_version": 1,
+      "id": "gpt-5.6-luna",
+      "vendor": "openai",
+      "api_model_id": "gpt-5.6-luna",
+      "display_name_zh": "GPT-5.6 Luna",
+      "display_name_en": "GPT-5.6 Luna",
+      "family": "gpt-5.6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。模型页把它对应到早先 GPT-5 家族的 nano 档",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Feb 16, 2026 不是发布日。页面提醒账号未必开通该模型，那不影响标价。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。缓存写入为未缓存输入的 1.25 倍；两档保留期以定价表为准。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "0.20",
+          "output_per_1m": "1.20",
+          "cache_hit_input_per_1m": "0.02",
+          "cache_write_30m_per_1m": "0.25",
+          "cache_write_12h_per_1m": "0.50"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "0.20",
+            "output_per_1m": "1.20",
+            "cache_hit_input_per_1m": "0.02",
+            "cache_write_30m_per_1m": "0.25",
+            "cache_write_12h_per_1m": "0.50",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。",
+            "input_per_1m": "0.40",
+            "output_per_1m": "1.80",
+            "cache_hit_input_per_1m": "0.04",
+            "cache_write_30m_per_1m": "0.50",
+            "cache_write_12h_per_1m": "1",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "1.343360",
+        "cny_output_per_1m": "8.060160",
+        "usd_input_per_1m": "0.20",
+        "usd_output_per_1m": "1.20"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-5.6-luna 行。短上下文入口价与模型页 Text tokens 表一致：输入 0.2 美元、缓存输入 0.02 美元、输出 1.2 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "5.6 家族的低价档。比 gpt-6-luna 贵，但比 5.6 Terra 便宜，所以两档都留着。发布日未印出。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-5.6-sol",
+      "vendor": "openai",
+      "api_model_id": "gpt-5.6-sol",
+      "display_name_zh": "GPT-5.6 Sol",
+      "display_name_en": "GPT-5.6 Sol",
+      "family": "gpt-5.6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。别名 gpt-5.6 路由到这个模型",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Feb 16, 2026 不是发布日。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K 的现行促销价。缓存写入按定价表的 30 分钟与 12 小时两列。Batch 不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文 · 2026-11-30 前的促销价",
+          "input_per_1m": "4",
+          "output_per_1m": "20",
+          "cache_hit_input_per_1m": "0.40",
+          "cache_write_30m_per_1m": "5",
+          "cache_write_12h_per_1m": "10"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文 · 2026-11-30 前的促销价",
+            "applies_when_zh": "定价页 Standard 表的短上下文列。页脚写明促销到 2026-11-30。",
+            "input_per_1m": "4",
+            "output_per_1m": "20",
+            "cache_hit_input_per_1m": "0.40",
+            "cache_write_30m_per_1m": "5",
+            "cache_write_12h_per_1m": "10",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。模型页写输入 2 倍、输出 1.5 倍。",
+            "input_per_1m": "8",
+            "output_per_1m": "30",
+            "cache_hit_input_per_1m": "0.80",
+            "cache_write_30m_per_1m": "10",
+            "cache_write_12h_per_1m": "20",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "26.867200",
+        "cny_output_per_1m": "134.336000",
+        "usd_input_per_1m": "4",
+        "usd_output_per_1m": "20"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-5.6-sol 行，短上下文列。模型页 Text tokens 表同样是输入 4 美元、缓存输入 0.4 美元、输出 20 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "定价页和模型页都写促销价维持到 2026-11-30，并说输入降了 20%、输出降了 33%，但没有印出 12 月 1 日之后的数字。本条不推算期满价，所以没有 scheduled。核验日仍在促销期内。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-5.6-terra",
+      "vendor": "openai",
+      "api_model_id": "gpt-5.6-terra",
+      "display_name_zh": "GPT-5.6 Terra",
+      "display_name_en": "GPT-5.6 Terra",
+      "family": "gpt-5.6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。模型页把它对应到早先 GPT-5 家族的 mini 档",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Feb 16, 2026 不是发布日。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。模型页写缓存写入为未缓存输入的 1.25 倍；30 分钟与 12 小时两列以定价表为准。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "2",
+          "output_per_1m": "12",
+          "cache_hit_input_per_1m": "0.20",
+          "cache_write_30m_per_1m": "2.50",
+          "cache_write_12h_per_1m": "5"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "2",
+            "output_per_1m": "12",
+            "cache_hit_input_per_1m": "0.20",
+            "cache_write_30m_per_1m": "2.50",
+            "cache_write_12h_per_1m": "5",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。输出 18 美元是 12 美元的 1.5 倍。",
+            "input_per_1m": "4",
+            "output_per_1m": "18",
+            "cache_hit_input_per_1m": "0.40",
+            "cache_write_30m_per_1m": "5",
+            "cache_write_12h_per_1m": "10",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "80.601600",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "12"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-5.6-terra 行。短上下文入口价与模型页 Text tokens 表一致：输入 2 美元、缓存输入 0.2 美元、输出 12 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "5.6 家族里介于 Sol 和 Luna 的一档，对应旧系列的 mini，但仍是现行 Standard 行，不是已弃用的 gpt-5-mini。发布日未印出。"
+    },
+    {
+      "schema_version": 1,
       "id": "gpt-6-astra",
       "vendor": "openai",
       "api_model_id": "gpt-6-astra",
@@ -1214,6 +1542,261 @@
     },
     {
       "schema_version": 1,
+      "id": "gpt-6-sol",
+      "vendor": "openai",
+      "api_model_id": "gpt-6-sol",
+      "display_name_zh": "GPT-6 Sol",
+      "display_name_en": "GPT-6 Sol",
+      "family": "gpt-6",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。模型页指向更新的 GPT-6.1 Sol，但本条仍在 Standard 价目表上",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-6-sol",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Apr 20, 2026 不是发布日。页面没有把状态写成 Deprecated。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。缓存输入为未缓存输入的 10%，与 6.1 Sol 的 5% 不同。缓存写入为 1.25 倍。Batch 与 Flex 为五折，Fast 为两倍，不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "2",
+          "output_per_1m": "10",
+          "cache_hit_input_per_1m": "0.20",
+          "cache_write_30m_per_1m": "2.50",
+          "cache_write_12h_per_1m": "5"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "2",
+            "output_per_1m": "10",
+            "cache_hit_input_per_1m": "0.20",
+            "cache_write_30m_per_1m": "2.50",
+            "cache_write_12h_per_1m": "5",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。",
+            "input_per_1m": "4",
+            "output_per_1m": "15",
+            "cache_hit_input_per_1m": "0.40",
+            "cache_write_30m_per_1m": "5",
+            "cache_write_12h_per_1m": "10",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "67.168000",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "10"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-6-sol 行。短上下文入口价与模型页 Text tokens 表一致。缓存命中是 0.20 美元，不是 6.1 Sol 的 0.10 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "输入和输出与 gpt-6.1-sol 相同，缓存命中更贵。模型页让新工作改用 6.1 Sol，但没有标弃用，Standard 表也还单列这一行，所以状态保持在售，并在这里写明代际。发布日未印出。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-6.1-sol",
+      "vendor": "openai",
+      "api_model_id": "gpt-6.1-sol",
+      "display_name_zh": "GPT-6.1 Sol",
+      "display_name_en": "GPT-6.1 Sol",
+      "family": "gpt-6.1",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。区域处理另加 10%，不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Apr 30, 2026 不是发布日。Codex 里默认 500K 且订阅用量不收长上下文加价，那不是 API 标准价。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。缓存输入为未缓存输入的 5%。缓存写入按 1.25 倍，模型页列出的 2.5 美元对应 30 分钟。Batch 与 Flex 为五折，Fast 为两倍，Ultrafast 为六倍，均不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "2",
+          "output_per_1m": "10",
+          "cache_hit_input_per_1m": "0.10",
+          "cache_write_30m_per_1m": "2.50",
+          "cache_write_12h_per_1m": "5"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "2",
+            "output_per_1m": "10",
+            "cache_hit_input_per_1m": "0.10",
+            "cache_write_30m_per_1m": "2.50",
+            "cache_write_12h_per_1m": "5",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。模型页写输入与缓存 2 倍、输出 1.5 倍，与定价表一致。",
+            "input_per_1m": "4",
+            "output_per_1m": "15",
+            "cache_hit_input_per_1m": "0.20",
+            "cache_write_30m_per_1m": "5",
+            "cache_write_12h_per_1m": "10",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "13.433600",
+        "cny_output_per_1m": "67.168000",
+        "usd_input_per_1m": "2",
+        "usd_output_per_1m": "10"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-6.1-sol 行。入口价是短上下文列；长上下文列另记。模型页 Text tokens 表与短上下文的输入、缓存输入、30 分钟缓存写入、输出一致。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "这是当前 Standard 表里介于 Astra 和 Terra 之间的 Sol。12 小时缓存写入只在定价表分列，模型页没有单独印出这一档。发布日未印在模型页上。"
+    },
+    {
+      "schema_version": 1,
+      "id": "gpt-6.1-terra",
+      "vendor": "openai",
+      "api_model_id": "gpt-6.1-terra",
+      "display_name_zh": "GPT-6.1 Terra",
+      "display_name_en": "GPT-6.1 Terra",
+      "family": "gpt-6.1",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "OpenAI API 标准价。区域处理另加 10%，不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1050000,
+        "window_tokens_exact": true,
+        "max_output_tokens": 128000,
+        "max_output_tokens_exact": true,
+        "max_input_tokens": 922000,
+        "window_label": "1050000",
+        "max_output_label": "128000",
+        "source_url": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
+        "note_zh": "模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Jun 01, 2026 不是发布日。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "标准档、输入不超过 272K。缓存输入为未缓存输入的 5%。模型页写明 30 分钟缓存写入 1.25 美元、12 小时 2.50 美元，长上下文再乘 2。Batch 与 Flex 为五折，Fast 为两倍，不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "标准 · 短上下文",
+          "input_per_1m": "1",
+          "output_per_1m": "5",
+          "cache_hit_input_per_1m": "0.05",
+          "cache_write_30m_per_1m": "1.25",
+          "cache_write_12h_per_1m": "2.50"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "标准 · 短上下文",
+            "applies_when_zh": "定价页 Standard 表的短上下文列，输入不超过 272K。",
+            "input_per_1m": "1",
+            "output_per_1m": "5",
+            "cache_hit_input_per_1m": "0.05",
+            "cache_write_30m_per_1m": "1.25",
+            "cache_write_12h_per_1m": "2.50",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "标准 · 长上下文",
+            "applies_when_zh": "输入超过 272K 后整次请求按此价。",
+            "input_per_1m": "2",
+            "output_per_1m": "7.50",
+            "cache_hit_input_per_1m": "0.10",
+            "cache_write_30m_per_1m": "2.50",
+            "cache_write_12h_per_1m": "5",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "6.716800",
+        "cny_output_per_1m": "33.584000",
+        "usd_input_per_1m": "1",
+        "usd_output_per_1m": "5"
+      },
+      "source": {
+        "url": "https://developers.openai.com/api/docs/pricing",
+        "title_zh": "OpenAI API 定价（Standard）",
+        "section_zh": "Flagship models 的 Standard 表 gpt-6.1-terra 行。入口价是短上下文列。模型页 Text tokens 表与短上下文入口价一致，并写明 12 小时缓存写入为 2.50 美元。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "Terra 是 6.1 系列里比 Sol 更低的一档，仍在 Standard 表上，不是 Batch 价。发布日未印在模型页上。"
+    },
+    {
+      "schema_version": 1,
       "id": "grok-4.20-0309-reasoning",
       "vendor": "xai",
       "api_model_id": "grok-4.20-0309-reasoning",
@@ -1286,6 +1869,81 @@
       },
       "verified_at": "2026-11-07",
       "notes_zh": "定价表同时列出 grok-4.3、grok-4.20-multi-agent-0309 与 non-reasoning，单价相同。没有把它们合成一条，避免模型 ID 对不上。发布日未核到独立公告，模型 ID 里的 0309 不当作发布日期。"
+    },
+    {
+      "schema_version": 1,
+      "id": "grok-4.3",
+      "vendor": "xai",
+      "api_model_id": "grok-4.3",
+      "display_name_zh": "Grok 4.3",
+      "display_name_en": "Grok 4.3",
+      "family": "grok-4",
+      "region": "global",
+      "status": "active",
+      "deployment_zh": "xAI API 全球端点。别名 grok-4.3-latest。美国区域加价不作为入口价",
+      "modalities": {
+        "input": [
+          "text",
+          "image"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "context": {
+        "window_tokens": 1000000,
+        "window_tokens_exact": true,
+        "window_label": "1000000",
+        "source_url": "https://docs.x.ai/developers/models/grok-4.3",
+        "note_zh": "模型页写上下文 1,000,000。没有单列最大输出整数。长上下文计价从 20 万 token 起。"
+      },
+      "billing": {
+        "unit": "per_1m_tokens",
+        "currency": "USD",
+        "price_covers_zh": "提示词低于 20 万 token 的标准价。达到阈值后整次请求改按长上下文价。Batch 为标准价八折，不作为入口价。",
+        "headline": {
+          "id": "short",
+          "label_zh": "提示词低于 20 万 token",
+          "input_per_1m": "1.25",
+          "output_per_1m": "2.50",
+          "cache_hit_input_per_1m": "0.20"
+        },
+        "tiers": [
+          {
+            "id": "short",
+            "label_zh": "提示词低于 20 万 token",
+            "applies_when_zh": "模型页与定价表都写 < 200k prompt tokens。",
+            "input_per_1m": "1.25",
+            "output_per_1m": "2.50",
+            "cache_hit_input_per_1m": "0.20",
+            "is_headline": true
+          },
+          {
+            "id": "long",
+            "label_zh": "提示词达到或超过 20 万 token",
+            "applies_when_zh": "请求的提示词达到 200k 后，全部 token 按此价计。",
+            "input_per_1m": "2.50",
+            "output_per_1m": "5",
+            "cache_hit_input_per_1m": "0.40",
+            "is_headline": false
+          }
+        ]
+      },
+      "conversion": {
+        "fx_id": "usd-cny-2026-11-06",
+        "cny_input_per_1m": "8.396000",
+        "cny_output_per_1m": "16.792000",
+        "usd_input_per_1m": "1.25",
+        "usd_output_per_1m": "2.50"
+      },
+      "source": {
+        "url": "https://docs.x.ai/developers/pricing",
+        "title_zh": "xAI API Pricing",
+        "section_zh": "Text API Pricing 表 grok-4.3 的两行：< 200k 为输入 1.25 美元、缓存 0.20 美元、输出 2.50 美元；≥ 200k 为 2.50、0.40、5.00。上下文列写 1M，整数以模型页为准。",
+        "retrieved_at": "2026-11-07"
+      },
+      "verified_at": "2026-11-07",
+      "notes_zh": "与 grok-4.20-0309-reasoning 的标价相同，但是现行的无日期模型 ID。4.7 更贵，4.20 是带日期的变体，所以 4.3 单独入账。发布日未印在模型页上。"
     },
     {
       "schema_version": 1,

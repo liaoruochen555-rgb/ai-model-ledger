@@ -1,0 +1,67 @@
+schema_version: 1
+id: gpt-5.6-sol
+vendor: openai
+api_model_id: gpt-5.6-sol
+display_name_zh: GPT-5.6 Sol
+display_name_en: GPT-5.6 Sol
+family: gpt-5.6
+region: global
+status: active
+deployment_zh: OpenAI API 标准价。别名 gpt-5.6 路由到这个模型
+modalities:
+  input: [text, image]
+  output: [text]
+context:
+  window_tokens: 1050000
+  window_tokens_exact: true
+  max_output_tokens: 128000
+  max_output_tokens_exact: true
+  max_input_tokens: 922000
+  window_label: "1050000"
+  max_output_label: "128000"
+  source_url: https://developers.openai.com/api/docs/models/gpt-5.6-sol
+  note_zh: 模型页写 1,050,000 上下文、最大输入 922,000、最大输出 128,000。知识截止 Feb 16, 2026 不是发布日。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 标准档、输入不超过 272K 的现行促销价。缓存写入按定价表的 30 分钟与 12 小时两列。Batch 不作为入口价。
+  headline:
+    id: short
+    label_zh: 标准 · 短上下文 · 2026-11-30 前的促销价
+    input_per_1m: "4"
+    output_per_1m: "20"
+    cache_hit_input_per_1m: "0.40"
+    cache_write_30m_per_1m: "5"
+    cache_write_12h_per_1m: "10"
+  tiers:
+    - id: short
+      label_zh: 标准 · 短上下文 · 2026-11-30 前的促销价
+      applies_when_zh: 定价页 Standard 表的短上下文列。页脚写明促销到 2026-11-30。
+      input_per_1m: "4"
+      output_per_1m: "20"
+      cache_hit_input_per_1m: "0.40"
+      cache_write_30m_per_1m: "5"
+      cache_write_12h_per_1m: "10"
+      is_headline: true
+    - id: long
+      label_zh: 标准 · 长上下文
+      applies_when_zh: 输入超过 272K 后整次请求按此价。模型页写输入 2 倍、输出 1.5 倍。
+      input_per_1m: "8"
+      output_per_1m: "30"
+      cache_hit_input_per_1m: "0.80"
+      cache_write_30m_per_1m: "10"
+      cache_write_12h_per_1m: "20"
+      is_headline: false
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "26.867200"
+  cny_output_per_1m: "134.336000"
+  usd_input_per_1m: "4"
+  usd_output_per_1m: "20"
+source:
+  url: https://developers.openai.com/api/docs/pricing
+  title_zh: OpenAI API 定价（Standard）
+  section_zh: Flagship models 的 Standard 表 gpt-5.6-sol 行，短上下文列。模型页 Text tokens 表同样是输入 4 美元、缓存输入 0.4 美元、输出 20 美元。
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 定价页和模型页都写促销价维持到 2026-11-30，并说输入降了 20%、输出降了 33%，但没有印出 12 月 1 日之后的数字。本条不推算期满价，所以没有 scheduled。核验日仍在促销期内。

@@ -213,6 +213,36 @@ def test_snapshot_refuses_to_overwrite_a_different_file(tmp_path: Path):
         sync_snapshot_and_changelog(root)
 
 
+def test_openai_standard_ladder_includes_live_mid_tiers():
+    from ai_model_ledger.load import load_models
+
+    models = [model for model in load_models(REAL) if model["vendor"] == "openai"]
+    ids = {model["id"] for model in models}
+    required = {
+        "gpt-6-astra",
+        "gpt-6.1-sol",
+        "gpt-6.1-terra",
+        "gpt-6-sol",
+        "gpt-6-luna",
+        "gpt-5.6-sol",
+        "gpt-5.6-terra",
+        "gpt-5.6-luna",
+    }
+    assert required <= ids
+    by_id = {model["id"]: model for model in models}
+    assert by_id["gpt-5"]["status"] == "deprecated"
+    assert by_id["gpt-4.1"]["status"] == "deprecated"
+    living = [model for model in models if model["status"] == "active"]
+    retired = [model for model in models if model["status"] == "deprecated"]
+    assert len(living) > len(retired)
+    # 6.1 Sol is the current mid flagship: cheaper than Astra, cache hit is 5% not the older Sol's 10%.
+    assert by_id["gpt-6.1-sol"]["billing"]["headline"]["input_per_1m"] == "2"
+    assert by_id["gpt-6.1-sol"]["billing"]["headline"]["cache_hit_input_per_1m"] == "0.10"
+    assert by_id["gpt-6-sol"]["billing"]["headline"]["cache_hit_input_per_1m"] == "0.20"
+    assert "2026-11-30" in by_id["gpt-5.6-sol"]["notes_zh"]
+    assert "scheduled" not in by_id["gpt-5.6-sol"]["billing"]
+
+
 def test_real_catalog_has_price_spread_cache_and_cited_sections():
     from ai_model_ledger.load import load_models
 

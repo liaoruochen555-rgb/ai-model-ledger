@@ -15,7 +15,7 @@
 - 历史文件和按日快照都是只追加的。入口价、峰谷、长上下文和限时价分开记，不折成一个平均数。
 - 账单是美元时，人民币数字按写明日期的汇率中间价折算，并标明这不是发票金额。厂商若另行公布另一种货币，单独列出，不假装那就是折算结果。
 
-v0.1 收录 26 个能在官方页面上逐项核对的模型。每个厂商至少有一档旗舰和一档更低的标价；深度求索是例外，因为 Pro 的定价页和停用公告互相冲突，只保留了两边都说得通的 Flash。核对不到的宁可不收，清单在 [docs/omitted.md](docs/omitted.md)。口径在 [docs/methodology.md](docs/methodology.md)。
+v0.1 收录 34 个能在官方页面上逐项核对的模型。OpenAI 现行 Standard 表从 Astra、6.1 Sol、6.1 Terra、6 Sol 到 5.6 Sol / Terra / Luna 和 6 Luna 都在；已弃用的 gpt-5、gpt-4.1 单独标出，不代替这些在售型号。其他厂商同样保留中间档，而不只是一档最贵和一档最便宜。深度求索仍只有 Flash：Pro 的定价页和停用公告互相冲突。核对不到的宁可不收，清单在 [docs/omitted.md](docs/omitted.md)。口径在 [docs/methodology.md](docs/methodology.md)。
 
 ## 仓库里有什么
 

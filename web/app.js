@@ -125,7 +125,12 @@ function sorted(models) {
     else if (state.sortKey === "input") result = Number(shownAmount(a, "input")) - Number(shownAmount(b, "input"));
     else if (state.sortKey === "output") result = Number(shownAmount(a, "output")) - Number(shownAmount(b, "output"));
     else if (state.sortKey === "verified") result = a.verified_at.localeCompare(b.verified_at);
-    else result = (vendorOrder[a.vendor] || 0) - (vendorOrder[b.vendor] || 0) || a.display_name_zh.localeCompare(b.display_name_zh, "zh");
+    else {
+      const statusRank = { active: 0, preview: 1, retiring: 2, deprecated: 3 };
+      result = (vendorOrder[a.vendor] || 0) - (vendorOrder[b.vendor] || 0)
+        || (statusRank[a.status] ?? 9) - (statusRank[b.status] ?? 9)
+        || a.display_name_zh.localeCompare(b.display_name_zh, "zh");
+    }
     return result * direction;
   });
 }
