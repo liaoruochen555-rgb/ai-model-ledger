@@ -32,15 +32,74 @@ function h(tag, props, children) {
   return node;
 }
 
+const NICKNAMES = {
+  deepseek: "deepseek ds 深度求索",
+  qwen: "qwen 千问 通义 通义千问 tongyi",
+  moonshot: "kimi moonshot 月之暗面",
+  zhipu: "glm 智谱 zhipu bigmodel",
+  openai: "gpt openai chatgpt",
+  anthropic: "claude anthropic",
+  google: "gemini google 谷歌",
+  xai: "grok xai",
+};
+
+const CHIP = {
+  deepseek: "DeepSeek",
+  qwen: "千问",
+  moonshot: "Kimi",
+  zhipu: "智谱",
+  openai: "GPT",
+  anthropic: "Claude",
+  google: "Gemini",
+  xai: "Grok",
+};
+
 function trimNumber(value) {
   const text = String(value);
   if (!text.includes(".")) return text;
   return text.replace(/0+$/, "").replace(/\.$/, "");
 }
 
+function displayPlaces(exact) {
+  const amount = Math.abs(Number(exact));
+  if (!Number.isFinite(amount) || amount >= 0.1) return 2;
+  if (amount >= 0.01) return 3;
+  return 4;
+}
+
+function roundHalfUp(value, places) {
+  const text = String(value).trim();
+  const negative = text.startsWith("-");
+  const raw = negative ? text.slice(1) : text;
+  const [whole, frac = ""] = raw.split(".");
+  const padded = (frac + "0".repeat(places + 1)).slice(0, places + 1);
+  let body = BigInt((whole || "0") + padded.slice(0, places));
+  if (padded[places] >= "5") body += 1n;
+  const digits = body.toString().padStart(places + 1, "0");
+  const head = digits.slice(0, digits.length - places) || "0";
+  const tail = digits.slice(-places);
+  const out = places ? `${head}.${tail}` : head;
+  return negative ? `-${out}` : out;
+}
+
+function shownFigure(exact, isConverted) {
+  return isConverted ? roundHalfUp(exact, displayPlaces(exact)) : trimNumber(exact);
+}
+
 function money(value, currency) {
   const amount = trimNumber(value);
   return currency === "CNY" ? `¥${amount}` : `$${amount}`;
+}
+
+function priceLabel(exact, currency, isConverted) {
+  const symbol = currency === "CNY" ? "¥" : "$";
+  const figure = shownFigure(exact, isConverted);
+  return {
+    text: `${symbol}${figure}`,
+    title: isConverted
+      ? `精确折算 ${symbol}${trimNumber(exact)}。不是厂商账单金额。`
+      : "厂商账单币种",
+  };
 }
 
 function vendorOf(id) {
@@ -77,42 +136,74 @@ function converted(model) {
   return model.billing.currency !== state.ccy;
 }
 
-function priceCell(model, side) {
-  const amount = money(shownAmount(model, side), state.ccy);
-  const children = [amount];
-  if (converted(model)) children.push(h("span", { class: "mark" }, ["折算"]));
-  return h("td", { class: "num" }, children);
+function figureCell(text, title, isConverted) {
+  return h("td", { class: "num", title: title || undefined }, [
+    h("span", { class: "figure" }, [text]),
+    h("span", { class: "mark" }, [isConverted ? "折算" : ""]),
+  ]);
 }
 
-function cacheAmount(model) {
+function priceCell(model, side) {
+  const exact = shownAmount(model, side);
+  const isConverted = converted(model);
+  const label = priceLabel(exact, state.ccy, isConverted);
+  return figureCell(label.text, label.title, isConverted);
+}
+
+function cacheExact(model) {
   const raw = model.billing.headline.cache_hit_input_per_1m;
-  if (!raw) return "—";
-  const rate = Number(state.data.fx.rate);
-  const value = Number(raw);
-  if (!Number.isFinite(value) || !Number.isFinite(rate) || rate === 0) return "—";
-  const convertedValue = model.billing.currency === state.ccy
-    ? value
-    : model.billing.currency === "USD"
-      ? value * rate
-      : value / rate;
-  return money(convertedValue.toFixed(6), state.ccy);
+  if (!raw) return null;
+  if (model.billing.currency === state.ccy) return raw;
+  const rate = state.data.fx.rate;
+  const negative = false;
+  const product = model.billing.currency === "USD"
+    ? mulDiv(raw, rate, "1")
+    : mulDiv(raw, "1", rate);
+  return product;
+}
+
+function mulDiv(amount, numer, denom) {
+  const scale = 1000000n;
+  const toInt = (text) => {
+    const [whole, frac = ""] = String(text).split(".");
+    const padded = (frac + "000000").slice(0, 6);
+    return BigInt(whole || "0") * scale + BigInt(padded);
+  };
+  const value = (toInt(amount) * toInt(numer)) / toInt(denom);
+  const whole = value / scale;
+  const frac = (value % scale).toString().padStart(6, "0").replace(/0+$/, "");
+  return frac ? `${whole}.${frac}` : `${whole}`;
+}
+
+function cacheCell(model) {
+  const exact = cacheExact(model);
+  if (!exact) return figureCell("—", "", false);
+  const isConverted = converted(model);
+  const label = priceLabel(exact, state.ccy, isConverted);
+  return figureCell(label.text, label.title, isConverted);
 }
 
 function matches(model) {
   if (state.region !== "all" && model.region !== state.region) return false;
   if (state.status !== "all" && model.status !== state.status) return false;
   if (state.vendors.size && !state.vendors.has(model.vendor)) return false;
-  if (!state.query) return true;
+  const terms = state.query.toLowerCase().trim()
+    .split(/[\s]+|(?<=[\u4e00-\u9fff])(?=[a-z0-9])|(?<=[a-z0-9])(?=[\u4e00-\u9fff])/)
+    .filter(Boolean);
+  if (!terms.length) return true;
   const vendor = vendorOf(model.vendor);
   const haystack = [
     model.display_name_zh,
     model.display_name_en,
     model.id,
     model.api_model_id,
+    model.family,
     vendor && vendor.name_zh,
     vendor && vendor.name_en,
+    NICKNAMES[model.vendor],
+    CHIP[model.vendor],
   ].join(" ").toLowerCase();
-  return haystack.includes(state.query.toLowerCase());
+  return terms.every((term) => haystack.includes(term));
 }
 
 function sorted(models) {
@@ -135,7 +226,7 @@ function sorted(models) {
   });
 }
 
-function writeHash() {
+function filterQuery() {
   const params = new URLSearchParams();
   if (state.ccy !== "CNY") params.set("ccy", state.ccy);
   if (state.region !== "all") params.set("region", state.region);
@@ -144,9 +235,19 @@ function writeHash() {
   if (state.vendors.size) params.set("vendor", [...state.vendors].join(","));
   if (state.sortKey !== "vendor") params.set("sort", state.sortKey);
   if (state.sortDir !== "asc") params.set("dir", state.sortDir);
-  const query = params.toString();
+  return params.toString();
+}
+
+function writeHash() {
+  const query = filterQuery();
   const next = query ? `#/?${query}` : "#/";
   if (location.hash !== next) location.hash = next;
+}
+
+function modelHash(id) {
+  const query = filterQuery();
+  const path = `#/m/${encodeURIComponent(id)}`;
+  return query ? `${path}?${query}` : path;
 }
 
 function readHash() {
@@ -167,9 +268,8 @@ function readHash() {
 }
 
 function statusTag(status) {
-  if (status === "active") return h("span", { class: "tag" }, ["在售"]);
-  const kind = status === "deprecated" || status === "retiring" ? "tag bad" : "tag ok";
-  return h("span", { class: kind }, [STATUS[status] || status]);
+  if (status === "active") return null;
+  return h("span", { class: "status" }, [STATUS[status] || status]);
 }
 
 function clearFilters() {
@@ -185,9 +285,9 @@ function clearFilters() {
 
 function emptyState() {
   return h("div", { class: "empty", role: "status" }, [
-    h("h2", {}, ["没有符合条件的模型"]),
-    h("p", {}, ["筛选是空的。账本不会为了把表填满而补一条没有来源的价格。"]),
-    h("button", { type: "button", class: "text-button solid", onclick: clearFilters }, ["清除筛选"]),
+    h("h2", {}, ["没有匹配的模型"]),
+    h("p", {}, ["当前筛选下没有条目。"]),
+    h("button", { type: "button", class: "linkish", onclick: clearFilters }, ["清除筛选"]),
   ]);
 }
 
@@ -199,120 +299,111 @@ function renderCatalog() {
   const fx = state.data.fx;
   const visible = sorted(state.data.models.filter(matches));
   const columns = [
-    ["vendor", "厂商"],
     ["name", "模型"],
-    ["context", "上下文"],
-    ["input", "输入 / 百万"],
-    ["output", "输出 / 百万"],
-    ["verified", "核验"],
+    ["input", "输入"],
+    ["output", "输出"],
   ];
   const head = h("tr", {}, columns.map(([key, label]) => {
     const props = {};
     if (state.sortKey === key) props["aria-sort"] = state.sortDir === "asc" ? "ascending" : "descending";
-    return h("th", props, [h("button", { type: "button", onclick: () => sortBy(key) }, [label])]);
-  }).concat([h("th", {}, ["缓存命中"])]));
+    const thClass = key === "input" || key === "output" ? "num" : "";
+    const button = h("button", { type: "button", onclick: () => sortBy(key) }, [label]);
+    if (key === "name") return h("th", { class: thClass, ...props }, [button]);
+    return h("th", { class: thClass, ...props }, [button, h("span", { class: "mark", "aria-hidden": "true" }, [""])]);
+  }).concat([
+    h("th", { class: "num" }, ["缓存", h("span", { class: "mark", "aria-hidden": "true" }, [""])]),
+    h("th", {}, ["厂商"]),
+  ]));
 
   const body = h("tbody", {}, visible.map((model) => {
     const vendor = vendorOf(model.vendor);
-    const open = () => { location.hash = `#/m/${encodeURIComponent(model.id)}`; };
-    return h("tr", { tabindex: "0", onclick: open, onkeydown: (event) => {
-      if (event.key === "Enter") open();
-    } }, [
-      h("td", {}, [vendor ? vendor.name_zh : model.vendor, h("span", { class: "sub" }, [model.region === "cn" ? "国内" : "海外"])]),
-      h("td", {}, [
-        h("a", { class: "name", href: `#/m/${encodeURIComponent(model.id)}` }, [model.display_name_zh]),
-        h("span", { class: "sub" }, [model.id]),
+    const open = () => { location.hash = modelHash(model.id); };
+    return h("tr", {
+      class: model.status === "active" ? "" : "is-quiet",
+      tabindex: "0",
+      onclick: open,
+      onkeydown: (event) => {
+        if (event.key === "Enter") open();
+      },
+    }, [
+      h("td", { class: "model-col", title: model.id }, [
+        h("a", { class: "name", href: modelHash(model.id) }, [model.display_name_zh]),
+        h("span", { class: "sub" }, [model.id, model.status === "active" ? "" : ` · ${STATUS[model.status] || model.status}`]),
       ]),
-      h("td", {}, [contextLabel(model)]),
       priceCell(model, "input"),
       priceCell(model, "output"),
-      h("td", {}, [model.verified_at, model.status === "active" ? "" : h("span", { class: "sub" }, [statusTag(model.status)])]),
-      h("td", { class: "num" }, [cacheAmount(model), converted(model) && model.billing.headline.cache_hit_input_per_1m ? h("span", { class: "mark" }, ["折算"]) : ""]),
-    ]);
-  }));
-
-  const cards = h("div", { class: "cards" }, visible.map((model) => {
-    const vendor = vendorOf(model.vendor);
-    return h("article", { class: "card", tabindex: "0", onclick: () => { location.hash = `#/m/${encodeURIComponent(model.id)}`; } }, [
-      h("h2", {}, [model.display_name_zh]),
-      h("div", {}, [vendor ? vendor.name_zh : model.vendor, " · ", model.id]),
-      h("dl", {}, [
-        h("dt", {}, ["输入"]), h("dd", {}, [money(shownAmount(model, "input"), state.ccy)]),
-        h("dt", {}, ["输出"]), h("dd", {}, [money(shownAmount(model, "output"), state.ccy)]),
-        h("dt", {}, ["上下文"]), h("dd", {}, [contextLabel(model)]),
-        h("dt", {}, ["状态"]), h("dd", {}, [STATUS[model.status] || model.status]),
-      ]),
+      cacheCell(model),
+      h("td", {}, [CHIP[model.vendor] || (vendor ? vendor.name_zh : model.vendor)]),
     ]);
   }));
 
   mount([
-    h("section", { class: "lede" }, [
-      h("div", {}, [
-        h("h1", {}, ["官方标价，按核验日入账"]),
-        h("p", {}, ["国产模型放在前面。每一行都能点开来源。入口价是标准实时价里最低的常规档，分档、峰谷和限期价都留在模型页，不做成一个平均数。"]),
+    h("header", { class: "intro" }, [
+      h("p", { class: "meta" }, [
+        `${state.data.models.length} 个模型 · ${state.ccy === "CNY" ? "人民币" : "美元"} · 每百万 tokens · 中间价 ${fx.rate_date}：1 美元 = ${fx.rate} 元`,
       ]),
-      h("div", { class: "stats" }, [
-        stat(String(state.data.models.length), "收录模型"),
-        stat(String(state.data.vendors.length), "厂商"),
-        stat(state.data.snapshot_date, "本份快照"),
-      ]),
+      h("p", { class: "legend" }, ["没写「折算」的是账单价。写了的是中间价换算，不能对账。点模型名可看精确值和来源。"]),
     ]),
-    h("details", { class: "fx-line" }, [
-      h("summary", {}, [`折算使用 ${fx.rate_date} 中间价：1 美元 = ${fx.rate} 元。与账单币种不同的数字不能对账。`]),
-      h("p", {}, [fx.method_zh]),
-    ]),
+    h("div", { class: "filters" }, [
     h("div", { class: "toolbar" }, [
       h("label", { class: "search-label" }, [
         h("span", { class: "visually-hidden" }, ["搜索模型或厂商"]),
         h("input", {
-        class: "search",
-        type: "search",
-        placeholder: "搜索模型或厂商",
-        value: state.query,
-        oninput: (event) => {
-          state.query = event.target.value;
-          state.restoreSearch = true;
-          writeHash();
-        },
-      }),
+          class: "search",
+          type: "search",
+          enterkeyhint: "search",
+          placeholder: "搜千问、DeepSeek、Kimi、Claude、GPT",
+          value: state.query,
+          oninput: (event) => {
+            state.query = event.target.value;
+            state.caret = event.target.selectionStart;
+            state.restoreSearch = true;
+            writeHash();
+          },
+        }),
       ]),
-      h("div", { class: "segment", role: "group", "aria-label": "显示币种" }, [
+      h("div", { class: "choices", role: "group", "aria-label": "显示币种" }, [
         toggle("CNY", "人民币"),
         toggle("USD", "美元"),
       ]),
-      h("div", { class: "segment", role: "group", "aria-label": "区域" }, [
-        regionButton("all", "全部"),
+      h("div", { class: "choices", role: "group", "aria-label": "区域" }, [
         regionButton("cn", "国内"),
         regionButton("global", "海外"),
+        regionButton("all", "全部"),
       ]),
     ]),
     h("div", { class: "toolbar" }, [
-      h("div", { class: "chips" }, state.data.vendors.map((vendor) => h("button", {
+      h("div", { class: "choices vendors" }, state.data.vendors.map((vendor) => h("button", {
         type: "button",
+        title: vendor.name_zh,
         "aria-pressed": state.vendors.has(vendor.id) ? "true" : "false",
         onclick: () => {
           if (state.vendors.has(vendor.id)) state.vendors.delete(vendor.id);
           else state.vendors.add(vendor.id);
           writeHash();
         },
-      }, [vendor.name_zh]))),
-      h("span", { class: "result-count", "aria-live": "polite" }, [`显示 ${visible.length} / ${state.data.models.length}`]),
+      }, [CHIP[vendor.id] || vendor.name_zh]))),
+      h("span", { class: "result-count", "aria-live": "polite" }, [`${visible.length} / ${state.data.models.length}`]),
     ]),
-    h("div", { class: "table-wrap" }, [h("table", {}, [
-      h("caption", { class: "visually-hidden" }, ["模型官方入口价。价格可按列排序。"]),
-      h("thead", {}, [head]),
-      body,
-    ])]),
-    cards,
-    visible.length ? null : emptyState(),
+    ]),
+    h("div", { class: "table-wrap catalog" }, [
+      h("table", {}, [
+        h("caption", { class: "visually-hidden" }, ["模型官方入口价。价格可按列排序。"]),
+        h("thead", {}, [head]),
+        body,
+      ]),
+      visible.length ? null : emptyState(),
+    ]),
   ]);
   const search = app.querySelector(".search");
   if (state.restoreSearch && search) {
     search.focus();
-    const end = search.value.length;
-    search.setSelectionRange(end, end);
+    const caret = Number.isInteger(state.caret) ? state.caret : search.value.length;
+    search.setSelectionRange(caret, caret);
     state.restoreSearch = false;
   }
+  const filters = app.querySelector(".filters");
+  document.documentElement.style.setProperty("--filters-h", filters ? `${filters.offsetHeight}px` : "0px");
 }
 
 function stat(value, label) {
@@ -351,64 +442,63 @@ function renderModel(id) {
       h("div", { class: "empty", role: "alert" }, [
         h("h2", {}, ["没有这个模型"]),
         h("p", {}, [`「${id}」不在本份快照里。可能是链接写错了，也可能这条价格没能在官方页上核到，所以没有入账。`]),
-        h("a", { class: "text-button solid", href: "#/" }, ["返回价格表"]),
+        h("a", { href: "#/" }, ["返回价格表"]),
       ]),
     ]);
     return;
   }
   const vendor = vendorOf(model.vendor);
   const original = model.billing.currency;
+  const billName = original === "CNY" ? "人民币" : "美元";
+  const cnyIn = priceLabel(model.conversion.cny_input_per_1m, "CNY", original !== "CNY");
+  const cnyOut = priceLabel(model.conversion.cny_output_per_1m, "CNY", original !== "CNY");
+  const cache = model.billing.headline.cache_hit_input_per_1m;
   mount([
-    h("p", {}, [h("a", { class: "back", href: "#/" }, ["← 返回价格表"])]),
-    h("div", { class: "detail-top" }, [
-      h("div", {}, [
-        h("h1", {}, [model.display_name_zh]),
-        h("p", {}, [vendor ? `${vendor.name_zh} · ${vendor.name_en}` : model.vendor, " · ", model.deployment_zh]),
+    h("p", {}, [h("a", { class: "back", href: filterQuery() ? `#/?${filterQuery()}` : "#/" }, ["返回价格表"])]),
+    h("h1", { class: "model" }, [model.display_name_zh, statusTag(model.status)]),
+    h("p", { class: "byline" }, [
+      (CHIP[model.vendor] || (vendor ? vendor.name_zh : model.vendor)),
+      " · ",
+      model.api_model_id,
+      " · ",
+      h("a", { href: model.source.url, target: "_blank", rel: "noreferrer noopener" }, ["官方标价页"]),
+    ]),
+    h("dl", { class: "keyline" }, [
+      fact(original === "CNY" ? "输入" : "输入（账单）", money(model.billing.headline.input_per_1m, original)),
+      fact(original === "CNY" ? "输出" : "输出（账单）", money(model.billing.headline.output_per_1m, original)),
+      fact("缓存命中", cache ? money(cache, original) : "—"),
+      fact("账单币种", billName),
+    ]),
+    h("p", { class: "legend" }, [
+      original === "CNY"
+        ? `上面是人民币账单价。折成美元约 ${priceLabel(model.conversion.usd_input_per_1m, "USD", true).text} / ${priceLabel(model.conversion.usd_output_per_1m, "USD", true).text}，不能对账。`
+        : `上面是美元账单价。表上的人民币是折算：输入 ${cnyIn.text}、输出 ${cnyOut.text}。精确值 ${money(model.conversion.cny_input_per_1m, "CNY")} / ${money(model.conversion.cny_output_per_1m, "CNY")}。`,
+      ` ${model.billing.headline.label_zh}。`,
+    ]),
+    (model.billing.tiers || []).length > 1 ? h("h2", { class: "section-title" }, ["分档"]) : null,
+    (model.billing.tiers || []).length > 1 ? tierTable(model) : null,
+    model.billing.scheduled ? h("p", { class: "aside" }, [
+      `${model.billing.scheduled.effective_on} 起，账单价改为输入 ${money(model.billing.scheduled.input_per_1m, original)}、输出 ${money(model.billing.scheduled.output_per_1m, original)}。`,
+    ]) : null,
+    model.billing.promotion ? h("p", { class: "aside" }, [
+      `${model.billing.promotion.label_zh}。`,
+    ]) : null,
+    h("details", { class: "more" }, [
+      h("summary", {}, ["说明、历史和核验"]),
+      h("div", { class: "note" }, [
+        h("p", {}, [model.billing.price_covers_zh]),
+        h("p", {}, [model.notes_zh]),
+        h("p", {}, [`上下文 ${contextLabel(model)}。${model.context.note_zh}`]),
+        model.release ? h("p", {}, [model.release.note_zh]) : null,
+        h("p", {}, ["页面位置：", model.source.section_zh || "未注明"]),
+        h("p", {}, ["核验 ", model.verified_at, "。", model.deployment_zh]),
+        ...(model.billing.alternate_lists || []).map((item) => h("p", {}, [
+          `${item.label_zh}：输入 ${money(item.input_per_1m, item.currency)}，输出 ${money(item.output_per_1m, item.currency)}。`,
+          h("a", { href: item.source_url, target: "_blank", rel: "noreferrer noopener" }, ["另一张官方价目"]),
+        ])),
+        h("p", {}, [historyIntro(model)]),
+        historyTable(model),
       ]),
-      statusTag(model.status),
-    ]),
-    h("div", { class: "facts" }, [
-      fact("入口输入", money(model.billing.headline.input_per_1m, original)),
-      fact("入口输出", money(model.billing.headline.output_per_1m, original)),
-      fact("账单币种", original === "CNY" ? "人民币" : "美元"),
-      fact("上下文", contextLabel(model)),
-    ]),
-    h("p", { class: "fx-line" }, [
-      `${model.billing.headline.label_zh}。${model.billing.price_covers_zh}`,
-      ` 折算：输入 ${money(model.conversion.cny_input_per_1m, "CNY")} / ${money(model.conversion.usd_input_per_1m, "USD")}，`,
-      `输出 ${money(model.conversion.cny_output_per_1m, "CNY")} / ${money(model.conversion.usd_output_per_1m, "USD")}。`,
-      "与账单币种不同的那个数不能拿去对账。",
-    ]),
-    model.billing.scheduled ? h("div", { class: "callout warn" }, [
-      h("strong", {}, [`${model.billing.scheduled.effective_on} 起的页面标价`]),
-      `输入 ${money(model.billing.scheduled.input_per_1m, original)}，输出 ${money(model.billing.scheduled.output_per_1m, original)}。${model.billing.scheduled.note_zh}`,
-    ]) : null,
-    model.billing.promotion ? h("div", { class: "callout warn" }, [
-      h("strong", {}, [model.billing.promotion.label_zh]),
-      model.billing.promotion.note_zh,
-    ]) : null,
-    h("h2", { class: "section-title" }, ["分档"]),
-    tierTable(model),
-    (model.billing.alternate_lists || []).length ? h("h2", { class: "section-title" }, ["厂商另行公布的币种"]) : null,
-    ...(model.billing.alternate_lists || []).map((item) => h("div", { class: "callout" }, [
-      h("strong", {}, [item.label_zh]),
-      `输入 ${money(item.input_per_1m, item.currency)}，输出 ${money(item.output_per_1m, item.currency)}。${item.note_zh} `,
-      h("a", { href: item.source_url, rel: "noreferrer" }, ["来源"]),
-    ])),
-    h("h2", { class: "section-title" }, ["价格历史"]),
-    h("p", {}, [historyIntro(model)]),
-    h("ol", { class: "timeline" }, model.history.map((row, index) => h("li", {}, [
-      h("time", { datetime: row.effective_on || row.observed_at }, [historyWhen(row)]),
-      h("div", {}, [historyLine(model.history, index)]),
-      h("div", {}, [row.note_zh]),
-    ]))),
-    h("h2", { class: "section-title" }, ["核验"]),
-    h("div", { class: "note" }, [
-      h("p", {}, [model.notes_zh]),
-      h("p", {}, [model.context.note_zh]),
-      model.release ? h("p", {}, [`发布信息（${model.release.precision === "month" ? "精确到月" : "精确到日"}）：${model.release.note_zh}`]) : h("p", {}, ["已核验的页面没有给出可引用的发布日期，本条故意留空。"]),
-      h("p", {}, ["页面位置：", model.source.section_zh || "未注明"]),
-      h("p", {}, ["来源：", h("a", { href: model.source.url, rel: "noreferrer" }, [model.source.title_zh]), `，检索于 ${model.source.retrieved_at}，核验于 ${model.verified_at}。`]),
     ]),
   ]);
 }
@@ -449,7 +539,26 @@ function moveWord(before, after) {
 }
 
 function fact(label, value) {
-  return h("div", { class: "fact" }, [h("span", {}, [label]), value]);
+  return h("div", {}, [h("dt", {}, [label]), h("dd", {}, [value])]);
+}
+
+function historyTable(model) {
+  const rows = model.history.map((row, index) => {
+    const currency = row.billing.currency;
+    return h("tr", {}, [
+      h("td", {}, [historyWhen(row)]),
+      h("td", {}, [kindLabel(row.kind), index ? `，输入${moveWord(model.history[index - 1].billing.headline.input_per_1m, row.billing.headline.input_per_1m)}，输出${moveWord(model.history[index - 1].billing.headline.output_per_1m, row.billing.headline.output_per_1m)}` : ""]),
+      h("td", { class: "num" }, [money(row.billing.headline.input_per_1m, currency)]),
+      h("td", { class: "num" }, [money(row.billing.headline.output_per_1m, currency)]),
+      h("td", {}, [row.note_zh]),
+    ]);
+  });
+  return h("div", { class: "table-wrap" }, [
+    h("table", {}, [
+      h("thead", {}, [h("tr", {}, ["日期", "记录", "输入", "输出", "说明"].map((label) => h("th", {}, [label])))]),
+      h("tbody", {}, rows),
+    ]),
+  ]);
 }
 
 function kindLabel(kind) {
@@ -472,7 +581,7 @@ function tierTable(model) {
     h("td", { class: "num" }, [tier.cache_hit_input_per_1m ? money(tier.cache_hit_input_per_1m, currency) : "—"]),
     h("td", { class: "num" }, [tier.list_input_per_1m ? `${money(tier.list_input_per_1m, currency)} / ${money(tier.list_output_per_1m, currency)}` : "—"]),
   ]));
-  return h("div", { class: "table-wrap", style: "display:block" }, [
+  return h("div", { class: "table-wrap" }, [
     h("table", {}, [
       h("thead", {}, [h("tr", {}, ["档位", "适用条件", "输入", "输出", "缓存命中输入", "原价（输入/输出）"].map((label) => h("th", {}, [label])))]),
       h("tbody", {}, rows),
@@ -483,10 +592,19 @@ function tierTable(model) {
 function render() {
   if (!state.data) return;
   const modelId = readHash();
-  document.title = modelId ? `${modelId} · 大模型 API 价格账本` : "大模型 API 价格账本";
-  if (modelId) renderModel(modelId);
-  else renderCatalog();
+  document.body.classList.toggle("sheet", !modelId);
+  const opened = modelId && state.data.models.find((item) => item.id === modelId);
+  document.title = opened ? `${opened.display_name_zh} · 大模型 API 价格账本` : "大模型 API 价格账本";
+  if (modelId) {
+    renderModel(modelId);
+    document.documentElement.style.setProperty("--filters-h", "0px");
+  } else renderCatalog();
 }
+
+window.addEventListener("resize", () => {
+  const filters = app.querySelector(".filters");
+  document.documentElement.style.setProperty("--filters-h", filters ? `${filters.offsetHeight}px` : "0px");
+});
 
 fetch("data.json")
   .then((response) => {
