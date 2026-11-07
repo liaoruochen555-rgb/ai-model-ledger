@@ -1,0 +1,19 @@
+id: usd-cny-2026-11-06
+pair: USD/CNY
+base: USD
+quote: CNY
+rate: "6.7168"
+rate_date: "2026-11-06"
+published_figure: "671.68"
+published_unit_zh: 人民币元 / 100 美元
+rate_type: central_parity
+publisher_zh: 中国人民银行授权中国外汇交易中心
+method_zh: 使用 2026-11-06 银行间外汇市场人民币汇率中间价。国家外汇管理局人民币汇率中间价表将该日美元标为 671.68，口径是每 100 美元兑人民币，折合 1 美元 = 6.7168 元。2026-11-07 是周六，不发布新的中间价，故沿用前一交易日。中国新闻网同日转述中国外汇交易中心的公告为 1 美元对人民币 6.7168 元，与上述折合结果一致。
+sources:
+  - title_zh: 国家外汇管理局人民币汇率中间价
+    url: http://www.safe.gov.cn/AppStructured/hlw/RMBQuery.do
+  - title_zh: 中国新闻网转述中国外汇交易中心 2026-11-06 中间价
+    url: https://www.chinanews.com.cn/cj/2026/11-06/10727038.shtml
+rounding:
+  mode: half_up
+  decimal_places: 6

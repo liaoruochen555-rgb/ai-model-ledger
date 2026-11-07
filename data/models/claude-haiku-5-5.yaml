@@ -1,0 +1,62 @@
+schema_version: 1
+id: claude-haiku-5-5
+vendor: anthropic
+api_model_id: claude-haiku-5-5
+display_name_zh: Claude Haiku 5.5
+display_name_en: Claude Haiku 5.5
+family: claude-haiku
+region: global
+status: active
+deployment_zh: Claude API 全球标准价。提示长度超过 10 万 token 后整档变贵
+modalities:
+  input: [text, image]
+  output: [text]
+context:
+  window_label: 1M
+  max_output_label: 128K
+  source_url: https://platform.claude.com/docs/en/models/overview
+  note_zh: 模型总览写 1M 上下文、同步最大输出 128K。10 万 token 是计价分界，不是上下文上限。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 提示不超过 10 万 token 的标准价。超过 10 万 token 的档位见分档，不取两档平均。
+  headline:
+    id: up_to_100k
+    label_zh: 提示不超过 10 万 token
+    input_per_1m: "0.10"
+    output_per_1m: "0.50"
+    cache_hit_input_per_1m: "0.01"
+    cache_write_5m_per_1m: "0.125"
+    cache_write_1h_per_1m: "0.20"
+  tiers:
+    - id: up_to_100k
+      label_zh: 提示不超过 10 万 token
+      applies_when_zh: 定价页写 for prompts up to 100,000 tokens。
+      input_per_1m: "0.10"
+      output_per_1m: "0.50"
+      cache_hit_input_per_1m: "0.01"
+      cache_write_5m_per_1m: "0.125"
+      cache_write_1h_per_1m: "0.20"
+      is_headline: true
+    - id: over_100k
+      label_zh: 提示超过 10 万 token
+      applies_when_zh: 定价页写 for prompts over 100,000 tokens。
+      input_per_1m: "0.50"
+      output_per_1m: "2.50"
+      cache_hit_input_per_1m: "0.05"
+      cache_write_5m_per_1m: "0.625"
+      cache_write_1h_per_1m: "1"
+      is_headline: false
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "0.671680"
+  cny_output_per_1m: "3.358400"
+  usd_input_per_1m: "0.10"
+  usd_output_per_1m: "0.50"
+source:
+  url: https://platform.claude.com/docs/en/about-claude/pricing
+  title_zh: Claude API 模型定价
+  section_zh: "Model pricing 表 Claude Haiku 5.5 的两行：prompts up to 100,000 tokens，以及 prompts over 100,000 tokens。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 两档都来自定价页，不是推算。模型总览写退役承诺不早于 2027-10-07。发布日未在这两页写明。

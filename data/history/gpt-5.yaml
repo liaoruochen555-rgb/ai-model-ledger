@@ -1,0 +1,32 @@
+schema_version: 1
+model_id: gpt-5
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://developers.openai.com/api/docs/pricing
+  billing:
+    unit: per_1m_tokens
+    currency: USD
+    price_covers_zh: 标准价。定价表这一档没有按 272K 拆开。Batch 为五折，不作为入口价。
+    headline:
+      id: standard
+      label_zh: 标准价
+      input_per_1m: '1.25'
+      output_per_1m: '10'
+      cache_hit_input_per_1m: '0.125'
+    tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表只给了一档。
+      input_per_1m: '1.25'
+      output_per_1m: '10'
+      cache_hit_input_per_1m: '0.125'
+      is_headline: true
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '8.396000'
+    cny_output_per_1m: '67.168000'
+    usd_input_per_1m: '1.25'
+    usd_output_per_1m: '10'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。

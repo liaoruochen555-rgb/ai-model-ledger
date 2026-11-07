@@ -1,0 +1,47 @@
+schema_version: 1
+model_id: deepseek-flash
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://api-docs.deepseek.com/zh-cn/quick_start/pricing
+  billing:
+    unit: per_1m_tokens
+    currency: CNY
+    price_covers_zh: 空闲时段、缓存未命中的输入，以及同一时段的输出。高峰见分档。不含 Search / Fetch 按次费用。
+    headline:
+      id: off_peak
+      label_zh: 空闲时段 · 缓存未命中
+      input_per_1m: '1'
+      output_per_1m: '4'
+      cache_hit_input_per_1m: '0.02'
+    tiers:
+    - id: off_peak
+      label_zh: 空闲时段 · 缓存未命中
+      applies_when_zh: 周末、中国法定节假日全天，以及工作日高峰以外的时间。
+      input_per_1m: '1'
+      output_per_1m: '4'
+      cache_hit_input_per_1m: '0.02'
+      is_headline: true
+    - id: peak
+      label_zh: 高峰时段 · 缓存未命中
+      applies_when_zh: 北京时间周一至周五（不含中国法定节假日）9:00–12:00、14:00–18:00。
+      input_per_1m: '2'
+      output_per_1m: '8'
+      cache_hit_input_per_1m: '0.04'
+      is_headline: false
+    alternate_lists:
+    - currency: USD
+      label_zh: 英文定价页的空闲档
+      input_per_1m: '0.15'
+      output_per_1m: '0.6'
+      cache_hit_input_per_1m: '0.003'
+      source_url: https://api-docs.deepseek.com/quick_start/pricing
+      note_zh: 英文定价页另行标价，高峰为其两倍。这不是本账本按中间价折算的结果。
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '1'
+    cny_output_per_1m: '4'
+    usd_input_per_1m: '0.148880'
+    usd_output_per_1m: '0.595522'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。

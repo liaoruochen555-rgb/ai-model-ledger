@@ -1,0 +1,32 @@
+schema_version: 1
+model_id: glm-5.3
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://docs.bigmodel.cn/cn/guide/start/pricing
+  billing:
+    unit: per_1m_tokens
+    currency: CNY
+    price_covers_zh: 定价指南中的标准输入与输出。缓存命中另计。缓存存储限时免费，免费期后的单价页面没有给。
+    headline:
+      id: standard
+      label_zh: 标准价
+      input_per_1m: '8'
+      output_per_1m: '28'
+      cache_hit_input_per_1m: '2'
+    tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表未按输入长度分档。
+      input_per_1m: '8'
+      output_per_1m: '28'
+      cache_hit_input_per_1m: '2'
+      is_headline: true
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '8'
+    cny_output_per_1m: '28'
+    usd_input_per_1m: '1.191043'
+    usd_output_per_1m: '4.168652'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。

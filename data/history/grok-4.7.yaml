@@ -1,0 +1,39 @@
+schema_version: 1
+model_id: grok-4.7
+observations:
+- id: 2026-11-07-initial
+  observed_at: '2026-11-07'
+  kind: initial
+  source_url: https://docs.x.ai/developers/pricing
+  billing:
+    unit: per_1m_tokens
+    currency: USD
+    price_covers_zh: 全球端点、提示词低于 20 万 token 的标准价。达到阈值后整次请求改按长上下文价。
+    headline:
+      id: short
+      label_zh: 提示词低于 20 万 token
+      input_per_1m: '2'
+      output_per_1m: '6'
+      cache_hit_input_per_1m: '0.50'
+    tiers:
+    - id: short
+      label_zh: 提示词低于 20 万 token
+      applies_when_zh: 定价表的短上下文列。长上下文阈值为 ≥ 200k。
+      input_per_1m: '2'
+      output_per_1m: '6'
+      cache_hit_input_per_1m: '0.50'
+      is_headline: true
+    - id: long
+      label_zh: 提示词达到或超过 20 万 token
+      applies_when_zh: 请求的提示词达到 20 万 token 后，全部 token 按长上下文价计。
+      input_per_1m: '4'
+      output_per_1m: '12'
+      cache_hit_input_per_1m: '1'
+      is_headline: false
+  conversion:
+    fx_id: usd-cny-2026-11-06
+    cny_input_per_1m: '13.433600'
+    cny_output_per_1m: '40.300800'
+    usd_input_per_1m: '2'
+    usd_output_per_1m: '6'
+  note_zh: 首次建档。单价抄自当时核验的官方定价页，不回填更早、未经本账本核验的价格。

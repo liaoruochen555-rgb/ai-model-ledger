@@ -1,0 +1,72 @@
+schema_version: 1
+id: qwen3.7-plus
+vendor: qwen
+api_model_id: qwen3.7-plus
+display_name_zh: 通义千问 3.7 Plus
+display_name_en: Qwen3.7-Plus
+family: qwen3.7
+region: cn
+status: active
+deployment_zh: 阿里云百炼，华北 2（北京）。当前能力等同于快照 qwen3.7-plus-2026-05-26
+modalities:
+  input: [text, image, video]
+  output: [text]
+release:
+  date: "2026-05-26"
+  precision: day
+  kind: default_snapshot
+  source_url: https://help.aliyun.com/zh/model-studio/qwen3-7-plus
+  note_zh: 模型页称快照 qwen3.7-plus-2026-05-26 为 2026 年 5 月 26 日快照。限时 8 折写在滚动别名上，快照行是原价。
+context:
+  window_tokens: 1000000
+  window_tokens_exact: true
+  max_output_tokens: 131072
+  max_output_tokens_exact: true
+  window_label: "1000000"
+  max_output_label: "131072"
+  source_url: https://help.aliyun.com/zh/model-studio/qwen3-7-plus
+  note_zh: 模型页给出的上下文长度、最大输出长度均为整数。思考模式下最大输入更短，见该页，不改这里的上下文长度。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 华北 2（北京）实时推理的限时 8 折价。非思考与思考输出同价。原价写在 list 字段。
+  promotion:
+    label_zh: 限时 8 折
+    discount_rate: "0.8"
+    ends_on: null
+    note_zh: 定价页写「原价（限时 8 折）」，没有写截止日期。入口价取折后价。
+  headline:
+    id: le_256k
+    label_zh: 输入不超过 256K · 限时 8 折
+    input_per_1m: "1.6"
+    output_per_1m: "6.4"
+  tiers:
+    - id: le_256k
+      label_zh: 输入不超过 256K · 限时 8 折
+      applies_when_zh: 0 < Token ≤ 256K。非思考与思考输出同价。
+      input_per_1m: "1.6"
+      output_per_1m: "6.4"
+      list_input_per_1m: "2"
+      list_output_per_1m: "8"
+      is_headline: true
+    - id: gt_256k
+      label_zh: 输入 256K 至 1M · 限时 8 折
+      applies_when_zh: 256K < Token ≤ 1M。非思考与思考输出同价。
+      input_per_1m: "4.8"
+      output_per_1m: "19.2"
+      list_input_per_1m: "6"
+      list_output_per_1m: "24"
+      is_headline: false
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "1.6"
+  cny_output_per_1m: "6.4"
+  usd_input_per_1m: "0.238209"
+  usd_output_per_1m: "0.952835"
+source:
+  url: https://help.aliyun.com/zh/model-studio/model-pricing
+  title_zh: 阿里云百炼模型价格（华北 2 北京，千问 Plus）
+  section_zh: "「千问 Plus」下「华北 2（北京）」表，模型 ID qwen3.7-plus 行。单元格同时写原价与「限时 8 折」，分 0–256K 与 256K–1M 两档。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 快照 qwen3.7-plus-2026-05-26 在同一张表上是原价，没有 8 折。本条记录的是滚动别名 qwen3.7-plus 的折后价。该行写明 Batch 调用半价，半价不作为入口价。缓存写明享有折扣，但没有给出命中单价。

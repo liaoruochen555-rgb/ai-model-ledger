@@ -1,0 +1,70 @@
+schema_version: 1
+id: deepseek-flash
+vendor: deepseek
+api_model_id: deepseek-flash
+display_name_zh: DeepSeek V4.1 Flash
+display_name_en: DeepSeek V4.1 Flash
+family: deepseek-v4
+region: cn
+status: active
+deployment_zh: DeepSeek API（api.deepseek.com），模型版本 DeepSeek-V4.1-Flash-1017
+modalities:
+  input: [text, image]
+  output: [text]
+release:
+  date: "2026-09-10"
+  precision: day
+  kind: announcement
+  source_url: https://api-docs.deepseek.com/zh-cn/news/news260910
+  note_zh: 该文宣布发布 V4.1 Flash，并写明新价格于 2026-09-10 12:00 起生效。
+context:
+  window_label: 1M
+  max_output_label: 384K
+  source_url: https://api-docs.deepseek.com/zh-cn/quick_start/pricing
+  note_zh: 定价页写的是 1M 与最大 384K，没有给出整数 token 数。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 空闲时段、缓存未命中的输入，以及同一时段的输出。高峰见分档。不含 Search / Fetch 按次费用。
+  headline:
+    id: off_peak
+    label_zh: 空闲时段 · 缓存未命中
+    input_per_1m: "1"
+    output_per_1m: "4"
+    cache_hit_input_per_1m: "0.02"
+  tiers:
+    - id: off_peak
+      label_zh: 空闲时段 · 缓存未命中
+      applies_when_zh: 周末、中国法定节假日全天，以及工作日高峰以外的时间。
+      input_per_1m: "1"
+      output_per_1m: "4"
+      cache_hit_input_per_1m: "0.02"
+      is_headline: true
+    - id: peak
+      label_zh: 高峰时段 · 缓存未命中
+      applies_when_zh: 北京时间周一至周五（不含中国法定节假日）9:00–12:00、14:00–18:00。
+      input_per_1m: "2"
+      output_per_1m: "8"
+      cache_hit_input_per_1m: "0.04"
+      is_headline: false
+  alternate_lists:
+    - currency: USD
+      label_zh: 英文定价页的空闲档
+      input_per_1m: "0.15"
+      output_per_1m: "0.6"
+      cache_hit_input_per_1m: "0.003"
+      source_url: https://api-docs.deepseek.com/quick_start/pricing
+      note_zh: 英文定价页另行标价，高峰为其两倍。这不是本账本按中间价折算的结果。
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "1"
+  cny_output_per_1m: "4"
+  usd_input_per_1m: "0.148880"
+  usd_output_per_1m: "0.595522"
+source:
+  url: https://api-docs.deepseek.com/zh-cn/quick_start/pricing
+  title_zh: DeepSeek API 模型与价格
+  section_zh: "「模型细节」表 deepseek-flash 列：「上下文长度」「输出长度」，以及「价格」中缓存命中、缓存未命中、输出在空闲时段与高峰时段的单元格。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 思考与非思考共用这一组单价，调用名用 deepseek-flash。官网首页另有一套更低的美元展示价，与 API 定价页不一致，本账本不采用首页。deepseek-v4-pro 仍出现在定价页，但 2026-09-10 公告称 9 月 14 日后该名称会路由到 Flash 并按 Flash 计费，两份官方材料冲突，故不单列。

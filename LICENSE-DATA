@@ -1,0 +1,21 @@
+Creative Commons Attribution 4.0 International
+
+The ledger data in this repository is licensed under CC BY 4.0:
+
+- data/
+- snapshots/
+- changelog/
+
+You may share and adapt the data for any purpose, including commercial use,
+provided you give appropriate credit, link to the license, and indicate if
+changes were made.
+
+Canonical legal text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Suggested attribution: "ai-model-ledger contributors", with a link to the
+repository and to the model source URL stored on each record. Converted
+CNY/USD figures are calculations from the stated central parity rate; they
+are not the vendor's invoice currency unless the record's billing currency
+says so.
+
+This file is a pointer and a summary. It does not replace the legal code.

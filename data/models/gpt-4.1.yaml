@@ -1,0 +1,59 @@
+schema_version: 1
+id: gpt-4.1
+vendor: openai
+api_model_id: gpt-4.1
+display_name_zh: GPT-4.1
+display_name_en: GPT-4.1
+family: gpt-4.1
+region: global
+status: deprecated
+deployment_zh: OpenAI API。模型页状态为 Deprecated，默认快照 gpt-4.1-2025-04-14
+modalities:
+  input: [text, image]
+  output: [text]
+release:
+  date: "2025-04-14"
+  precision: day
+  kind: default_snapshot
+  source_url: https://developers.openai.com/api/docs/models/gpt-4.1
+  note_zh: 日期来自模型页默认快照 ID，不是新闻稿日期。
+context:
+  window_tokens: 1047576
+  window_tokens_exact: true
+  max_output_tokens: 32768
+  max_output_tokens_exact: true
+  window_label: "1047576"
+  max_output_label: "32768"
+  source_url: https://developers.openai.com/api/docs/models/gpt-4.1
+  note_zh: 模型页写 1,047,576 上下文与 32,768 最大输出。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 标准价，定价表未分短长上下文。
+  headline:
+    id: standard
+    label_zh: 标准价
+    input_per_1m: "2"
+    output_per_1m: "8"
+    cache_hit_input_per_1m: "0.5"
+  tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表只给了一档。
+      input_per_1m: "2"
+      output_per_1m: "8"
+      cache_hit_input_per_1m: "0.5"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "13.433600"
+  cny_output_per_1m: "53.734400"
+  usd_input_per_1m: "2"
+  usd_output_per_1m: "8"
+source:
+  url: https://developers.openai.com/api/docs/pricing
+  title_zh: OpenAI API 定价（Standard）
+  section_zh: "Standard 定价里不区分短长上下文的那张表，gpt-4.1 行：Input、Output、Cached input。模型页 Text tokens 表数字相同。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 定价页与模型页一致：输入 2 美元、缓存输入 0.5 美元、输出 8 美元。已标弃用，仍在价目表上。Batch 五折不作为入口价。

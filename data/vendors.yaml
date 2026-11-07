@@ -1,0 +1,40 @@
+- id: deepseek
+  name_zh: 深度求索
+  name_en: DeepSeek
+  home_region: cn
+  order: 10
+- id: qwen
+  name_zh: 通义千问
+  name_en: Alibaba Cloud Model Studio
+  home_region: cn
+  order: 20
+- id: moonshot
+  name_zh: 月之暗面 Kimi
+  name_en: Moonshot AI
+  home_region: cn
+  order: 30
+- id: zhipu
+  name_zh: 智谱
+  name_en: Zhipu AI
+  home_region: cn
+  order: 40
+- id: openai
+  name_zh: OpenAI
+  name_en: OpenAI
+  home_region: global
+  order: 50
+- id: anthropic
+  name_zh: Anthropic
+  name_en: Anthropic
+  home_region: global
+  order: 60
+- id: google
+  name_zh: Google Gemini
+  name_en: Google
+  home_region: global
+  order: 70
+- id: xai
+  name_zh: xAI
+  name_en: xAI
+  home_region: global
+  order: 80

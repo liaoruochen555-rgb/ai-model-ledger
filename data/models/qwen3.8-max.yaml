@@ -1,0 +1,52 @@
+schema_version: 1
+id: qwen3.8-max
+vendor: qwen
+api_model_id: qwen3.8-max
+display_name_zh: 通义千问 3.8 Max
+display_name_en: Qwen3.8-Max
+family: qwen3.8
+region: cn
+status: active
+deployment_zh: 阿里云百炼，华北 2（北京）。快照 qwen3.8-max-0902 同价
+modalities:
+  input: [text, image, video]
+  output: [text]
+release:
+  date: "2026-08-02"
+  precision: day
+  kind: catalog
+  source_url: https://help.aliyun.com/zh/model-studio/newly-released-models
+  note_zh: 上下架页在 2026-08-02 列出 qwen3.8-max。快照别名 qwen3.8-max-2026-09-02 写在 2026-09-11 一组，并写明延续 100 万上下文。
+context:
+  window_label: 100万
+  source_url: https://help.aliyun.com/zh/model-studio/newly-released-models
+  note_zh: 快照说明写「延续 100 万上下文」。定价页最高档为不超过 1M Token。页面没有给出整数上限。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 华北 2（北京）实时推理。非思考与思考同价，输入不超过 1M。Batch 半价不作为入口价。
+  headline:
+    id: up_to_1m
+    label_zh: 输入不超过 1M · 非思考与思考同价
+    input_per_1m: "12"
+    output_per_1m: "36"
+  tiers:
+    - id: up_to_1m
+      label_zh: 输入不超过 1M · 非思考与思考同价
+      applies_when_zh: 单次请求输入 Token 满足 0 < Token ≤ 1M。
+      input_per_1m: "12"
+      output_per_1m: "36"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "12"
+  cny_output_per_1m: "36"
+  usd_input_per_1m: "1.786565"
+  usd_output_per_1m: "5.359695"
+source:
+  url: https://help.aliyun.com/zh/model-studio/model-pricing
+  title_zh: 阿里云百炼模型价格（华北 2 北京）
+  section_zh: "「千问 Max」下「华北 2（北京）」表，模型 ID qwen3.8-max 行，输入范围 0<Token≤1M 的输入单价与输出单价。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 只录北京地域的人民币标价。同一页的全球、美国、国际部署单价不同，未混入。定价行写明 Batch 调用半价、上下文缓存享有折扣，但没有给出缓存命中的具体单价，故缓存单价留空。开通后 90 天内的免费额度不是单价。视频输入依据上下架页「长视频的深度语义解析」，不是一张单独的模态对照表。

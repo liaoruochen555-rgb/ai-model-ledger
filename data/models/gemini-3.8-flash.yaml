@@ -1,0 +1,57 @@
+schema_version: 1
+id: gemini-3.8-flash
+vendor: google
+api_model_id: gemini-3.8-flash
+display_name_zh: Gemini 3.8 Flash
+display_name_en: Gemini 3.8 Flash
+family: gemini-3
+region: global
+status: active
+deployment_zh: Gemini Developer API 付费层 Standard
+modalities:
+  input: [text]
+  output: [text]
+context:
+  window_label: 1M
+  max_output_tokens: 64000
+  max_output_tokens_exact: true
+  max_output_label: "64000"
+  source_url: https://ai.google.dev/gemini-api/docs/long-context
+  note_zh: 长上下文文档写 Gemini 3 与 2.5 使用分开的约 100 万输入预算和 64,000 输出预算。3.8 Flash 属于 Gemini 3，输入侧页面没有单独再给整数，故输入只保留 1M 标签。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: Standard 限时价，输出含思考 token。2027-01-01 起的价格在 scheduled。
+  headline:
+    id: intro
+    label_zh: 2026-12-31 前的标准价
+    input_per_1m: "0.75"
+    output_per_1m: "3.75"
+    cache_hit_input_per_1m: "0.075"
+  tiers:
+    - id: intro
+      label_zh: 2026-12-31 前的标准价
+      applies_when_zh: 定价页写 through December 31, 2026。
+      input_per_1m: "0.75"
+      output_per_1m: "3.75"
+      cache_hit_input_per_1m: "0.075"
+      is_headline: true
+  scheduled:
+    effective_on: "2027-01-01"
+    input_per_1m: "1.50"
+    output_per_1m: "7.50"
+    cache_hit_input_per_1m: "0.15"
+    note_zh: 定价页写 starting January 1, 2027。缓存存储按每百万 tokens 每小时另计，见备注，不并入 token 单价。
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "5.037600"
+  cny_output_per_1m: "25.188000"
+  usd_input_per_1m: "0.75"
+  usd_output_per_1m: "3.75"
+source:
+  url: https://ai.google.dev/gemini-api/docs/pricing
+  title_zh: Gemini Developer API pricing（gemini-3.8-flash Standard）
+  section_zh: "gemini-3.8-flash 标题下第一张 Standard 表的 Paid Tier。Batch 表是随后那张约为一半的价格，不作为入口价。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 标准档缓存存储在 2026-12-31 前是每百万 tokens 每小时 0.50 美元，其后 1.00 美元。这是存储价，不是输入单价，所以没有写进 input。Batch 表大约是标准价的一半，不作为入口价。输入模态未在这段定价文案里列出。

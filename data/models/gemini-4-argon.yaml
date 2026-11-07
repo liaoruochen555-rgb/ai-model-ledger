@@ -1,0 +1,56 @@
+schema_version: 1
+id: gemini-4-argon
+vendor: google
+api_model_id: gemini-4-argon
+display_name_zh: Gemini 4 Argon
+display_name_en: Gemini 4 Argon
+family: gemini-4
+region: global
+status: active
+deployment_zh: Gemini Developer API 付费层 Standard。无免费层。Batch 与 Flex 不作为入口价
+modalities:
+  input: [text]
+  output: [text]
+context:
+  window_tokens: 1048576
+  window_tokens_exact: true
+  window_label: "1048576"
+  source_url: https://ai.google.dev/gemini-api/docs/long-context
+  note_zh: 长上下文文档写明 Gemini 4 的 100 万 token 窗口由输入、思考和输出共用，整数为 1,048,576。不启用长解码时，单次输出还有更低的跳数上限。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 核验日仍生效的 Standard 限时价。输出含思考 token。2026-12-01 起的价格写在 scheduled，不拿来覆盖现价。
+  headline:
+    id: intro
+    label_zh: 2026-11-30 前的标准价
+    input_per_1m: "2"
+    output_per_1m: "10"
+    cache_hit_input_per_1m: "0.10"
+  tiers:
+    - id: intro
+      label_zh: 2026-11-30 前的标准价
+      applies_when_zh: 定价页写 through November 30, 2026。
+      input_per_1m: "2"
+      output_per_1m: "10"
+      cache_hit_input_per_1m: "0.10"
+      is_headline: true
+  scheduled:
+    effective_on: "2026-12-01"
+    input_per_1m: "4"
+    output_per_1m: "20"
+    cache_hit_input_per_1m: "0.20"
+    note_zh: 定价页写 starting December 1, 2026。缓存只支持隐式缓存。
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "13.433600"
+  cny_output_per_1m: "67.168000"
+  usd_input_per_1m: "2"
+  usd_output_per_1m: "10"
+source:
+  url: https://ai.google.dev/gemini-api/docs/pricing
+  title_zh: Gemini Developer API pricing（Standard）
+  section_zh: "gemini-4-argon 标题下第一张 Standard 表的 Paid Tier，不是随后的 Batch 或 Flex。限时价与 2026-12-01 起的价格写在同一单元格。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 只取 gemini-4-argon 名下第一张 Standard 表。后面的 Batch、Flex 以及更高优先级表不作为入口价。定价页这段没有列出输入模态，本条模态只标文本，避免从其他页面补猜。页面写 Last updated 2026-10-30 UTC，那是文档更新日。

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} · 大模型 API 价格账本</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="mast">
+    <div class="mast-inner">
+      <a class="brand" href="./">
+        <span class="seal" aria-hidden="true">账</span>
+        <span class="brand-text">
+          <strong>大模型 API 价格账本</strong>
+          <em>ai-model-ledger</em>
+        </span>
+      </a>
+      <nav class="mast-nav">
+        <a href="./">价格表</a>
+        <a href="methodology.html">口径</a>
+        <a href="omitted.html">未收录</a>
+      </nav>
+    </div>
+  </header>
+  <main class="prose">
+    {{body}}
+  </main>
+  <footer class="colophon">
+    <p>代码 MIT，数据 CC BY 4.0。折算额不是账单金额。</p>
+  </footer>
+</body>
+</html>

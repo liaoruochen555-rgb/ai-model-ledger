@@ -1,0 +1,49 @@
+schema_version: 1
+id: glm-4-plus
+vendor: zhipu
+api_model_id: glm-4-plus
+display_name_zh: GLM-4-Plus
+display_name_en: GLM-4-Plus
+family: glm-4
+region: cn
+status: active
+deployment_zh: 智谱开放平台。调用示例中的模型编码为 glm-4-plus
+modalities:
+  input: [text]
+  output: [text]
+context:
+  window_label: 128K
+  max_output_label: 4K
+  source_url: https://docs.bigmodel.cn/cn/guide/models/text/glm-4
+  note_zh: 模型页卡片写上下文 128K、最大输出 4K。定价表上下文一列也是 128K。都没有整数。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 定价表中的输入与输出单价。模型页卡片把价格简写成 5 元/百万 tokens，输入与输出的拆分以定价表为准。
+  headline:
+    id: standard
+    label_zh: 标准价
+    input_per_1m: "5"
+    output_per_1m: "5"
+    cache_hit_input_per_1m: "2.5"
+  tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表未按长度分档。
+      input_per_1m: "5"
+      output_per_1m: "5"
+      cache_hit_input_per_1m: "2.5"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "5"
+  cny_output_per_1m: "5"
+  usd_input_per_1m: "0.744402"
+  usd_output_per_1m: "0.744402"
+source:
+  url: https://docs.bigmodel.cn/cn/guide/start/pricing
+  title_zh: 智谱开放平台 API 定价
+  section_zh: "「模型推理 / 文本模型 / 更多文本模型」表 GLM-4-Plus 行：上下文 128K，输入 5 元，输出 5 元，缓存命中 2.5 元。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 仍列在现行定价表的「更多文本模型」中：输入 5 元、输出 5 元、缓存命中 2.5 元。发布日期没有在已核验页面上写明，故留空。缓存存储限时免费。

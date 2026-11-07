@@ -1,0 +1,53 @@
+schema_version: 1
+id: claude-opus-5-5
+vendor: anthropic
+api_model_id: claude-opus-5-5
+display_name_zh: Claude Opus 5.5
+display_name_en: Claude Opus 5.5
+family: claude-opus
+region: global
+status: active
+deployment_zh: Claude API 全球标准价
+modalities:
+  input: [text, image]
+  output: [text]
+context:
+  window_label: 1M
+  max_output_label: 128K
+  source_url: https://platform.claude.com/docs/en/models/overview
+  note_zh: 模型总览写 1M 上下文、同步最大输出 128K。
+billing:
+  unit: per_1m_tokens
+  currency: USD
+  price_covers_zh: 基础输入与输出。缓存命中是基础输入的 0.05 倍。
+  headline:
+    id: standard
+    label_zh: 标准价
+    input_per_1m: "4"
+    output_per_1m: "20"
+    cache_hit_input_per_1m: "0.20"
+    cache_write_5m_per_1m: "5"
+    cache_write_1h_per_1m: "8"
+  tiers:
+    - id: standard
+      label_zh: 标准价
+      applies_when_zh: 定价表未按提示长度分档。
+      input_per_1m: "4"
+      output_per_1m: "20"
+      cache_hit_input_per_1m: "0.20"
+      cache_write_5m_per_1m: "5"
+      cache_write_1h_per_1m: "8"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "26.867200"
+  cny_output_per_1m: "134.336000"
+  usd_input_per_1m: "4"
+  usd_output_per_1m: "20"
+source:
+  url: https://platform.claude.com/docs/en/about-claude/pricing
+  title_zh: Claude API 模型定价
+  section_zh: "Model pricing 表 Claude Opus 5.5 行：Base input、5m cache writes、1h cache writes、Cache hits、Output。脚注写明缓存命中为输入价的 0.05 倍。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 定价页脚注写明 Opus 5.5 与 Sonnet 5.5 的缓存命中为基价输入的 0.05 倍，即 0.20 美元。模型总览写退役承诺不早于 2027-09-22。US-only inference 有加价，未作为入口价。

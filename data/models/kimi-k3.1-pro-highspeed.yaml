@@ -1,0 +1,54 @@
+schema_version: 1
+id: kimi-k3.1-pro-highspeed
+vendor: moonshot
+api_model_id: kimi-k3.1-pro-highspeed
+display_name_zh: Kimi K3.1 Pro 高速版
+display_name_en: Kimi K3.1 Pro Highspeed
+family: kimi-k3
+region: cn
+status: active
+deployment_zh: Kimi 开放平台中国站。模型列表写明速度约为 K3.1 Pro 的 2 到 3 倍
+modalities:
+  input: [text, image]
+  output: [text]
+context:
+  window_tokens: 1048576
+  window_tokens_exact: true
+  window_label: "1048576"
+  source_url: https://platform.kimi.com/docs/pricing/chat
+  note_zh: K3 系列统一为 1,048,576 tokens 上下文。
+billing:
+  unit: per_1m_tokens
+  currency: CNY
+  price_covers_zh: 中国站高速版标准价。缓存命中与普通版同为 1.30 元，输入和输出以及缓存写入更高。
+  headline:
+    id: standard
+    label_zh: 高速版标准价 · 缓存未命中
+    input_per_1m: "26"
+    output_per_1m: "136"
+    cache_hit_input_per_1m: "1.30"
+    cache_write_5m_per_1m: "26"
+    cache_write_1h_per_1m: "52"
+  tiers:
+    - id: standard
+      label_zh: 高速版标准价 · 缓存未命中
+      applies_when_zh: 不按上下文长度分档。
+      input_per_1m: "26"
+      output_per_1m: "136"
+      cache_hit_input_per_1m: "1.30"
+      cache_write_5m_per_1m: "26"
+      cache_write_1h_per_1m: "52"
+      is_headline: true
+conversion:
+  fx_id: usd-cny-2026-11-06
+  cny_input_per_1m: "26"
+  cny_output_per_1m: "136"
+  usd_input_per_1m: "3.870891"
+  usd_output_per_1m: "20.247737"
+source:
+  url: https://platform.kimi.com/docs/pricing/chat
+  title_zh: Kimi 开放平台模型推理价格说明
+  section_zh: "「模型定价 / K3 系列模型」表，kimi-k3.1-pro-highspeed 行。列序同 K3.1 Pro。"
+  retrieved_at: "2026-11-07"
+verified_at: "2026-11-07"
+notes_zh: 与 kimi-k3.1-pro 同一张中国站价格表。新用户代金券说明写明高速版不适用赠送券，这不影响单价。国际站美元价未收录。

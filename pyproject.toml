@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-model-ledger"
+version = "0.1.0"
+description = "Sourced, append-only ledger of LLM API prices, Chinese models first."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "ai-model-ledger contributors"}]
+dependencies = [
+  "PyYAML>=6.0.1",
+  "jsonschema>=4.21",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+ai-model-ledger = "ai_model_ledger.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
