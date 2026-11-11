@@ -1,19 +1,21 @@
 # 大模型 API 价格账本
 
+在线查阅：<https://liaoruochen555-rgb.github.io/ai-model-ledger/>
+
 国产模型放在前面的 LLM API 标价账本。每条价格都有官方来源和核验日，改价只追加、不覆盖。
+
+![价格表。默认显示人民币。国内厂商在前。标了「折算」的不是账单金额。](docs/screenshot.png)
 
 这不是跑分榜，也不是渠道报价单。它回答三件事：这个模型 ID 现在的官方入口价是多少，上下文窗口页面上怎么写，上次核验之后价变过没有。
 
 ## 和现有价格表的差别
 
-多数英文价格站把海外模型当目录主体，国内模型常常缺席，或者只出现在聚合平台的转载里。它们通常只保留「现在的价格」。价格一改，旧数字就没了，也看不出这口价是官方页还是渠道价。
-
-本账本反过来做：
+界面是中文的。每条价格旁边是官方来源和核验日。历史只追加，不覆盖。账单不是人民币时，折算用的汇率、日期，以及这不是发票金额，都写在明处。
 
 - 深度求索、通义千问、Kimi、智谱和 OpenAI、Claude、Gemini、Grok 放在同一张表里，国内厂商排在前面。
 - 一条记录对应一个 API 模型 ID，价格旁边是来源 URL 和核验日。
 - 历史文件和按日快照都是只追加的。入口价、峰谷、长上下文和限时价分开记，不折成一个平均数。
-- 账单是美元时，人民币数字按写明日期的汇率中间价折算，并标明这不是发票金额。厂商若另行公布另一种货币，单独列出，不假装那就是折算结果。
+- 账单是美元时，人民币数字按写明日期的汇率中间价折算，并标明这不是发票金额。厂商若另行公布另一种货币，单独列出，不把它写成折算结果。
 
 v0.1 收录 34 个能在官方页面上逐项核对的模型。OpenAI 现行 Standard 表从 Astra、6.1 Sol、6.1 Terra、6 Sol 到 5.6 Sol / Terra / Luna 和 6 Luna 都在；已弃用的 gpt-5、gpt-4.1 单独标出，不代替这些在售型号。其他厂商同样保留中间档，而不只是一档最贵和一档最便宜。深度求索仍只有 Flash：Pro 的定价页和停用公告互相冲突。核对不到的宁可不收，清单在 [docs/omitted.md](docs/omitted.md)。口径在 [docs/methodology.md](docs/methodology.md)。
 
@@ -49,12 +51,14 @@ python -m http.server -d site 8000
 
 ## 许可
 
-代码（`src/`、`tests/`、`web/` 里的页面代码、`schema/`、工作流）使用 [MIT](LICENSE)。站点嵌入的中文字体是 Noto Sans CJK SC 与 Noto Serif CJK SC 的子集，许可是 SIL Open Font License，见 [web/fonts/OFL.txt](web/fonts/OFL.txt)。
+代码（`src/`、`tests/`、`web/` 里的页面代码、`schema/`、工作流）使用 [MIT](LICENSE)。根目录的 LICENSE 是标准 MIT 文本，只覆盖这些代码。站点嵌入的中文字体是 Noto Sans CJK SC 与 Noto Serif CJK SC 的子集，许可是 SIL Open Font License，见 [web/fonts/OFL.txt](web/fonts/OFL.txt)。
 
-数据（`data/`、`snapshots/`、`changelog/`）使用 [CC BY 4.0](LICENSE-DATA)。引用时请注明本账本，并保留模型记录里的官方来源。
+数据（`data/`、`snapshots/`、`changelog/`）使用 [CC BY 4.0](docs/LICENSE-DATA)。引用时请注明本账本，并保留模型记录里的官方来源。
 
 ## English
 
-`ai-model-ledger` is a sourced, append-only ledger of LLM API list prices. Chinese vendors are first-class records, not an appendix. Each model file cites the official pricing page and a verification date. USD/CNY figures that are not the invoice currency are conversions at a stated central-parity rate and date. History is append-only: a price change adds a record and a new snapshot, and older snapshots are never rewritten.
+The same catalog is published at <https://liaoruochen555-rgb.github.io/ai-model-ledger/>.
 
-The v0.1 catalog contains only prices that could be read off official pages. Unverified or conflicting figures are listed in `docs/omitted.md` instead of being guessed. Code is MIT. Data is CC BY 4.0.
+`ai-model-ledger` is a Chinese-language ledger of LLM API list prices. Each record cites the official pricing page and a verification date. History is append-only: a price change adds a record and a new snapshot, and older snapshots are never rewritten. When the invoice currency is not CNY, the renminbi figure is a conversion at a stated central-parity rate and date, and is marked as not the invoice amount.
+
+The v0.1 catalog contains only prices that could be read off official pages. Unverified or conflicting figures are listed in `docs/omitted.md` instead of being guessed. Code is the standard MIT text in `LICENSE`, and that file covers code only. Data is CC BY 4.0, in `docs/LICENSE-DATA`.
