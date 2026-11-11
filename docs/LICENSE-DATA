@@ -1,10 +1,15 @@
 Creative Commons Attribution 4.0 International
 
-The ledger data in this repository is licensed under CC BY 4.0:
+The ledger data is not covered by the MIT license. Files under these
+paths are licensed under CC BY 4.0:
 
 - data/
 - snapshots/
 - changelog/
+
+The file `LICENSE` at the repository root is the standard MIT text. It
+covers the code: `src/`, `tests/`, `web/`, `schema/`, and the workflow
+files. It does not cover the paths listed above.
 
 You may share and adapt the data for any purpose, including commercial use,
 provided you give appropriate credit, link to the license, and indicate if
